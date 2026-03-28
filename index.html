@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <h1>Hola Leonel</h1>
+    <h1 id="titulo">Hola Leonel</h1>
 
     <p>Estoy aprendiendo HTML</p>
 
@@ -17,9 +17,13 @@
 
     <script>
         function saludar() {
-            alert("hola leonel, vas super bien")´
-         } 
+let colores = ["red", "green", "yellow"];
+let i = 0;
+
+setInterval(function() {
+    document.getElementById("titulo").style.color = colores[i];
+    i = (i + 1) % colores.length;
+}, 1000);
      </script>
-   </body>
-   </html>
+   
     

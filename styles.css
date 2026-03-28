@@ -1,7 +1,10 @@
-</> css
 
-html, body {
+html {
     background-color: red;
+}
+
+body {
+    margin: 0;
     font-family: Arial;
     text-align: center;
 }
