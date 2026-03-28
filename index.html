@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,28 +8,29 @@
 </head>
 
 <body>
-    <h1 id="titulo">Hola Leonel</h1>
 
-    <p>Estoy aprendiendo HTML</p>
+<h1 id="titulo">Hola Leonel</h1>
 
-    <button onclick="saludar()">Haz clic aquí</button>
+<p>Estoy aprendiendo HTML</p>
 
-    <img src="hampi1.jpg" alt="mi imagen">
+<button onclick="saludar()">Haz clic aquí</button>
 
-    <script>
-        function saludar() {
-            alert("hola leonel, vas super bien");
-        }
-     </script>
+<img src="hampi1.jpg" alt="mi imagen">
 
-     <script>
-         let colores = ["red" , " green , "yellow"];
-         let i = 0,
+<script>
+function saludar() {
+    alert("hola leonel, vas super bien");
+}
 
-         setinterval(function() {
-             document.getElementBYId("titulo").style.color = colores[i];
-             i = (i + 1) % colores.length;
-         }, 1000);
-     </script>
-   
+let colores = ["red", "green", "yellow"];
+let i = 0;
+
+setInterval(function() {
+    document.getElementById("titulo").style.color = colores[i];
+    i = (i + 1) % colores.length;
+}, 1000);
+</script>
+
+</body>
+</html>
     
