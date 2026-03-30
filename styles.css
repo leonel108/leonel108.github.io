@@ -28,3 +28,11 @@ button {
     border: none;
     border-radius: 10px;
 }
+margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+iframe {
+  display: block;
+  margin: 20px auto;
+}
