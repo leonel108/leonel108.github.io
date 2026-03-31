@@ -35,3 +35,22 @@ iframe {
   display: block;
   margin: 60px auto;
 }
+.contenedor {
+  display: flex;
+}
+
+.izquierda {
+  width: 20%;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.centro {
+  width: 60%;
+  padding: 10px;
+}
+
+.derecha {
+  width: 20%;
+  background-color: #f0f0f0;
+  padding: 10px;
