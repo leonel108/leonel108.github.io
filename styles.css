@@ -19,6 +19,8 @@ h1 {
 img {
     width: 300px;
     border-radius: 20px;
+    display: block;
+    margin: 20px auto;
 }
 
 button {
