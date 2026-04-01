@@ -73,3 +73,8 @@ nav a:hover {
     color: yellow;
     transform: scale(1.1);
 }
+.contador {
+    margin-top: 40px;
+    font-size: 18px;
+    color: white;
+}
