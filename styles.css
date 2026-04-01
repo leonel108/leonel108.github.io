@@ -17,8 +17,8 @@ h1 {
 }
 
 img {
-    width: 300px;
-    border-radius: 20px;
+    width: auto;
+    border-radius: 0;
     display: block;
     margin: 20px auto;
 }
