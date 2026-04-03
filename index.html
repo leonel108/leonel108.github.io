@@ -1,4 +1,4 @@
-
+a
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +20,7 @@
 
 <nav>
   <a href="#inicio">Inicio</a>
-  <a href="#tienda">Tienda</a>
+  <a href="#" onclick=mostrartienda()">Tienda</a>
   <a href="#servicios">Servicios</a>
   <a href="#info">Información</a>
   <a href="#contacto">Contacto</a>
@@ -32,7 +32,7 @@
   <p>Bienvenido a mi pagina</p>
   </section>
 
-  <section id="tienda">
+  <section id="tienda" style="display: none;">
     <h2>Tienda</h2>
     
 
@@ -87,6 +87,8 @@ width="300" height="300">
 
 <script>
 function saludar() {
+function mostrarTienda() {
+  document.getelementBYId("tienda").style.display = "block";
     alert("hola leonel, vas super bien");
 }
 
