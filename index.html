@@ -19,7 +19,7 @@ a
 <h1 id="titulo">Hola Leonel</h1>
 
 <nav>
-  <a href="#inicio">Inicio</a>
+  <a href="#" onclick="mostrarInicio()">Inicio</a>
   <a href="#" onclick="mostrarTienda(); return false;">Tienda</a>
   <a href="#servicios">Servicios</a>
   <a href="#info">Información</a>
@@ -92,6 +92,12 @@ function saludar() {
 
 function mostrarTienda() {
   document.getElementById("tienda").style.display = "block";
+  document.getElementById("inicio").style.display = "none";
+}
+
+function mostrarInicio() {
+  document.getElementById("inicio").style.display = "block";
+  document.getElementById("tienda").style.display = "none";
 }
 
 let colores = ["pink", "green", "yellow", "purple","blue"];
