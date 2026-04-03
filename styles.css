@@ -123,3 +123,21 @@ button:hover {
   display: block;
   margin: 0 auto;
 }
+.producto img {
+  width: 200px !important;
+  height: 200px !important;
+  object-fit: cover !important;
+}
+
+.productos {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.producto {
+  width: 220px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
