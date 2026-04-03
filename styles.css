@@ -116,3 +116,10 @@ button:hover {
   height: 200px;
   objet-fit: cover;
 }
+.producto img {
+  width: 200px !important;
+  height: 200px !important;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
