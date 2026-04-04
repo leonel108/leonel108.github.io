@@ -126,15 +126,16 @@ button:hover {
   text-align: center;
 }
 #titulo {
-  font-family: 'Playfair Display', serif;
-  font-size: 60px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 70px;
   text-align: center;
-  background: linear-gradient(90deg, #ff4d4d, #ffcc00, #00cc66, #3399ff, #9933ff);s
 
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  letter-spacing: 4px;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 }
 }
 .derecha p {
