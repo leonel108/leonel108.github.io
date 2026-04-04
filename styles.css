@@ -111,23 +111,7 @@ button:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
-.producto img {
-  width: 200px;
-  height: 200px;
-  objet-fit: cover;
-}
-.producto img {
-  width: 200px !important;
-  height: 200px !important;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto;
-}
-.producto img {
-  width: 200px !important;
-  height: 200px !important;
-  object-fit: cover !important;
-}
+
 
 .productos {
   display: flex;
@@ -142,16 +126,16 @@ button:hover {
   text-align: center;
 }
 #titulo {
-  font-size: 48px;        /* tamaño grande */
-  font-family: cursive;   /* estilo más artístico */
-  text-align: center;     /* centrado */
-  margin-bottom: 20px;
-}
-#titulo {
-  font-size: 80px;
-  font-family: 'Brush Script MT', cursive;
+  font-family: 'Poppins', sans-serif;
+  font-size: 52px;
   text-align: center;
-  letter-spacing: 6px;
+
+  background: linear-gradient(90deg, #ff9933, #ffffff, #138808);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: 2px;
+}
 }
 .derecha p {
   word-break: break-word;
