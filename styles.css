@@ -178,9 +178,9 @@ body::before {
   height: 100%;
 
   background-image: url("ganes.webp");
-  background-size: cover;
+  background-size: contain;
 
-  background-position: center 70%; /* 👈 BAJA la imagen */
+  background-position: center 60%; /* 👈 BAJA la imagen */
 
   background-repeat: no-repeat;
 
