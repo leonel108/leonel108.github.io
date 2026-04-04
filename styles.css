@@ -177,13 +177,15 @@ body::before {
   width: 100%;
   height: 100%;
 
-  background-image: url("ganes.webp");
+  background-image: url("ganesh.webp");
   background-size: cover;
-  background-position: center;
+
+  background-position: center 70%; /* 👈 BAJA la imagen */
+
   background-repeat: no-repeat;
 
-  filter: blur(8px);   /* difuminado */
-  opacity: 0.3;        /* transparencia */
+  filter: blur(4px);   /* 👈 MENOS difuminado */
+  opacity: 0.5;        /* 👈 MÁS visible */
 
   z-index: -1;
 }
