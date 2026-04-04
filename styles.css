@@ -156,3 +156,9 @@ button:hover {
 .derecha p {
   word-break: break-word;
 }
+.luna {
+  width: 120px;
+  border-radius: 50%; /* la hace redonda */
+  display: block;
+  margin: 10px auto; /* la centra */
+}
