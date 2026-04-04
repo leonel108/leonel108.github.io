@@ -141,3 +141,16 @@ button:hover {
   padding: 10px;
   text-align: center;
 }
+#titulo {
+  font-size: 48px;        /* tamaño grande */
+  font-family: cursive;   /* estilo más artístico */
+  text-align: center;     /* centrado */
+  margin-bottom: 20px;
+}
+#titulo {
+  font-size: 50px;
+  font-family: 'Brush Script MT', cursive;
+  text-align: center;
+  letter-spacing: 2px;
+  color: darkred;
+}
