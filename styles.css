@@ -52,7 +52,7 @@ iframe {
 }
 
 .derecha {
-  width: 20%;
+  width: 250%;
   background-color: #f0f0f0;
   padding: 10px;
 }
@@ -152,4 +152,7 @@ button:hover {
   font-family: 'Brush Script MT', cursive;
   text-align: center;
   letter-spacing: 6px;
+}
+.derecha p {
+  word-break: break-word;
 }
