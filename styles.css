@@ -129,8 +129,8 @@ button:hover {
   font-family: 'Playfair Display', serif;
   font-size: 60px;
   text-align: center;
+  background: linear-gradient(90deg, #ff4d4d, #ffcc00, #00cc66, #3399ff, #9933ff);s
 
-background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
