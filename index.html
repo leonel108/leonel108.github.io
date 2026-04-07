@@ -43,12 +43,52 @@
 <div style="text-align:center; margin-top:20px;">
   <h2>Fase actual de la Luna</h2>
 
-  <iframe 
-  src="https://www.icalendar37.net/lunar/api/?lang=es&size=150&lightColor=ffffff&shadeColor=000000"
-  width="160" 
-  height="160" 
-  frameborder="0">
-</iframe>
+ <div style="text-align:center; margin-top:20px;">
+  <h2>🌙 Fase actual de la Luna</h2>
+
+  <canvas id="lunaCanvas" width="150" height="150"></canvas>
+
+  <p id="faseTexto"></p>
+</div>
+
+<script>
+function calcularFaseLuna() {
+  const hoy = new Date();
+  const inicio = new Date(2000, 0, 6);
+  const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
+  const fase = dias % 29.53;
+
+  let texto = "";
+
+  if (fase < 1) texto = "Luna Nueva";
+  else if (fase < 7) texto = "Creciente";
+  else if (fase < 15) texto = "Luna Llena";
+  else if (fase < 22) texto = "Menguante";
+  else texto = "Luna Nueva";
+
+  document.getElementById("faseTexto").innerText = texto;
+
+  const canvas = document.getElementById("lunaCanvas");
+  const ctx = canvas.getContext("2d");
+
+  ctx.fillStyle = "black";
+  ctx.beginPath();
+  ctx.arc(75, 75, 60, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+
+  let iluminacion = fase / 29.53;
+
+  ctx.arc(75, 75, 60, 0, Math.PI * 2);
+  ctx.clip();
+
+  ctx.fillRect(75 - 60 + iluminacion * 120, 15, 120, 120);
+}
+
+calcularFaseLuna();
+</script>
   >
 </div>
 <button onclick="saludar()">Haz clic aquí</button>
