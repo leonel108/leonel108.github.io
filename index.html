@@ -39,57 +39,38 @@
    <source src="vidprueb.mp4" type="video/mp4">
  </video>
 </div>
-<h2>🌙 Fase de la Luna</h2>
-<div style="text-align:center; margin-top:20px;">
-  <h2>Fase actual de la Luna</h2>
+<div style="text-align:center; margin-top:30px;">
+  <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
 
- <div style="text-align:center; margin-top:20px;">
-  <h2>🌙 Fase actual de la Luna</h2>
+  <img id="luna-img" src="" style="width:180px; border-radius:50%; box-shadow: 0 0 20px #FFD700;">
 
-  <canvas id="lunaCanvas" width="150" height="150"></canvas>
-
-  <p id="faseTexto"></p>
+  <p id="fase-luna" style="margin-top:10px;"></p>
 </div>
 
 <script>
-function calcularFaseLuna() {
+function obtenerLunaReal() {
   const hoy = new Date();
   const inicio = new Date(2000, 0, 6);
   const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
   const fase = dias % 29.53;
 
-  let texto = "";
+  let faseNombre = "";
+  let index = Math.floor((fase / 29.53) * 28);
 
-  if (fase < 1) texto = "Luna Nueva";
-  else if (fase < 7) texto = "Creciente";
-  else if (fase < 15) texto = "Luna Llena";
-  else if (fase < 22) texto = "Menguante";
-  else texto = "Luna Nueva";
+  if (fase < 1) faseNombre = "Luna Nueva";
+  else if (fase < 7) faseNombre = "Creciente";
+  else if (fase < 15) faseNombre = "Luna Llena";
+  else if (fase < 22) faseNombre = "Menguante";
+  else faseNombre = "Luna Nueva";
 
-  document.getElementById("faseTexto").innerText = texto;
+  const url = "https://www.icalendar37.net/lunar/api/img/moon" + index + ".png";
 
-  const canvas = document.getElementById("lunaCanvas");
-  const ctx = canvas.getContext("2d");
-
-  ctx.fillStyle = "black";
-  ctx.beginPath();
-  ctx.arc(75, 75, 60, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.fillStyle = "white";
-  ctx.beginPath();
-
-  let iluminacion = fase / 29.53;
-
-  ctx.arc(75, 75, 60, 0, Math.PI * 2);
-  ctx.clip();
-
-  ctx.fillRect(75 - 60 + iluminacion * 120, 15, 120, 120);
+  document.getElementById("luna-img").src = url;
+  document.getElementById("fase-luna").innerText = faseNombre;
 }
 
-calcularFaseLuna();
+obtenerLunaReal();
 </script>
-  >
 </div>
 <button onclick="saludar()">Haz clic aquí</button>
 
