@@ -43,10 +43,11 @@
   <div style="text-align:center; margin-top:30px;">
     <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
 
-    <img id="luna-img" 
-         src="https://www.icalendar37.net/lunar/api/img/moon0.png"
-         style="width:180px; border-radius:50%; box-shadow: 0 0 30px #FFD700; transition: 0.5s;">
+    <div id="luna-container">
+  <div id="luna"></div>
+</div>
 
+<p id="fase-luna" style="margin-top:10px; color:white;"></p>
     <p id="fase-luna" style="margin-top:10px; color:white;"></p>
   </div>
 
@@ -102,14 +103,14 @@
 
 
 <script>
-function obtenerLunaReal() {
+function actualizarLuna() {
   const hoy = new Date();
   const inicio = new Date(2000, 0, 6);
   const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
   const fase = dias % 29.53;
 
   let faseNombre = "";
-  let index = Math.floor((fase / 29.53) * 27);
+  let porcentaje = fase / 29.53;
 
   if (fase < 1) faseNombre = "🌑 Luna Nueva";
   else if (fase < 7) faseNombre = "🌒 Creciente";
@@ -117,13 +118,30 @@ function obtenerLunaReal() {
   else if (fase < 22) faseNombre = "🌘 Menguante";
   else faseNombre = "🌑 Luna Nueva";
 
-  const url = "https://www.icalendar37.net/lunar/api/img/moon" + index + ".png";
+  const sombra = document.querySelector("#luna::after");
 
-  document.getElementById("luna-img").src = url;
+  const luna = document.getElementById("luna");
+
+  let offset = (porcentaje - 0.5) * 200;
+
+  luna.style.setProperty('--fase', offset + '%');
+
+  // Aplicar sombra dinámicamente
+  luna.innerHTML = `<div style="
+    position:absolute;
+    top:0;
+    left:${offset}%;
+    width:100%;
+    height:100%;
+    background:black;
+    border-radius:50%;
+    transition:1s;
+  "></div>`;
+
   document.getElementById("fase-luna").innerText = faseNombre;
 }
 
-obtenerLunaReal();
+actualizarLuna();
 </script>
   </div>
   <p>visitas:</p>
