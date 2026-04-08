@@ -31,51 +31,29 @@
 <section id="inicio">
   <h2>inicio</h2>
   <p>Bienvenido a mi pagina</p>
+
   <h2>Mi video</h2>
+  <div class="contenedor-video">
+    <video width="320" height="240" controls>
+      <source src="vidprueb.mp4" type="video/mp4">
+    </video>
+  </div>
 
+  <!-- 🌙 LUNA MEJORADA -->
+  <div style="text-align:center; margin-top:30px;">
+    <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
 
-<div class="contenedor-video">
- <video width="320" height="240" controls>
-   <source src="vidprueb.mp4" type="video/mp4">
- </video>
-</div>
-<div style="text-align:center; margin-top:30px;">
-  <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
+    <img id="luna-img" 
+         src="https://www.icalendar37.net/lunar/api/img/moon0.png"
+         style="width:180px; border-radius:50%; box-shadow: 0 0 30px #FFD700; transition: 0.5s;">
 
-  <img id="luna-img" src="" style="width:180px; border-radius:50%; box-shadow: 0 0 20px #FFD700;">
+    <p id="fase-luna" style="margin-top:10px; color:white;"></p>
+  </div>
 
-  <p id="fase-luna" style="margin-top:10px;"></p>
-</div>
+  <button onclick="saludar()">Haz clic aquí</button>
 
-<script>
-function obtenerLunaReal() {
-  const hoy = new Date();
-  const inicio = new Date(2000, 0, 6);
-  const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
-  const fase = dias % 29.53;
-
-  let faseNombre = "";
-  let index = Math.floor((fase / 29.53) * 28);
-
-  if (fase < 1) faseNombre = "Luna Nueva";
-  else if (fase < 7) faseNombre = "Creciente";
-  else if (fase < 15) faseNombre = "Luna Llena";
-  else if (fase < 22) faseNombre = "Menguante";
-  else faseNombre = "Luna Nueva";
-
-  const url = "https://www.icalendar37.net/lunar/api/img/moon" + index + ".png";
-
-  document.getElementById("luna-img").src = url;
-  document.getElementById("fase-luna").innerText = faseNombre;
-}
-
-obtenerLunaReal();
-</script>
-</div>
-<button onclick="saludar()">Haz clic aquí</button>
-
-<img src="hampi1.jpg" alt="mi imagen">
-  </section>
+  <img src="hampi1.jpg" alt="mi imagen" style="width:300px; margin-top:20px;">
+</section>
 
   <section id="tienda" style="display: none;">
     <h2>Tienda</h2>
@@ -124,20 +102,28 @@ obtenerLunaReal();
 
 
 <script>
-function saludar() {
-    alert("hola leonel, vas super bien");
+function obtenerLunaReal() {
+  const hoy = new Date();
+  const inicio = new Date(2000, 0, 6);
+  const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
+  const fase = dias % 29.53;
+
+  let faseNombre = "";
+  let index = Math.floor((fase / 29.53) * 27);
+
+  if (fase < 1) faseNombre = "🌑 Luna Nueva";
+  else if (fase < 7) faseNombre = "🌒 Creciente";
+  else if (fase < 15) faseNombre = "🌕 Luna Llena";
+  else if (fase < 22) faseNombre = "🌘 Menguante";
+  else faseNombre = "🌑 Luna Nueva";
+
+  const url = "https://www.icalendar37.net/lunar/api/img/moon" + index + ".png";
+
+  document.getElementById("luna-img").src = url;
+  document.getElementById("fase-luna").innerText = faseNombre;
 }
 
-function mostrarTienda() {
-  document.getElementById("tienda").style.display = "block";
-  document.getElementById("inicio").style.display = "none";
-}
-
-function mostrarInicio() {
-  document.getElementById("inicio").style.display = "block";
-  document.getElementById("tienda").style.display = "none";
-}
-
+obtenerLunaReal();
 </script>
   </div>
   <p>visitas:</p>
