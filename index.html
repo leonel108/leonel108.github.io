@@ -43,8 +43,13 @@
   <div style="text-align:center; margin-top:30px;">
     <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
 
-    <div id="luna-container">
-  <div id="luna"></div>
+    <div style="text-align:center; margin-top:30px;">
+  <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
+
+  <img id="luna-img" 
+       style="width:180px; border-radius:50%; box-shadow: 0 0 30px #FFD700; transition: 0.5s;">
+
+  <p id="fase-luna" style="margin-top:10px; color:white;"></p>
 </div>
 
 <p id="fase-luna" style="margin-top:10px; color:white;"></p>
@@ -103,14 +108,14 @@
 
 
 <script>
-function actualizarLuna() {
+function obtenerLunaReal() {
   const hoy = new Date();
   const inicio = new Date(2000, 0, 6);
   const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
   const fase = dias % 29.53;
 
   let faseNombre = "";
-  let porcentaje = fase / 29.53;
+  let index = Math.floor((fase / 29.53) * 28);
 
   if (fase < 1) faseNombre = "🌑 Luna Nueva";
   else if (fase < 7) faseNombre = "🌒 Creciente";
@@ -118,30 +123,15 @@ function actualizarLuna() {
   else if (fase < 22) faseNombre = "🌘 Menguante";
   else faseNombre = "🌑 Luna Nueva";
 
-  const sombra = document.querySelector("#luna::after");
+  // 🔥 NUEVA FUENTE DE LUNAS (MEJOR)
+  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
+              + String(index).padStart(4, '0') + ".jpg";
 
-  const luna = document.getElementById("luna");
-
-  let offset = (porcentaje - 0.5) * 200;
-
-  luna.style.setProperty('--fase', offset + '%');
-
-  // Aplicar sombra dinámicamente
-  luna.innerHTML = `<div style="
-    position:absolute;
-    top:0;
-    left:${offset}%;
-    width:100%;
-    height:100%;
-    background:black;
-    border-radius:50%;
-    transition:1s;
-  "></div>`;
-
+  document.getElementById("luna-img").src = url;
   document.getElementById("fase-luna").innerText = faseNombre;
 }
 
-actualizarLuna();
+obtenerLunaReal();
 </script>
   </div>
   <p>visitas:</p>
