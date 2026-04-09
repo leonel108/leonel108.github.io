@@ -163,7 +163,7 @@ body::before {
   height: 100%;
 
   background-image: url("Sri-Ganesha.webp");
-  background-size: cover;   /* 👈 llena toda la pantalla */
+  background-size: contain;   /* 👈 llena toda la pantalla */
   background-position: center;
   background-repeat: no-repeat;
 
