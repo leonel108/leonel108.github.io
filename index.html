@@ -131,9 +131,10 @@ else faseNombre = "🌑 Luna Nueva";
   "https://i.imgur.com/7QFZ3Yk.png"
 ];
 
-let index = Math.floor((fase / 29.53) * 28);
-if (index < 0) index = 0;
-if (index > 27) index = 27;
+let faseIndex = Math.floor((fase / 29.53) * 8);
+
+if (faseIndex < 0) faseIndex = 0;
+if (faseIndex > 7) faseIndex = 7;
 const url = fases[faseIndex];
   document.getElementById("luna-img").src = url;
   document.getElementById("fase-luna").innerText = faseNombre;
