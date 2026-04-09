@@ -126,7 +126,15 @@ else faseNombre = "🌑 Luna Nueva";
   document.getElementById("luna-img").src = url;
   document.getElementById("fase-luna").innerText = faseNombre;
 }
+function mostrarTienda() {
+  document.getElementById("inicio").style.display = "none";
+  document.getElementById("tienda").style.display = "block";
+}
 
+function mostrarInicio() {
+  document.getElementById("inicio").style.display = "block";
+  document.getElementById("tienda").style.display = "none";
+}
 obtenerLunaReal();
 </script>
   </div>
