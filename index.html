@@ -120,22 +120,19 @@ else if (fase < 27.68493) faseNombre = "🌘 Luna Menguante";
 else faseNombre = "🌑 Luna Nueva";
 
   // 🔥 NUEVA FUENTE DE LUNAS (MEJOR)
-  const fases = [
-  "https://i.imgur.com/0KX8YzD.png", // nueva
-  "https://i.imgur.com/QZ6Q9ZP.png",
-  "https://i.imgur.com/6XKZz9F.png",
-  "https://i.imgur.com/8n6YF7T.png",
-  "https://i.imgur.com/9kKQZ5T.png",
-  "https://i.imgur.com/3ZQ3Z7U.png",
-  "https://i.imgur.com/yv3W9XG.png",
-  "https://i.imgur.com/7QFZ3Yk.png"
-];
 
-let faseIndex = Math.floor((fase / 29.53) * 8);
 
-if (faseIndex < 0) faseIndex = 0;
-if (faseIndex > 7) faseIndex = 7;
-const url = fases[faseIndex];
+let index = Math.floor((fase / 29.53) * 28);
+
+// asegurar rango correcto
+if (index < 0) index = 0;
+if (index > 27) index = 27;
+
+// 🔥 AQUÍ ESTÁ LA CLAVE
+let numero = index + 1; // 👈 NASA empieza en 0001, no en 0000
+
+const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
+            + String(numero).padStart(4, '0') + ".jpg";
   document.getElementById("luna-img").src = url;
   document.getElementById("fase-luna").innerText = faseNombre;
 }
