@@ -260,3 +260,25 @@ a:hover {
   position: relative;
   z-index: 1;
 }
+body.blog {
+  margin: 0;
+  font-family: Arial;
+  color: white;
+
+  background-image: url("Sri-Ganesha.webp"); /* puedes cambiar imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* oscurecer fondo para que el texto se vea */
+body.blog::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  z-index: -1;
+}
