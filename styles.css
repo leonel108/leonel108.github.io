@@ -168,7 +168,7 @@ body::before {
   background-repeat: no-repeat;
 
   filter: none;   /* 👈 SIN DIFUMINADO */
-  opacity: 0.5;   /* 👈 puedes subir a 1 si quieres más fuerte */
+  opacity: 0.8;   /* 👈 puedes subir a 1 si quieres más fuerte */
 
   z-index: -1;
 }
