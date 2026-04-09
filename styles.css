@@ -42,8 +42,11 @@ iframe {
 
 .izquierda {
   width: 20%;
-  background-color: #f0f0f0;
-  padding: 10px;
+  background: linear-gradient(to bottom, #2c0b0b, #5a1a1a); /* rojo oscuro elegante */
+  padding: 15px;
+  color: #FFD700; /* dorado */
+  text-align: center;
+  border-right: 2px solid gold;
 }
 
 .centro {
@@ -235,4 +238,25 @@ a:hover {
   background-color: rgba(0,0,0,0.5); /* fondo oscuro */
   padding: 10px;
   border-radius: 50%;
+}
+.izquierda {
+  background-image: url("hampi1.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.izquierda::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.izquierda * {
+  position: relative;
+  z-index: 1;
 }
