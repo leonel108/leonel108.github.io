@@ -21,16 +21,41 @@
 
 <nav>
   <a href="#" onclick="mostrarInicio()">Inicio</a>
+  <a href="#" onclick="mostrarViajes(); return false;">Viajes a India</a>
   <a href="#" onclick="mostrarTienda(); return false;">Tienda</a>
   <a href="blog.html">Blog</a>
   <a href="#info">Información</a>
   <a href="#contacto">Contacto</a>
-  <a href="#" onclick="mostrarViajes(); return false;">Viajes a India</a>
-</nav>
+  </nav>
 
 
 <section id="inicio">
-  <section id="viajes" style="display: none;">
+  
+  <h2>inicio</h2>
+  <p>Bienvenido a mi pagina</p>
+
+  <h2>Mi video</h2>
+  <div class="contenedor-video">
+    <video width="320" height="240" controls>
+      <source src="vidprueb.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- 🌙 LUNA -->
+  <div style="text-align:center; margin-top:30px;">
+    <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
+
+    <img id="luna-img" 
+         style="width:180px; border-radius:50%; box-shadow: 0 0 30px #FFD700; transition: 0.5s;">
+
+    <p id="fase-luna" style="margin-top:10px; color:white;"></p>
+  </div>
+
+  <button onclick="saludar()">Haz clic aquí</button>
+
+  <img src="hampi1.jpg" alt="mi imagen" style="width:300px; margin-top:20px;">
+</section>
+<section id="viajes" style="display: none;">
   <h2>🌍 Viajes a India</h2>
 
   <p>
@@ -61,30 +86,6 @@
   <a href="https://wa.me/56991694163?text=Hola%20quiero%20información%20sobre%20los%20viajes%20a%20India" target="_blank">
     <button>Quiero más información</button>
   </a>
-</section>
-  <h2>inicio</h2>
-  <p>Bienvenido a mi pagina</p>
-
-  <h2>Mi video</h2>
-  <div class="contenedor-video">
-    <video width="320" height="240" controls>
-      <source src="vidprueb.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <!-- 🌙 LUNA -->
-  <div style="text-align:center; margin-top:30px;">
-    <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
-
-    <img id="luna-img" 
-         style="width:180px; border-radius:50%; box-shadow: 0 0 30px #FFD700; transition: 0.5s;">
-
-    <p id="fase-luna" style="margin-top:10px; color:white;"></p>
-  </div>
-
-  <button onclick="saludar()">Haz clic aquí</button>
-
-  <img src="hampi1.jpg" alt="mi imagen" style="width:300px; margin-top:20px;">
 </section>
 
   <section id="tienda" style="display: none;">
@@ -171,6 +172,7 @@ const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x73
 }
 function mostrarTienda() {
   document.getElementById("inicio").style.display = "none";
+  document.getElementById("viajes").style.display = "none";
   document.getElementById("tienda").style.display = "block";
 }
 
