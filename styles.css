@@ -282,3 +282,7 @@ body.blog::before {
   background-color: rgba(0,0,0,0.7);
   z-index: -1;
 }
+.derecha {
+  width: 200px;   /* ajusta tamaño */
+  max-width: 250px;
+}

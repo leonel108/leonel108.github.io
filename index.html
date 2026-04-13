@@ -45,7 +45,14 @@
       <!-- LUNA (SOLO UNA VEZ) -->
       <div style="text-align:center; margin-top:30px;">
         <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
-        <img id="luna-img" style="width:180px; border-radius:50%;">
+        <div id="luna-img" style="
+width:180px;
+height:180px;
+border-radius:50%;
+background: radial-gradient(circle at 30% 50%, white 10%, black 60%);
+margin:auto;
+box-shadow: 0 0 20px #FFD700;
+"></div>
         <p id="fase-luna"></p>
       </div>
 
@@ -57,7 +64,20 @@
     <section id="viajes" style="display:none;">
       <h2>🌍 Viajes a India</h2>
 
-      <p>Soy Leonel, he vivido en India y conozco su cultura.</p>
+      <p>
+Soy Leonel, he vivido en India y conozco su cultura desde dentro.
+He estado en lugares como Rishikesh, Varanasi y el sur de India.
+</p>
+
+<p>
+Acompaño a personas a vivir una experiencia real, espiritual y cultural,
+de forma segura y guiada.
+</p>
+
+<h3>¿Para quién es?</h3>
+<p>
+Personas interesadas en yoga, espiritualidad y conocer India de verdad.
+</p>
 
       <h3>¿Qué incluye?</h3>
       <ul>
@@ -156,7 +176,7 @@ function obtenerLunaReal() {
   const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
   + String(numero).padStart(4, '0') + ".jpg";
 
-  document.getElementById("luna-img").src = url;
+  
   document.getElementById("fase-luna").innerText = faseNombre;
 }
 
