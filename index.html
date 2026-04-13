@@ -29,10 +29,18 @@
       <a href="#" onclick="mostrarTienda()">Tienda</a>
       <a href="blog.html">Blog</a>
       <a href="#contacto">Contacto</a>
+      <a href="https://wa.me/56991694163" target="_blank">
+  <button>Comprar</button>
+</a>
     </nav>
 
     <!-- INICIO -->
     <section id="inicio">
+      <div style="text-align:center; margin-top:30px;">
+  <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
+  <img id="luna-img" style="width:180px;">
+  <p id="fase-luna"></p>
+</div>
       <h2>Inicio</h2>
       <p>Bienvenido a mi página</p>
 
@@ -89,7 +97,8 @@
   </div>
 
   <!-- CONTACTO -->
-  <div id="contacto">
+  <section id="contacto" class="derecha">
+  </section>
     <h2>Contacto</h2>
     <a href="mailto:yogashakti.info@gmail.com">Correo</a>
     <br>
@@ -116,6 +125,40 @@ function mostrarTienda(){
   document.getElementById("viajes").style.display="none";
   document.getElementById("tienda").style.display="block";
 }
+</script>
+<script>
+function obtenerLunaReal() {
+  const hoy = new Date();
+  const inicio = new Date(2000, 0, 6);
+  const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
+  const fase = dias % 29.53;
+
+  let faseNombre = "";
+
+  if (fase < 1.84566) faseNombre = "🌑 Luna Nueva";
+  else if (fase < 5.53699) faseNombre = "🌒 Luna Creciente";
+  else if (fase < 9.22831) faseNombre = "🌓 Cuarto Creciente";
+  else if (fase < 12.91963) faseNombre = "🌔 Gibosa Creciente";
+  else if (fase < 16.61096) faseNombre = "🌕 Luna Llena";
+  else if (fase < 20.30228) faseNombre = "🌖 Gibosa Menguante";
+  else if (fase < 23.99361) faseNombre = "🌗 Cuarto Menguante";
+  else if (fase < 27.68493) faseNombre = "🌘 Luna Menguante";
+  else faseNombre = "🌑 Luna Nueva";
+
+  let index = Math.floor((fase / 29.53) * 28);
+  if (index < 0) index = 0;
+  if (index > 27) index = 27;
+
+  let numero = index + 1;
+
+  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
+  + String(numero).padStart(4, '0') + ".jpg";
+
+  document.getElementById("luna-img").src = url;
+  document.getElementById("fase-luna").innerText = faseNombre;
+}
+
+window.onload = obtenerLunaReal;
 </script>
 
 </body>
