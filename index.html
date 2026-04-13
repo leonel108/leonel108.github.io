@@ -45,14 +45,7 @@
       <!-- LUNA (SOLO UNA VEZ) -->
       <div style="text-align:center; margin-top:30px;">
         <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
-        <div id="luna-img" style="
-width:180px;
-height:180px;
-border-radius:50%;
-background: radial-gradient(circle at 30% 50%, white 10%, black 60%);
-margin:auto;
-box-shadow: 0 0 20px #FFD700;
-"></div>
+       <img id="luna-img" style="width:180px; border-radius:50%; box-shadow: 0 0 20px #FFD700;">
         <p id="fase-luna"></p>
       </div>
 
@@ -150,33 +143,33 @@ function mostrarTienda(){
 
 <script>
 function obtenerLunaReal() {
+
   const hoy = new Date();
-  const inicio = new Date(2000, 0, 6);
-  const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
-  const fase = dias % 29.53;
+
+  // 🌙 Cálculo más preciso
+  const lp = 2551443; // duración ciclo lunar en segundos
+  const now = hoy.getTime() / 1000;
+  const new_moon = new Date(2001, 0, 24).getTime() / 1000;
+  const phase = ((now - new_moon) % lp) / lp;
 
   let faseNombre = "";
 
-  if (fase < 1.84566) faseNombre = "🌑 Luna Nueva";
-  else if (fase < 5.53699) faseNombre = "🌒 Luna Creciente";
-  else if (fase < 9.22831) faseNombre = "🌓 Cuarto Creciente";
-  else if (fase < 12.91963) faseNombre = "🌔 Gibosa Creciente";
-  else if (fase < 16.61096) faseNombre = "🌕 Luna Llena";
-  else if (fase < 20.30228) faseNombre = "🌖 Gibosa Menguante";
-  else if (fase < 23.99361) faseNombre = "🌗 Cuarto Menguante";
-  else if (fase < 27.68493) faseNombre = "🌘 Luna Menguante";
-  else faseNombre = "🌑 Luna Nueva";
+  if (phase < 0.03 || phase > 0.97) faseNombre = "🌑 Luna Nueva";
+  else if (phase < 0.22) faseNombre = "🌒 Luna Creciente";
+  else if (phase < 0.28) faseNombre = "🌓 Cuarto Creciente";
+  else if (phase < 0.47) faseNombre = "🌔 Gibosa Creciente";
+  else if (phase < 0.53) faseNombre = "🌕 Luna Llena";
+  else if (phase < 0.72) faseNombre = "🌖 Gibosa Menguante";
+  else if (phase < 0.78) faseNombre = "🌗 Cuarto Menguante";
+  else faseNombre = "🌘 Luna Menguante";
 
-  let index = Math.floor((fase / 29.53) * 28);
-  if (index < 0) index = 0;
-  if (index > 27) index = 27;
-
-  let numero = index + 1;
+  // 🌙 Imagen correcta
+  let index = Math.floor(phase * 28) + 1;
 
   const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
-  + String(numero).padStart(4, '0') + ".jpg";
+  + String(index).padStart(4, '0') + ".jpg";
 
-  
+  document.getElementById("luna-img").src = url;
   document.getElementById("fase-luna").innerText = faseNombre;
 }
 
