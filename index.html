@@ -1,197 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>mi primera página</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
-  </head>
+<meta charset="UTF-8">
+<title>mi primera página</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
 
 <body>
-  <div class="contenedor">
 
-    <div class="izquierda">
-  <h2>Blog</h2>
-  <p>Lee nuestros artículos sobre Ayurveda y el uso del cobre.</p>
-  <a href="blog.html">Ir al blog</a>
-</div>
+<div class="contenedor">
 
-  <section class="centro"></section>
-<h1 id="titulo">dharma shakti</h1>
-
-<nav>
-  <a href="#" onclick="mostrarInicio()">Inicio</a>
-  <a href="#" onclick="mostrarViajes(); return false;">Viajes a India</a>
-  <a href="#" onclick="mostrarTienda(); return false;">Tienda</a>
-  <a href="blog.html">Blog</a>
-  <a href="#info">Información</a>
-  <a href="#contacto">Contacto</a>
-  </nav>
-
-
-<section id="inicio">
-
-  <h2>inicio</h2>
-  <p>Bienvenido a mi pagina</p>
-
-  <h2>Mi video</h2>
-  <div class="contenedor-video">
-    <video width="320" height="240" controls>
-      <source src="vidprueb.mp4" type="video/mp4">
-    </video>
+  <!-- IZQUIERDA -->
+  <div class="izquierda">
+    <h2>Blog</h2>
+    <p>Lee nuestros artículos sobre Ayurveda y el uso del cobre.</p>
+    <a href="blog.html">Ir al blog</a>
   </div>
 
-  <!-- 🌙 LUNA -->
-  <div style="text-align:center; margin-top:30px;">
-    <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
+  <!-- CENTRO -->
+  <div class="centro">
 
-    <img id="luna-img" 
-         style="width:180px; border-radius:50%; box-shadow: 0 0 30px #FFD700; transition: 0.5s;">
+    <h1 id="titulo">dharma shakti</h1>
 
-    <p id="fase-luna" style="margin-top:10px; color:white;"></p>
+    <nav>
+      <a href="#" onclick="mostrarInicio()">Inicio</a>
+      <a href="#" onclick="mostrarViajes()">Viajes a India</a>
+      <a href="#" onclick="mostrarTienda()">Tienda</a>
+      <a href="blog.html">Blog</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- INICIO -->
+    <section id="inicio">
+      <h2>Inicio</h2>
+      <p>Bienvenido a mi página</p>
+
+      <h2>Mi video</h2>
+      <video width="320" controls>
+        <source src="vidprueb.mp4" type="video/mp4">
+      </video>
+
+      <div style="text-align:center; margin-top:30px;">
+        <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
+        <img id="luna-img" style="width:180px; border-radius:50%;">
+        <p id="fase-luna"></p>
+      </div>
+
+      <img src="hampi1.jpg" style="width:300px; margin-top:20px;">
+    </section>
+
+    <!-- VIAJES -->
+    <section id="viajes" style="display:none;">
+      <h2>🌍 Viajes a India</h2>
+
+      <p>Soy Leonel, he vivido en India y conozco su cultura.</p>
+
+      <h3>¿Qué incluye?</h3>
+      <ul>
+        <li>Acompañamiento</li>
+        <li>Guía cultural</li>
+      </ul>
+
+      <p>Viaje piloto 2026</p>
+
+      <a href="https://wa.me/56991694163" target="_blank">
+        <button>Consultar</button>
+      </a>
+    </section>
+
+    <!-- TIENDA -->
+    <section id="tienda" style="display:none;">
+      <h2>Tienda</h2>
+
+      <div class="producto">
+        <img src="botella-cobre.jpg">
+        <h3>Botella de cobre</h3>
+        <p>$10.000</p>
+      </div>
+
+      <div class="producto">
+        <img src="vasos-cobre.jpg">
+        <h3>Vasos de cobre</h3>
+        <p>$15.000</p>
+      </div>
+    </section>
+
   </div>
 
-  <button onclick="saludar()">Haz clic aquí</button>
-
-  <img src="hampi1.jpg" alt="mi imagen" style="width:300px; margin-top:20px;">
-</section>
-<section id="viajes" style="display: none; color: white; background-color: rgba(0,0,0,0.7); padding:20px; border-radius:10px;">
- <h2 style="color: #FFD700;">🌍 Viajes a India</h2>
-
-  <p style="color: #f0f0f0;">
-    Soy Leonel, he vivido en India y conozco su cultura desde dentro.
-    He estado en lugares como Rishikesh, Varanasi y el sur de India.
-  </p>
-
-  <p>
-    Acompaño a personas a vivir una experiencia real, espiritual y cultural,
-    de forma segura y guiada.
-  </p>
-
-  <h3 style="color: #FFD700;">¿Qué incluye?</h3>
-  <ul>
-    <li>Acompañamiento personal</li>
-    <li>Orientación cultural y espiritual</li>
-    <li>Lugares auténticos (no turismo masivo)</li>
-  </ul>
-
-  <h3 style="color: #FFD700;">¿Para quién es?</h3>
-  <p>
-    Personas interesadas en yoga, espiritualidad y conocer India de verdad.
-  </p>
-
-  <h3>📅 Próximo viaje</h3>
-  <p>Viaje piloto 2026 – Cupos limitados</p>
-
-  <a href="https://wa.me/56991694163?text=Hola%20quiero%20información%20sobre%20los%20viajes%20a%20India" target="_blank">
-    <button style="background-color: #25D366; color: white; padding: 12px 20px; border-radius: 8px; border: none;">
-👉 Consultar por WhatsApp
-</button>
-  </a>
-</section>
-
-  <section id="tienda" style="display: none;">
-    <h2>Tienda</h2>
-    
-
-  <div class="producto">
-    <img src="botella-cobre.jpg" alt="Botella de cobre">
-    <h3>Botella de Cobre</h3>
-    <p>$10.000</p>
-    <a href="https://wa.me/56991694163?text=Hola%20quiero%20la%20botella%20premium">
-  <button>Comprar</button>
-</a>
-  
-  </div>
-
-  <div class="producto">
-  <img src="vasos-cobre.jpg" alt="Vasos de cobre">
-  <h3>Vasos de Cobre</h3>
-  <p>$15.000</p>
-  <a href="https://wa.me/56991694163?text=Hola%20quiero%20comprar%20los%20vasos%20de%20cobre" target="_blank">
-    <button>Comprar</button>
-  </a>
-</div>
-
-</section>
-<section id="contacto" class="derecha">
-  <h2>📩 Contacto</h2>
-
-  <p>¿Quieres comprar o hacer una consulta?</p>
-
-  <a href="mailto:yogashakti.info@gmail.com?subject=Consulta%20desde%20la%20web" class="boton-contacto">
-    Enviar correo
-  </a>
-
-  <br><br>
-
-  <a href="https://wa.me/56991694163" class="boton-contacto" target="_blank">
-    WhatsApp
-  </a>
-</section>
-
-    
+  <!-- CONTACTO -->
+  <div id="contacto">
+    <h2>Contacto</h2>
+    <a href="mailto:yogashakti.info@gmail.com">Correo</a>
+    <br>
+    <a href="https://wa.me/56991694163">WhatsApp</a>
   </div>
 
 </div>
-
 
 <script>
-function obtenerLunaReal() {
-  const hoy = new Date();
-  const inicio = new Date(2000, 0, 6);
-  const dias = (hoy - inicio) / (1000 * 60 * 60 * 24);
-  const fase = dias % 29.53;
-
- let faseNombre = "";
-
-if (fase < 1.84566) faseNombre = "🌑 Luna Nueva";
-else if (fase < 5.53699) faseNombre = "🌒 Luna Creciente";
-else if (fase < 9.22831) faseNombre = "🌓 Cuarto Creciente";
-else if (fase < 12.91963) faseNombre = "🌔 Gibosa Creciente";
-else if (fase < 16.61096) faseNombre = "🌕 Luna Llena";
-else if (fase < 20.30228) faseNombre = "🌖 Gibosa Menguante";
-else if (fase < 23.99361) faseNombre = "🌗 Cuarto Menguante";
-else if (fase < 27.68493) faseNombre = "🌘 Luna Menguante";
-else faseNombre = "🌑 Luna Nueva";
-
-  // 🔥 NUEVA FUENTE DE LUNAS (MEJOR)
-
-
-let index = Math.floor((fase / 29.53) * 28);
-
-// asegurar rango correcto
-if (index < 0) index = 0;
-if (index > 27) index = 27;
-
-// 🔥 AQUÍ ESTÁ LA CLAVE
-let numero = index + 1; // 👈 NASA empieza en 0001, no en 0000
-
-const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
-            + String(numero).padStart(4, '0') + ".jpg";
-  document.getElementById("luna-img").src = url;
-  document.getElementById("fase-luna").innerText = faseNombre;
+function mostrarInicio(){
+  document.getElementById("inicio").style.display="block";
+  document.getElementById("viajes").style.display="none";
+  document.getElementById("tienda").style.display="none";
 }
-function mostrarTienda() {
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("viajes").style.display = "none";
-  document.getElementById("tienda").style.display = "block";
+
+function mostrarViajes(){
+  document.getElementById("inicio").style.display="none";
+  document.getElementById("viajes").style.display="block";
+  document.getElementById("tienda").style.display="none";
 }
-function mostrarInicio() {
-  document.getElementById("inicio").style.display = "block";
-  document.getElementById("tienda").style.display = "none";
-  document.getElementById("viajes").style.display = "none";
+
+function mostrarTienda(){
+  document.getElementById("inicio").style.display="none";
+  document.getElementById("viajes").style.display="none";
+  document.getElementById("tienda").style.display="block";
 }
-function mostrarViajes() {
-  document.getElementById("inicio").style.display = "none";
-  document.getElementById("tienda").style.display = "none";
-  document.getElementById("viajes").style.display = "block";
-}
-obtenerLunaReal();
 </script>
-  </div>
-  <p>visitas:</p>
-  <img src="https://hitwebcounter.com/counter/counter.php?page=1234567&style=0006&nbdigits=5&type=page&initCount=0" />
+
 </body>
 </html>
-    
