@@ -146,28 +146,28 @@ function obtenerLunaReal() {
 
   const hoy = new Date();
 
-  // 🌙 Cálculo más preciso
+  // 🌙 Referencia REAL más precisa
   const lp = 2551443; // duración ciclo lunar en segundos
-  const now = hoy.getTime() / 1000;
-  const new_moon = new Date(2001, 0, 24).getTime() / 1000;
-  const phase = ((now - new_moon) % lp) / lp;
+  const new_moon = new Date("2000-01-06T18:14:00Z"); // referencia astronómica real
+
+  const phase = ((hoy - new_moon) / 1000 % lp) / lp;
 
   let faseNombre = "";
 
   if (phase < 0.03 || phase > 0.97) faseNombre = "🌑 Luna Nueva";
-  else if (phase < 0.22) faseNombre = "🌒 Luna Creciente";
-  else if (phase < 0.28) faseNombre = "🌓 Cuarto Creciente";
-  else if (phase < 0.47) faseNombre = "🌔 Gibosa Creciente";
-  else if (phase < 0.53) faseNombre = "🌕 Luna Llena";
-  else if (phase < 0.72) faseNombre = "🌖 Gibosa Menguante";
-  else if (phase < 0.78) faseNombre = "🌗 Cuarto Menguante";
-  else faseNombre = "🌘 Luna Menguante";
+  else if (phase < 0.25) faseNombre = "🌒 Creciente";
+  else if (phase < 0.27) faseNombre = "🌓 Cuarto Creciente";
+  else if (phase < 0.50) faseNombre = "🌔 Gibosa Creciente";
+  else if (phase < 0.52) faseNombre = "🌕 Luna Llena";
+  else if (phase < 0.75) faseNombre = "🌖 Gibosa Menguante";
+  else if (phase < 0.77) faseNombre = "🌗 Cuarto Menguante";
+  else faseNombre = "🌘 Menguante";
 
-  // 🌙 Imagen correcta
-  let index = Math.floor(phase * 28) + 1;
+  // 🌙 NASA tiene ~8760 imágenes (una por hora)
+  let index = Math.floor(phase * 8760);
 
-  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon." 
-  + String(index).padStart(4, '0') + ".jpg";
+  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon."
+    + String(index).padStart(4, '0') + ".jpg";
 
   document.getElementById("luna-img").src = url;
   document.getElementById("fase-luna").innerText = faseNombre;
