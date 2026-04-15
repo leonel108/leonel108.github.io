@@ -1,288 +1,112 @@
-video {
-  display: block;
-  margin: 40px auto;
-}
-html {
-    background-color: red;
-}
-
 body {
-    margin: 0;
-    font-family: Arial;
-    text-align: center;
-}
-
-h1 {
-    color: blue;
-}
-
-img {
-    width: auto;
-    border-radius: 0;
-    display: block;
-    margin: 20px auto;
-}
-
-button {
-    background-color: salmon;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
-}
-
-
-iframe {
-  display: block;
-  margin: 60px auto;
-}
-.contenedor {
-  display: flex;
-}
-
-.izquierda {
-  width: 20%;
-  background: linear-gradient(to bottom, #2c0b0b, #5a1a1a); /* rojo oscuro elegante */
-  padding: 15px;
-  color: #FFD700; /* dorado */
-  text-align: center;
-  border-right: 2px solid gold;
-}
-
-.centro {
-  width: 60%;
-  padding: 10px;
-}
-
-.derecha {
-  width: 35%;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-nav {
-    background-color: black;
-    padding: 15px;
-    text-align: center;
-}
-
-nav a {
-    font-size: 22px;   /* cambia tamaño aquí */
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    color: yellow;
-    transform: scale(1.1);
-}
-.contador {
-    margin-top: 40px;
-    font-size: 18px;
-    color: white;
-}
-productos {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.producto {
-  background-color: white;
-  padding: 15px;
-  border-radius: 15px;
-  width: 200px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.producto img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.producto h3 {
-  color: black;
-}
-
-.producto p {
-  color: green;
-  font-weight: bold;
-}
-button:hover {
-  background-color: darkred;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-
-.productos {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.producto {
-  width: 220px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
-}
-#titulo {
-  font-family: 'Dancing Script', cursive;
-  font-size: 70px;
-  text-align: center;
-
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  letter-spacing: 3px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-}
-}
-.derecha p {
-  word-break: break-word;
-}
-.luna {
-  width: 120px;
-  border-radius: 50%; /* la hace redonda */
-  display: block;
-  margin: 10px auto; /* la centra */
-}
-.luna {
-  width: 120px;
-  border-radius: 50%;
-  display: block;
-  margin: 10px auto;
-  box-shadow: 0 0 15px white;
-}
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background-image: url("Sri-Ganesha.webp");
-  background-size: contain;   /* 👈 llena toda la pantalla */
-  background-position: center;
-  background-repeat: no-repeat;
-
-  filter: none;   /* 👈 SIN DIFUMINADO */
-  opacity: 0.8;   /* 👈 puedes subir a 1 si quieres más fuerte */
-
-  z-index: -1;
-}
-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #1a1a1a;
   color: white;
-  font-size: 18px;
-  line-height: 1.6;
 }
 
-h1 {
-  font-size: 32px;
-  color: #FFD700; /* dorado */
+/* CONTENEDOR GENERAL */
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* equilibrio perfecto */
+  min-height: 100vh;
 }
 
-h2 {
-  font-size: 24px;
+/* IZQUIERDA */
+.izquierda {
+  background: #111;
+  padding: 20px;
+  text-align: center;
+}
+
+.izquierda h2 {
   color: #FFD700;
 }
 
-p {
-  font-size: 18px;
-}
-
-a {
-  color: #00FFFF; /* celeste */
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-#luna-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-#luna {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffffff, #cccccc 60%, #999999);
-  box-shadow: 0 0 40px #FFD700;
-  position: relative;
-  overflow: hidden;
-}
-
-/* SOMBRA (fase lunar) */
-#luna::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  background: black;
-  border-radius: 50%;
-  transform: translateX(-50%);
-  transition: 1s;
-}
-#luna-img {
-  position: relative;
-  z-index: 10;
-  background-color: rgba(0,0,0,0.5); /* fondo oscuro */
+.izquierda a {
+  display: inline-block;
+  margin-top: 10px;
   padding: 10px;
-  border-radius: 50%;
-}
-.izquierda {
-  background-image: url("hampi1.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
+  background: #FFD700;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
-.izquierda::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
+/* CENTRO */
+.centro {
+  background: #8B0000;
+  padding: 20px;
+  text-align: center;
 }
 
-.izquierda * {
-  position: relative;
-  z-index: 1;
+/* TÍTULO */
+#titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  color: #FFD700;
+  margin-bottom: 10px;
 }
-body.blog {
-  margin: 0;
-  font-family: Arial;
+
+/* MENÚ */
+nav a {
+  margin: 10px;
   color: white;
-
-  background-image: url("Sri-Ganesha.webp"); /* puedes cambiar imagen */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* oscurecer fondo para que el texto se vea */
-body.blog::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  z-index: -1;
+nav a:hover {
+  color: #FFD700;
 }
+
+/* IMÁGENES */
+img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+/* PRODUCTOS */
+.producto {
+  margin: 20px;
+}
+
+.producto img {
+  width: 150px;
+}
+
+/* DERECHA (CONTACTO) */
 .derecha {
-  width: 200px;   /* ajusta tamaño */
-  max-width: 250px;
+  background: #222; /* 🔥 AQUÍ ESTÁ EL CAMBIO CLAVE */
+  padding: 20px;
+  text-align: center;
+}
+
+.derecha h2 {
+  color: #FFD700;
+}
+
+.derecha a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.derecha a:hover {
+  color: #FFD700;
+}
+
+/* BOTONES */
+button {
+  background: #FFD700;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #e6c200;
 }
