@@ -1,112 +1,202 @@
+video {
+  display: block;
+  margin: 40px auto;
+}
+
+/* FONDO GENERAL (SE MANTIENE GANESH) */
+html {
+  background-color: red;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #1a1a1a;
-  color: white;
-}
-
-/* CONTENEDOR GENERAL */
-.contenedor {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr; /* equilibrio perfecto */
-  min-height: 100vh;
-}
-
-/* IZQUIERDA */
-.izquierda {
-  background: #111;
-  padding: 20px;
+  font-family: Arial;
   text-align: center;
+  color: white;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-.izquierda h2 {
+/* GANESH DE FONDO (LO DEJAMOS IGUAL) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("Sri-Ganesha.webp");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  z-index: -1;
+}
+
+/* TITULOS */
+h1 {
+  font-size: 32px;
   color: #FFD700;
 }
 
-.izquierda a {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px;
-  background: #FFD700;
-  color: black;
+h2 {
+  font-size: 24px;
+  color: #FFD700;
+}
+
+p {
+  font-size: 18px;
+}
+
+/* LINKS */
+a {
+  color: #00FFFF;
   text-decoration: none;
-  border-radius: 5px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* CONTENEDOR PRINCIPAL (AQUÍ EL GRAN ARREGLO) */
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* 🔥 equilibrio perfecto */
+  min-height: 100vh;
+}
+
+/* IZQUIERDA (SE MANTIENE TU ESTILO) */
+.izquierda {
+  background-image: url("hampi1.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 20px;
+  border-right: 2px solid gold;
+}
+
+.izquierda::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.izquierda * {
+  position: relative;
+  z-index: 1;
 }
 
 /* CENTRO */
 .centro {
-  background: #8B0000;
   padding: 20px;
+}
+
+/* DERECHA (AQUÍ EL ARREGLO CLAVE) */
+.derecha {
+  padding: 20px;
+  background-color: rgba(0,0,0,0.6); /* 🔥 YA NO BLANCO */
   text-align: center;
+  max-width: 250px;
 }
 
-/* TÍTULO */
-#titulo {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
+.derecha a {
   color: #FFD700;
-  margin-bottom: 10px;
-}
-
-/* MENÚ */
-nav a {
-  margin: 10px;
-  color: white;
-  text-decoration: none;
   font-weight: bold;
 }
 
+.derecha a:hover {
+  color: white;
+}
+
+/* MENÚ */
+nav {
+  background-color: black;
+  padding: 15px;
+}
+
+nav a {
+  font-size: 22px;
+  color: white;
+  margin: 10px;
+  text-decoration: none;
+}
+
 nav a:hover {
-  color: #FFD700;
+  color: yellow;
+  transform: scale(1.1);
 }
 
 /* IMÁGENES */
 img {
   max-width: 100%;
-  border-radius: 10px;
-}
-
-/* PRODUCTOS */
-.producto {
-  margin: 20px;
-}
-
-.producto img {
-  width: 150px;
-}
-
-/* DERECHA (CONTACTO) */
-.derecha {
-  background: #222; /* 🔥 AQUÍ ESTÁ EL CAMBIO CLAVE */
-  padding: 20px;
-  text-align: center;
-}
-
-.derecha h2 {
-  color: #FFD700;
-}
-
-.derecha a {
-  color: white;
-  text-decoration: none;
+  height: auto;
   display: block;
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-.derecha a:hover {
-  color: #FFD700;
+  margin: 20px auto;
 }
 
 /* BOTONES */
 button {
-  background: #FFD700;
-  border: none;
+  background-color: salmon;
+  color: white;
   padding: 10px;
-  cursor: pointer;
-  border-radius: 5px;
+  border: none;
+  border-radius: 10px;
 }
 
 button:hover {
-  background: #e6c200;
+  background-color: darkred;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* PRODUCTOS */
+.productos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.producto {
+  background-color: white;
+  padding: 15px;
+  border-radius: 15px;
+  width: 200px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  color: black;
+}
+
+.producto img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.producto p {
+  color: green;
+  font-weight: bold;
+}
+
+/* TITULO ESPECIAL */
+#titulo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 70px;
+  text-align: center;
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+/* LUNA */
+#luna-img {
+  position: relative;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px;
+  border-radius: 50%;
 }
