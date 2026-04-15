@@ -98,9 +98,13 @@ a:hover {
 /* DERECHA (AQUÍ EL ARREGLO CLAVE) */
 .derecha {
   padding: 20px;
-  background-color: rgba(0,0,0,0.6); /* 🔥 YA NO BLANCO */
   text-align: center;
-  max-width: 250px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.7)
+  );
 }
 
 .derecha a {
