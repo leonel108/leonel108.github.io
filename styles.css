@@ -4,15 +4,15 @@ video {
 }
 
 /* FONDO GENERAL (SE MANTIENE GANESH) */
-html {
-  background-color: red;
+ html {
+  background-color: #f5efe6;
 }
 
 body {
   margin: 0;
   font-family: Arial;
   text-align: center;
-  color: white;
+  color: #2c2c2c; /* 🔥 mejor contraste */
   font-size: 18px;
   line-height: 1.6;
 }
@@ -99,12 +99,7 @@ a:hover {
 .derecha {
   padding: 20px;
   text-align: center;
-
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.3),
-    rgba(0,0,0,0.7)
-  );
+  background: rgba(107, 79, 59, 0.85); /* café elegante */
 }
 
 .derecha a {
@@ -118,6 +113,10 @@ a:hover {
 
 /* MENÚ */
 nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   background-color: black;
   padding: 15px;
 }
@@ -126,6 +125,7 @@ nav a {
   font-size: 22px;
   color: white;
   margin: 10px;
+  padding: 8px 12px;
   text-decoration: none;
 }
 
@@ -133,7 +133,6 @@ nav a:hover {
   color: yellow;
   transform: scale(1.1);
 }
-
 /* IMÁGENES */
 img {
   max-width: 100%;
@@ -203,4 +202,19 @@ button:hover {
   background-color: rgba(0,0,0,0.5);
   padding: 10px;
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .contenedor {
+    grid-template-columns: 1fr; /* 🔥 esto es la clave */
+  }
+
+  .izquierda, .centro, .derecha {
+    width: 100%;
+  }
+
+  video, img {
+    max-width: 100%;
+    height: auto;
+  }
 }
