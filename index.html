@@ -173,23 +173,31 @@ function obtenerTithiReal() {
   canvas.height = 200;
   const ctx = canvas.getContext("2d");
 
-  ctx.fillStyle = "black";
-  ctx.beginPath();
-  ctx.arc(100, 100, 90, 0, 2 * Math.PI);
-  ctx.fill();
+ // fondo negro
+ctx.fillStyle = "black";
+ctx.beginPath();
+ctx.arc(100, 100, 90, 0, 2 * Math.PI);
+ctx.fill();
 
-  ctx.fillStyle = "white";
-  let x = 100 + Math.cos(fase * 2 * Math.PI) * 50;
+// gradiente realista
+const grad = ctx.createRadialGradient(80, 80, 20, 100, 100, 90);
+grad.addColorStop(0, "#ffffff");
+grad.addColorStop(1, "#bbbbbb");
 
-  ctx.beginPath();
-  ctx.arc(x, 100, 90, 0, 2 * Math.PI);
-  ctx.fill();
+ctx.fillStyle = grad;
 
-  ctx.globalCompositeOperation = "destination-in";
+// fase más real
+let offset = Math.cos(fase * 2 * Math.PI) * 80;
 
-  ctx.beginPath();
-  ctx.arc(100, 100, 90, 0, 2 * Math.PI);
-  ctx.fill();
+ctx.beginPath();
+ctx.arc(100 + offset, 100, 90, 0, 2 * Math.PI);
+ctx.fill();
+
+ctx.globalCompositeOperation = "destination-in";
+
+ctx.beginPath();
+ctx.arc(100, 100, 90, 0, 2 * Math.PI);
+ctx.fill();
 
   const img = document.getElementById("luna-img");
   img.src = canvas.toDataURL();
