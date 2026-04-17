@@ -151,6 +151,7 @@ function obtenerTithiReal() {
   const dias = (hoy - new_moon) / (1000 * 60 * 60 * 24);
 
   const ciclo = 29.53058867;
+  const fase = (dias % ciclo) / ciclo;
 // 🔥 AJUSTE BASADO EN FECHA REAL (alineado con Panchang)
 const fechaReferencia = new Date("2026-04-16T00:00:00");
 const diasDesdeRef = (hoy - fechaReferencia) / (1000 * 60 * 60 * 24);
