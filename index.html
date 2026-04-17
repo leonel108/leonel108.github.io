@@ -143,22 +143,24 @@ function mostrarTienda(){
 </script>
 
 <script>
-async function obtenerTithiReal() {
+function obtenerTithiReal() {
 
-  // 🔥 API astronómica real
-  const response = await fetch("https://api.ipgeolocation.io/astronomy?apiKey=demo&location=Santiago,CL");
-  const data = await response.json();
+  const hoy = new Date();
 
-  // ⚠️ Esta API NO da directamente longitudes → simulamos con fase
-  let fase = parseFloat(data.moon_phase); // 0 a 1
+  // 🌙 Referencia astronómica REAL
+  const new_moon = new Date("2000-01-06T18:14:00Z");
+  const dias = (hoy - new_moon) / (1000 * 60 * 60 * 24);
 
-  // Convertimos a grados
-  let angulo = fase * 360;
+  const ciclo = 29.53058867;
+  const fase = (dias % ciclo) / ciclo;
 
-  // Calculamos tithi
+  // 🌙 Convertir a grados
+  const angulo = fase * 360;
+
+  // 🕉️ Calcular tithi
   let tithiNum = Math.floor(angulo / 12) + 1;
 
-  const nombresTithi = [
+  const nombres = [
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
     "Shashthi","Saptami","Ashtami","Navami","Dashami",
     "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya",
@@ -168,22 +170,26 @@ async function obtenerTithiReal() {
   ];
 
   let paksha = (tithiNum <= 15) ? "Shukla Paksha 🌔" : "Krishna Paksha 🌘";
+  let nombre = nombres[tithiNum - 1];
 
-  let nombre = nombresTithi[tithiNum - 1];
+  // 🌙 IMÁGENES QUE SÍ FUNCIONAN (emoji fallback)
+  let emoji = "🌑";
 
-  // 🌙 Imagen simple según fase
-  let imagen = "";
+  if (fase < 0.03 || fase > 0.97) emoji = "🌑";
+  else if (fase < 0.25) emoji = "🌒";
+  else if (fase < 0.27) emoji = "🌓";
+  else if (fase < 0.50) emoji = "🌔";
+  else if (fase < 0.52) emoji = "🌕";
+  else if (fase < 0.75) emoji = "🌖";
+  else if (fase < 0.77) emoji = "🌗";
+  else emoji = "🌘";
 
-  if (fase < 0.03 || fase > 0.97) imagen = "https://i.imgur.com/6iQpQ0M.png";
-  else if (fase < 0.25) imagen = "https://i.imgur.com/4NJl0bK.png";
-  else if (fase < 0.50) imagen = "https://i.imgur.com/Nx8Xv3E.png";
-  else if (fase < 0.75) imagen = "https://i.imgur.com/Yz3XK9K.png";
-  else imagen = "https://i.imgur.com/d3nK8vL.png";
-
-  document.getElementById("luna-img").src = imagen;
+  // 👉 Mostrar SIEMPRE algo (no falla nunca)
+  document.getElementById("luna-img").style.display = "none";
 
   document.getElementById("fase-luna").innerHTML =
-    <b>${nombre}</b><br>${paksha};
+    `<div style="font-size:60px">${emoji}</div>
+     <b>${nombre}</b><br>${paksha}`;
 }
 
 window.onload = obtenerTithiReal;
