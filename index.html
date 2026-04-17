@@ -153,7 +153,8 @@ function obtenerTithiReal() {
   const ciclo = 29.53058867;
   const fase = (dias % ciclo) / ciclo;
 
-  const angulo = fase * 360;
+  let faseAjustada = (fase + 0.1) % 1;
+const angulo = faseAjustada * 360;
   let tithiNum = Math.floor(angulo / 12) + 1;
 
   const nombres = [
@@ -168,39 +169,14 @@ function obtenerTithiReal() {
   let paksha = (tithiNum <= 15) ? "Shukla Paksha 🌔" : "Krishna Paksha 🌘";
   let nombre = nombres[tithiNum - 1];
 
-  const canvas = document.createElement("canvas");
-  canvas.width = 200;
-  canvas.height = 200;
-  const ctx = canvas.getContext("2d");
+ // 🌙 LUNA REAL (NASA)
+let index = Math.floor(fase * 8760);
 
- // fondo negro
-ctx.fillStyle = "black";
-ctx.beginPath();
-ctx.arc(100, 100, 90, 0, 2 * Math.PI);
-ctx.fill();
+const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon."
+  + String(index).padStart(4, '0') + ".jpg";
 
-// gradiente realista
-const grad = ctx.createRadialGradient(80, 80, 20, 100, 100, 90);
-grad.addColorStop(0, "#ffffff");
-grad.addColorStop(1, "#bbbbbb");
-
-ctx.fillStyle = grad;
-
-// fase más real
-let offset = Math.cos(fase * 2 * Math.PI) * 80;
-
-ctx.beginPath();
-ctx.arc(100 + offset, 100, 90, 0, 2 * Math.PI);
-ctx.fill();
-
-ctx.globalCompositeOperation = "destination-in";
-
-ctx.beginPath();
-ctx.arc(100, 100, 90, 0, 2 * Math.PI);
-ctx.fill();
-
-  const img = document.getElementById("luna-img");
-  img.src = canvas.toDataURL();
+const img = document.getElementById("luna-img");
+img.src = url;
 
 document.getElementById("fase-luna").innerHTML =
   "<b>" + nombre + "</b><br>" + paksha;
