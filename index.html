@@ -147,49 +147,71 @@ function obtenerTithiReal() {
 
   const hoy = new Date();
 
-  // 🌙 Referencia astronómica REAL
   const new_moon = new Date("2000-01-06T18:14:00Z");
   const dias = (hoy - new_moon) / (1000 * 60 * 60 * 24);
 
   const ciclo = 29.53058867;
   const fase = (dias % ciclo) / ciclo;
 
-  // 🌙 Convertir a grados
   const angulo = fase * 360;
 
-  // 🕉️ Calcular tithi
   let tithiNum = Math.floor(angulo / 12) + 1;
 
+  // 🔥 ARRAY CORRECTO
   const nombres = [
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
     "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya",
+    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima", // 15
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
     "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima"
+    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya" // 30
   ];
 
   let paksha = (tithiNum <= 15) ? "Shukla Paksha 🌔" : "Krishna Paksha 🌘";
   let nombre = nombres[tithiNum - 1];
 
-  // 🌙 IMÁGENES QUE SÍ FUNCIONAN (emoji fallback)
-  let emoji = "🌑";
+  // 🌙 LUNA REAL dibujada (NO imágenes externas)
+  const canvas = document.createElement("canvas");
+  canvas.width = 200;
+  canvas.height = 200;
+  const ctx = canvas.getContext("2d");
 
-  if (fase < 0.03 || fase > 0.97) emoji = "🌑";
-  else if (fase < 0.25) emoji = "🌒";
-  else if (fase < 0.27) emoji = "🌓";
-  else if (fase < 0.50) emoji = "🌔";
-  else if (fase < 0.52) emoji = "🌕";
-  else if (fase < 0.75) emoji = "🌖";
-  else if (fase < 0.77) emoji = "🌗";
-  else emoji = "🌘";
+  // fondo negro
+  ctx.fillStyle = "black";
+  ctx.beginPath();
+  ctx.arc(100, 100, 90, 0, 2 * Math.PI);
+  ctx.fill();
 
-  // 👉 Mostrar SIEMPRE algo (no falla nunca)
-  document.getElementById("luna-img").style.display = "none";
+  // iluminación
+  ctx.fillStyle = "white";
+
+  let iluminacion = Math.cos(fase * 2 * Math.PI);
+
+  ctx.beginPath();
+  ctx.arc(100, 100, 90, 0, 2 * Math.PI);
+  ctx.fill();
+
+  ctx.globalCompositeOperation = "destination-in";
+
+  ctx.beginPath();
+  ctx.ellipse(
+    100,
+    100,
+    90 * Math.abs(iluminacion),
+    90,
+    0,
+    0,
+    2 * Math.PI
+  );
+  ctx.fill();
+
+  // mostrar canvas en lugar de img
+  const img = document.getElementById("luna-img");
+  img.style.display = "block";
+  img.src = canvas.toDataURL();
 
   document.getElementById("fase-luna").innerHTML =
-    `<div style="font-size:60px">${emoji}</div>
-     <b>${nombre}</b><br>${paksha}`;
+    <b>${nombre}</b><br>${paksha};
 }
 
 window.onload = obtenerTithiReal;
