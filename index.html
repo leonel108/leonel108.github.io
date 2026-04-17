@@ -143,53 +143,29 @@ function mostrarTienda(){
 </script>
 
 <script>
-function obtenerTithiReal() {
+async function obtenerTithiReal() {
 
   const hoy = new Date();
 
-  const new_moon = new Date("2000-01-06T18:14:00Z");
-  const dias = (hoy - new_moon) / (1000 * 60 * 60 * 24);
+  // 🌙 API real de fases lunares
+  const res = await fetch(https://api.farmsense.net/v1/moonphases/?d=${Math.floor(hoy.getTime()/1000)});
+  const data = await res.json();
 
+  const faseTexto = data[0].Phase;
+
+  // 🌙 imagen real NASA
+  const dias = (hoy - new Date("2000-01-06T18:14:00Z")) / (1000*60*60*24);
   const ciclo = 29.53058867;
   const fase = (dias % ciclo) / ciclo;
-// 🔥 AJUSTE BASADO EN FECHA REAL (alineado con Panchang)
-const fechaReferencia = new Date("2026-04-16T00:00:00");
-const diasDesdeRef = (hoy - fechaReferencia) / (1000 * 60 * 60 * 24);
 
-// Chaturthi Krishna = tithi 19
-let tithiBase = 19 + diasDesdeRef;
+  let index = Math.floor(fase * 8760);
+  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon."
+    + String(index).padStart(4, '0') + ".jpg";
 
-while (tithiBase <= 0) tithiBase += 30;
-while (tithiBase > 30) tithiBase -= 30;
+  document.getElementById("luna-img").src = url;
 
-let tithiNum = Math.floor(tithiBase);
-
-  let faseAjustada = (fase + 0.1) % 1;
-
-
-  const nombres = [
-    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
-    "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima",
-    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
-    "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya"
-  ];
-
-  let paksha = (tithiNum <= 15) ? "Shukla Paksha 🌔" : "Krishna Paksha 🌘";
-  let nombre = nombres[tithiNum - 1];
-
- // 🌙 LUNA REAL (NASA)
-let index = Math.floor(fase * 8760);
-
-const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon."
-  + String(index).padStart(4, '0') + ".jpg";
-
-const img = document.getElementById("luna-img");
-img.src = url;
-
-document.getElementById("fase-luna").innerHTML =
-  "<b>" + nombre + "</b><br>" + paksha;
+  document.getElementById("fase-luna").innerHTML =
+    "<b>" + faseTexto + "</b>";
 }
 
 window.onload = obtenerTithiReal;
