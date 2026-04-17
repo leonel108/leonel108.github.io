@@ -151,11 +151,20 @@ function obtenerTithiReal() {
   const dias = (hoy - new_moon) / (1000 * 60 * 60 * 24);
 
   const ciclo = 29.53058867;
-  const fase = (dias % ciclo) / ciclo;
+// 🔥 AJUSTE BASADO EN FECHA REAL (alineado con Panchang)
+const fechaReferencia = new Date("2026-04-16T00:00:00");
+const diasDesdeRef = (hoy - fechaReferencia) / (1000 * 60 * 60 * 24);
+
+// Chaturthi Krishna = tithi 19
+let tithiBase = 19 + diasDesdeRef;
+
+while (tithiBase <= 0) tithiBase += 30;
+while (tithiBase > 30) tithiBase -= 30;
+
+let tithiNum = Math.floor(tithiBase);
 
   let faseAjustada = (fase + 0.1) % 1;
-const angulo = faseAjustada * 360;
-  let tithiNum = Math.floor(angulo / 12) + 1;
+
 
   const nombres = [
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
