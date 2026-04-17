@@ -154,64 +154,48 @@ function obtenerTithiReal() {
   const fase = (dias % ciclo) / ciclo;
 
   const angulo = fase * 360;
-
   let tithiNum = Math.floor(angulo / 12) + 1;
 
-  // 🔥 ARRAY CORRECTO
   const nombres = [
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
     "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima", // 15
+    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima",
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
     "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya" // 30
+    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya"
   ];
 
   let paksha = (tithiNum <= 15) ? "Shukla Paksha 🌔" : "Krishna Paksha 🌘";
   let nombre = nombres[tithiNum - 1];
 
-  // 🌙 LUNA REAL dibujada (NO imágenes externas)
   const canvas = document.createElement("canvas");
   canvas.width = 200;
   canvas.height = 200;
   const ctx = canvas.getContext("2d");
 
-  // fondo negro
   ctx.fillStyle = "black";
   ctx.beginPath();
   ctx.arc(100, 100, 90, 0, 2 * Math.PI);
   ctx.fill();
 
-  // iluminación
   ctx.fillStyle = "white";
-
-  let iluminacion = Math.cos(fase * 2 * Math.PI);
+  let x = 100 + Math.cos(fase * 2 * Math.PI) * 50;
 
   ctx.beginPath();
-  ctx.arc(100, 100, 90, 0, 2 * Math.PI);
+  ctx.arc(x, 100, 90, 0, 2 * Math.PI);
   ctx.fill();
 
   ctx.globalCompositeOperation = "destination-in";
 
   ctx.beginPath();
-  ctx.ellipse(
-    100,
-    100,
-    90 * Math.abs(iluminacion),
-    90,
-    0,
-    0,
-    2 * Math.PI
-  );
+  ctx.arc(100, 100, 90, 0, 2 * Math.PI);
   ctx.fill();
 
-  // mostrar canvas en lugar de img
   const img = document.getElementById("luna-img");
-  img.style.display = "block";
   img.src = canvas.toDataURL();
 
-  document.getElementById("fase-luna").innerHTML =
-    <b>${nombre}</b><br>${paksha};
+document.getElementById("fase-luna").innerHTML =
+  "<b>" + nombre + "</b><br>" + paksha;
 }
 
 window.onload = obtenerTithiReal;
