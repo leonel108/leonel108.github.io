@@ -143,38 +143,50 @@ function mostrarTienda(){
 </script>
 
 <script>
-function obtenerLunaReal() {
+async function obtenerTithiReal() {
 
-  const hoy = new Date();
+  // 🔥 API astronómica real
+  const response = await fetch("https://api.ipgeolocation.io/astronomy?apiKey=demo&location=Santiago,CL");
+  const data = await response.json();
 
-  // 🌙 Referencia REAL más precisa
-  const lp = 2551443; // duración ciclo lunar en segundos
-  const new_moon = new Date("2000-01-06T18:14:00Z"); // referencia astronómica real
+  // ⚠️ Esta API NO da directamente longitudes → simulamos con fase
+  let fase = parseFloat(data.moon_phase); // 0 a 1
 
-  const phase = ((hoy - new_moon) / 1000 % lp) / lp;
+  // Convertimos a grados
+  let angulo = fase * 360;
 
-  let faseNombre = "";
+  // Calculamos tithi
+  let tithiNum = Math.floor(angulo / 12) + 1;
 
-  if (phase < 0.03 || phase > 0.97) faseNombre = "🌑 Luna Nueva";
-  else if (phase < 0.25) faseNombre = "🌒 Creciente";
-  else if (phase < 0.27) faseNombre = "🌓 Cuarto Creciente";
-  else if (phase < 0.50) faseNombre = "🌔 Gibosa Creciente";
-  else if (phase < 0.52) faseNombre = "🌕 Luna Llena";
-  else if (phase < 0.75) faseNombre = "🌖 Gibosa Menguante";
-  else if (phase < 0.77) faseNombre = "🌗 Cuarto Menguante";
-  else faseNombre = "🌘 Menguante";
+  const nombresTithi = [
+    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Amavasya",
+    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dwadashi","Trayodashi","Chaturdashi","Purnima"
+  ];
 
-  // 🌙 NASA tiene ~8760 imágenes (una por hora)
-  let index = Math.floor(phase * 8760);
+  let paksha = (tithiNum <= 15) ? "Shukla Paksha 🌔" : "Krishna Paksha 🌘";
 
-  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon."
-    + String(index).padStart(4, '0') + ".jpg";
+  let nombre = nombresTithi[tithiNum - 1];
 
-  document.getElementById("luna-img").src = url;
-  document.getElementById("fase-luna").innerText = faseNombre;
+  // 🌙 Imagen simple según fase
+  let imagen = "";
+
+  if (fase < 0.03 || fase > 0.97) imagen = "https://i.imgur.com/6iQpQ0M.png";
+  else if (fase < 0.25) imagen = "https://i.imgur.com/4NJl0bK.png";
+  else if (fase < 0.50) imagen = "https://i.imgur.com/Nx8Xv3E.png";
+  else if (fase < 0.75) imagen = "https://i.imgur.com/Yz3XK9K.png";
+  else imagen = "https://i.imgur.com/d3nK8vL.png";
+
+  document.getElementById("luna-img").src = imagen;
+
+  document.getElementById("fase-luna").innerHTML =
+    <b>${nombre}</b><br>${paksha};
 }
 
-window.onload = obtenerLunaReal;
+window.onload = obtenerTithiReal;
 </script>
 
 </body>
