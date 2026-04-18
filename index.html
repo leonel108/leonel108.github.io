@@ -41,14 +41,16 @@
       <h2>Mi video</h2>
       <video width="320" controls>
         <source src="vidprueb.mp4" type="video/mp4">
-      </video>
+        </video>
+    
+      <!-- LUNA NUEVA PRO -->
+<div style="text-align:center; margin-top:30px;">
+  <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
 
-      <!-- LUNA (SOLO UNA VEZ) -->
-      <div style="text-align:center; margin-top:30px;">
-        <h2 style="color:#FFD700;">🌙 Fase actual de la Luna</h2>
-       <img id="luna-img" style="width:180px; border-radius:50%; box-shadow: 0 0 20px #FFD700;">
-        <p id="fase-luna"></p>
-      </div>
+  <div id="luna"></div>
+
+  <p id="fase-luna"></p>
+</div>
 
       <img src="hampi1.jpg" style="width:300px; margin-top:20px;">
 
@@ -142,63 +144,39 @@ function mostrarTienda(){
 }
 </script>
 
+<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+
 <script>
-async function obtenerTithiReal() {
+function actualizarLuna() {
+  const ahora = new Date();
+  const moon = SunCalc.getMoonIllumination(ahora);
 
-  const hoy = new Date();
+  const fase = moon.phase;
+  const iluminacion = moon.fraction;
 
-  try {
+  let texto = "";
 
-    // 🌙 API fase lunar
-  const res = await fetch('https://api.farmsense.net/v1/moonphases/?d=${Math.floor(hoy.getTime()/1000)}');
-    const data = await res.json();
+  if (fase < 0.03 || fase > 0.97) texto = "Luna Nueva";
+  else if (fase < 0.25) texto = "Creciente";
+  else if (fase < 0.27) texto = "Cuarto Creciente";
+  else if (fase < 0.48) texto = "Gibosa Creciente";
+  else if (fase < 0.52) texto = "Luna Llena";
+  else if (fase < 0.73) texto = "Gibosa Menguante";
+  else if (fase < 0.77) texto = "Cuarto Menguante";
+  else texto = "Menguante";
 
-    const faseTexto = data[0].Phase;
+  document.getElementById("fase-luna").innerHTML = "<b>" + texto + "</b>";
 
-    document.getElementById("fase-luna").innerHTML =
-      "<b>" + faseTexto + "</b>";
+  const lado = fase < 0.5 ? "right" : "left";
 
-  } catch (error) {
-    document.getElementById("fase-luna").innerText = "No se pudo obtener fase lunar";
-  }
-
-  // 🌙 IMAGEN SIMPLE SEGÚN FASE (100% confiable)
-  const faseSimple = calcularFase();
-
-  const imagenes = {
-    "Nueva": "https://upload.wikimedia.org/wikipedia/commons/8/88/New_Moon.png",
-    "Creciente": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Waxing_Crescent_Moon.png",
-    "Cuarto Creciente": "https://upload.wikimedia.org/wikipedia/commons/7/7d/First_Quarter_Moon.png",
-    "Gibosa Creciente": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Waxing_Gibbous_Moon.png",
-    "Llena": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Full_Moon.png",
-    "Gibosa Menguante": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Waning_Gibbous_Moon.png",
-    "Cuarto Menguante": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Last_Quarter_Moon.png",
-    "Menguante": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Waning_Crescent_Moon.png"
-  };
-
-  document.getElementById("luna-img").src = imagenes[faseSimple];
+  document.getElementById("luna").style.background =
+    `radial-gradient(circle at ${lado},
+    white ${iluminacion * 100}%,
+    black ${iluminacion * 100}%)`;
 }
 
-// 🌙 cálculo simple (mucho más estable)
-function calcularFase() {
-  const hoy = new Date();
-  const referencia = new Date("2000-01-06T18:14:00Z");
-
-  const dias = (hoy - referencia) / (1000 * 60 * 60 * 24);
-  const ciclo = 29.53;
-  const fase = dias % ciclo;
-
-  if (fase < 1) return "Nueva";
-  if (fase < 7.4) return "Creciente";
-  if (fase < 8.9) return "Cuarto Creciente";
-  if (fase < 14.7) return "Gibosa Creciente";
-  if (fase < 16) return "Llena";
-  if (fase < 22) return "Gibosa Menguante";
-  if (fase < 23.5) return "Cuarto Menguante";
-  return "Menguante";
-}
-
-window.onload = obtenerTithiReal;
+actualizarLuna();
+setInterval(actualizarLuna, 60000);
 </script>
 
 </body>
