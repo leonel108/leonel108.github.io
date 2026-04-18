@@ -238,11 +238,7 @@ if (esCreciente) {
 // agregar al DOM
 lunaDiv.appendChild(luz);
 lunaDiv.appendChild(sombra);
-} else {
-  lunaDiv.innerHTML = `
-    <div class="luz" style="clip-path: inset(0 0 0 ${offset}px);"></div>
-  `;
-}
+
 
   // 🔥 AQUÍ SE MUESTRA EL TITHI (CORRECTO)
   const tithi = calcularTithi();
