@@ -147,26 +147,57 @@ async function obtenerTithiReal() {
 
   const hoy = new Date();
 
-  // 🌙 API real de fases lunares
-  const res = await fetch(https://api.farmsense.net/v1/moonphases/?d=${Math.floor(hoy.getTime()/1000)});
-  const data = await res.json();
+  try {
 
-  const faseTexto = data[0].Phase;
+    // 🌙 API fase lunar
+  const res = await fetch('https://api.farmsense.net/v1/moonphases/?d=${Math.floor(hoy.getTime()/1000)}');
+    const data = await res.json();
 
-  // 🌙 imagen real NASA
-  const dias = (hoy - new Date("2000-01-06T18:14:00Z")) / (1000*60*60*24);
-  const ciclo = 29.53058867;
-  const fase = (dias % ciclo) / ciclo;
+    const faseTexto = data[0].Phase;
 
-  let index = Math.floor(fase * 8760);
-  const url = "https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005048/frames/730x730_1x1_30p/moon."
-    + String(index).padStart(4, '0') + ".jpg";
+    document.getElementById("fase-luna").innerHTML =
+      "<b>" + faseTexto + "</b>";
 
-  document.getElementById("luna-img").src = url;
+  } catch (error) {
+    document.getElementById("fase-luna").innerText = "No se pudo obtener fase lunar";
+  }
 
-  document.getElementById("fase-luna").innerHTML =
-    "<b>" + faseTexto + "</b>";
+  // 🌙 IMAGEN SIMPLE SEGÚN FASE (100% confiable)
+  const faseSimple = calcularFase();
+
+  const imagenes = {
+    "Nueva": "https://upload.wikimedia.org/wikipedia/commons/8/88/New_Moon.png",
+    "Creciente": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Waxing_Crescent_Moon.png",
+    "Cuarto Creciente": "https://upload.wikimedia.org/wikipedia/commons/7/7d/First_Quarter_Moon.png",
+    "Gibosa Creciente": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Waxing_Gibbous_Moon.png",
+    "Llena": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Full_Moon.png",
+    "Gibosa Menguante": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Waning_Gibbous_Moon.png",
+    "Cuarto Menguante": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Last_Quarter_Moon.png",
+    "Menguante": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Waning_Crescent_Moon.png"
+  };
+
+  document.getElementById("luna-img").src = imagenes[faseSimple];
 }
+
+// 🌙 cálculo simple (mucho más estable)
+function calcularFase() {
+  const hoy = new Date();
+  const referencia = new Date("2000-01-06T18:14:00Z");
+
+  const dias = (hoy - referencia) / (1000 * 60 * 60 * 24);
+  const ciclo = 29.53;
+  const fase = dias % ciclo;
+
+  if (fase < 1) return "Nueva";
+  if (fase < 7.4) return "Creciente";
+  if (fase < 8.9) return "Cuarto Creciente";
+  if (fase < 14.7) return "Gibosa Creciente";
+  if (fase < 16) return "Llena";
+  if (fase < 22) return "Gibosa Menguante";
+  if (fase < 23.5) return "Cuarto Menguante";
+  return "Menguante";
+}
+
 window.onload = obtenerTithiReal;
 </script>
 
