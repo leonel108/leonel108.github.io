@@ -198,34 +198,55 @@ const lunaDiv = document.getElementById("luna");
 // limpiar
 lunaDiv.innerHTML = "";
 
-// imagen real
-const img = document.createElement("img");
-img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg";
-img.style.width = "100%";
-img.style.height = "100%";
-img.style.borderRadius = "50%";
+// tamaño
+const size = 160;
 
-// calcular fase visual correcta
-const faseVisual = fase;
+// crear contenedor interno
+const cont = document.createElement("div");
+cont.style.position = "relative";
+cont.style.width = size + "px";
+cont.style.height = size + "px";
 
-// curva REAL usando gradiente
-const porcentaje = Math.cos(faseVisual * Math.PI);
+// base negra (espacio)
+const fondo = document.createElement("div");
+fondo.style.position = "absolute";
+fondo.style.width = "100%";
+fondo.style.height = "100%";
+fondo.style.background = "black";
+fondo.style.borderRadius = "50%";
 
-// dirección (creciente vs menguante)
-const direccion = fase < 0.5 ? "to left" : "to right";
+// luna iluminada (blanca)
+const luz = document.createElement("div");
+luz.style.position = "absolute";
+luz.style.width = "100%";
+luz.style.height = "100%";
+luz.style.background = "white";
+luz.style.borderRadius = "50%";
 
-// aplicar máscara REAL
-img.style.webkitMaskImage = `
-  linear-gradient(${direccion},
-    rgba(0,0,0,1) ${50 + porcentaje * 50}%,
-    rgba(0,0,0,0) ${50 + porcentaje * 50 + 1}%)
-`;
+// segunda capa (recorte curvo REAL)
+const recorte = document.createElement("div");
+recorte.style.position = "absolute";
+recorte.style.width = "100%";
+recorte.style.height = "100%";
+recorte.style.background = "black";
+recorte.style.borderRadius = "50%";
 
-img.style.maskImage = img.style.webkitMaskImage;
+// cálculo REAL de fase
+const offset = size * Math.cos(fase * Math.PI);
 
-// agregar al contenedor
-lunaDiv.appendChild(img);
+// dirección correcta
+if (fase < 0.5) {
+  recorte.style.left = offset + "px"; // creciente
+} else {
+  recorte.style.left = -offset + "px"; // menguante
+}
 
+// armar capas
+cont.appendChild(fondo);
+cont.appendChild(luz);
+cont.appendChild(recorte);
+
+lunaDiv.appendChild(cont);
   // 🔥 AQUÍ SE MUESTRA EL TITHI (CORRECTO)
   const tithi = calcularTithi();
   document.getElementById("tithi-luna").innerHTML = "<b>" + tithi + "</b>";
