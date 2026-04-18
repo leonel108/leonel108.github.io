@@ -214,12 +214,10 @@ button:hover {
 #luna {
   width: 160px;
   height: 160px;
-  border-radius: 50%;
   margin: 0 auto;
   position: relative;
-  background: black;
+  border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 0 25px #40E0D0;
 }
 
 #luna .luz {
