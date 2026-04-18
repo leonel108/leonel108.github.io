@@ -152,18 +152,11 @@ function mostrarTienda(){
 function calcularTithi() {
   const ahora = new Date();
 
-  const lat = -33.45; // Santiago
-  const lon = -70.66;
+  const moon = SunCalc.getMoonIllumination(ahora);
 
-  const sol = SunCalc.getPosition(ahora, lat, lon);
-  const luna = SunCalc.getMoonPosition(ahora, lat, lon);
+  const elongacion = moon.phase * 360;
 
-  let diferencia = luna.azimuth - sol.azimuth;
-
-  if (diferencia < 0) diferencia += 2 * Math.PI;
-
-  const grados = diferencia * (180 / Math.PI);
-  const tithiNumero = Math.floor(grados / 12) + 1;
+  const tithiNumero = Math.floor(elongacion / 12) + 1;
 
   const nombres = [
     "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
