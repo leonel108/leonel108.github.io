@@ -195,47 +195,21 @@ function actualizarLuna() {
 
 const lunaDiv = document.getElementById("luna");
 
-// limpiar
-lunaDiv.innerHTML = "";
+// fase: 0 = nueva, 0.5 = llena
+const faseNormalizada = fase <= 0.5 ? fase : 1 - fase;
 
-// tamaño base
-const size = 160;
+// porcentaje de iluminación real
+const porcentaje = faseNormalizada * 200;
 
-// fase corregida (0 a 1 visual real)
-const faseVisual = fase;
+// dirección luz
+const direccion = fase < 0.5 ? "right" : "left";
 
-// círculo base (NEGRO = cielo)
-const base = document.createElement("div");
-base.style.position = "absolute";
-base.style.width = size + "px";
-base.style.height = size + "px";
-base.style.background = "black";
-base.style.borderRadius = "50%";
-
-// círculo de luz (blanco)
-const luz = document.createElement("div");
-luz.style.position = "absolute";
-luz.style.width = size + "px";
-luz.style.height = size + "px";
-luz.style.background = "white";
-luz.style.borderRadius = "50%";
-
-// cálculo REALISTA
-const offset = size * Math.cos(faseVisual * Math.PI);
-
-// dirección correcta
-if (fase < 0.5) {
-  // 🌒 creciente (luz a la derecha)
-  luz.style.left = offset + "px";
-} else {
-  // 🌘 menguante (luz a la izquierda)
-  luz.style.left = -offset + "px";
-}
-
-// agregar capas
-lunaDiv.appendChild(base);
-lunaDiv.appendChild(luz);
-
+// gradiente REALISTA
+lunaDiv.style.background = `
+  radial-gradient(circle at ${direccion},
+    white ${porcentaje}%,
+    black ${porcentaje + 1}%)
+`;
 
   // 🔥 AQUÍ SE MUESTRA EL TITHI (CORRECTO)
   const tithi = calcularTithi();
