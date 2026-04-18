@@ -198,19 +198,21 @@ const lunaDiv = document.getElementById("luna");
 // limpiar
 lunaDiv.innerHTML = "";
 
-// fase: 0 = nueva, 0.5 = llena
-const iluminacionReal = fase <= 0.5 ? fase * 2 : (1 - fase) * 2;
-
 // tamaño base
 const size = 160;
 
-// ancho de luz visible
-const anchoLuz = size * iluminacionReal;
+// fase corregida (0 a 1 visual real)
+const faseVisual = fase;
 
-// determinar si crece o mengua
-const esCreciente = fase < 0.5;
+// círculo base (NEGRO = cielo)
+const base = document.createElement("div");
+base.style.position = "absolute";
+base.style.width = size + "px";
+base.style.height = size + "px";
+base.style.background = "black";
+base.style.borderRadius = "50%";
 
-// círculo blanco (luz)
+// círculo de luz (blanco)
 const luz = document.createElement("div");
 luz.style.position = "absolute";
 luz.style.width = size + "px";
@@ -218,26 +220,21 @@ luz.style.height = size + "px";
 luz.style.background = "white";
 luz.style.borderRadius = "50%";
 
-// círculo negro (sombra)
-const sombra = document.createElement("div");
-sombra.style.position = "absolute";
-sombra.style.width = size + "px";
-sombra.style.height = size + "px";
-sombra.style.background = "black";
-sombra.style.borderRadius = "50%";
+// cálculo REALISTA
+const offset = size * Math.cos(faseVisual * Math.PI);
 
-// desplazamiento correcto
-const offset = size - anchoLuz;
-
-if (esCreciente) {
-  sombra.style.left = offset + "px";
+// dirección correcta
+if (fase < 0.5) {
+  // 🌒 creciente (luz a la derecha)
+  luz.style.left = offset + "px";
 } else {
-  sombra.style.left = -offset + "px";
+  // 🌘 menguante (luz a la izquierda)
+  luz.style.left = -offset + "px";
 }
 
-// agregar al DOM
+// agregar capas
+lunaDiv.appendChild(base);
 lunaDiv.appendChild(luz);
-lunaDiv.appendChild(sombra);
 
 
   // 🔥 AQUÍ SE MUESTRA EL TITHI (CORRECTO)
