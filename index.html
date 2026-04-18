@@ -200,9 +200,54 @@ const ancho = 160;
 const offset = ancho * (1 - faseNormalizada);
 
 if (fase < 0.5) {
+ const lunaDiv = document.getElementById("luna");
+
+const faseNormalizada = fase <= 0.5 ? fase : 1 - fase;
+
+// ancho del desplazamiento (más preciso)
+const desplazamiento = 160 * (1 - 2 * faseNormalizada);
+
+if (fase < 0.5) {
+  // 🌒 creciente
   lunaDiv.innerHTML = `
-    <div class="luz" style="clip-path: inset(0 ${offset}px 0 0);"></div>
+    <div style="
+      position:absolute;
+      width:160px;
+      height:160px;
+      background:white;
+      border-radius:50%;
+    "></div>
+
+    <div style="
+      position:absolute;
+      width:160px;
+      height:160px;
+      background:black;
+      border-radius:50%;
+      left:${desplazamiento}px;
+    "></div>
   `;
+} else {
+  // 🌘 menguante
+  lunaDiv.innerHTML = `
+    <div style="
+      position:absolute;
+      width:160px;
+      height:160px;
+      background:white;
+      border-radius:50%;
+    "></div>
+
+    <div style="
+      position:absolute;
+      width:160px;
+      height:160px;
+      background:black;
+      border-radius:50%;
+      left:${-desplazamiento}px;
+    "></div>
+  `;
+}
 } else {
   lunaDiv.innerHTML = `
     <div class="luz" style="clip-path: inset(0 0 0 ${offset}px);"></div>
