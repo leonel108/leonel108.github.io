@@ -195,59 +195,49 @@ function actualizarLuna() {
 
 const lunaDiv = document.getElementById("luna");
 
-const faseNormalizada = fase <= 0.5 ? fase : 1 - fase;
-const ancho = 160;
-const offset = ancho * (1 - faseNormalizada);
+// limpiar
+lunaDiv.innerHTML = "";
 
-if (fase < 0.5) {
- const lunaDiv = document.getElementById("luna");
+// fase: 0 = nueva, 0.5 = llena
+const iluminacionReal = fase <= 0.5 ? fase * 2 : (1 - fase) * 2;
 
-const faseNormalizada = fase <= 0.5 ? fase : 1 - fase;
+// tamaño base
+const size = 160;
 
-// ancho del desplazamiento (más preciso)
-const desplazamiento = 160 * (1 - 2 * faseNormalizada);
+// ancho de luz visible
+const anchoLuz = size * iluminacionReal;
 
-if (fase < 0.5) {
-  // 🌒 creciente
-  lunaDiv.innerHTML = `
-    <div style="
-      position:absolute;
-      width:160px;
-      height:160px;
-      background:white;
-      border-radius:50%;
-    "></div>
+// determinar si crece o mengua
+const esCreciente = fase < 0.5;
 
-    <div style="
-      position:absolute;
-      width:160px;
-      height:160px;
-      background:black;
-      border-radius:50%;
-      left:${desplazamiento}px;
-    "></div>
-  `;
+// círculo blanco (luz)
+const luz = document.createElement("div");
+luz.style.position = "absolute";
+luz.style.width = size + "px";
+luz.style.height = size + "px";
+luz.style.background = "white";
+luz.style.borderRadius = "50%";
+
+// círculo negro (sombra)
+const sombra = document.createElement("div");
+sombra.style.position = "absolute";
+sombra.style.width = size + "px";
+sombra.style.height = size + "px";
+sombra.style.background = "black";
+sombra.style.borderRadius = "50%";
+
+// desplazamiento correcto
+const offset = size - anchoLuz;
+
+if (esCreciente) {
+  sombra.style.left = offset + "px";
 } else {
-  // 🌘 menguante
-  lunaDiv.innerHTML = `
-    <div style="
-      position:absolute;
-      width:160px;
-      height:160px;
-      background:white;
-      border-radius:50%;
-    "></div>
-
-    <div style="
-      position:absolute;
-      width:160px;
-      height:160px;
-      background:black;
-      border-radius:50%;
-      left:${-desplazamiento}px;
-    "></div>
-  `;
+  sombra.style.left = -offset + "px";
 }
+
+// agregar al DOM
+lunaDiv.appendChild(luz);
+lunaDiv.appendChild(sombra);
 } else {
   lunaDiv.innerHTML = `
     <div class="luz" style="clip-path: inset(0 0 0 ${offset}px);"></div>
