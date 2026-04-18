@@ -50,6 +50,7 @@
   <div id="luna"></div>
 
   <p id="fase-luna"></p>
+  <p id="tithi-luna" style="color:#FFD700; margin-top:10px;"></p>
 </div>
 
       <img src="hampi1.jpg" style="width:300px; margin-top:20px;">
@@ -147,6 +148,36 @@ function mostrarTienda(){
 <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 
 <script>
+// 🔵 FUNCIÓN QUE CALCULA EL TITHI (SEPARADA)
+function calcularTithi() {
+  const ahora = new Date();
+
+  const lat = -33.45; // Santiago
+  const lon = -70.66;
+
+  const sol = SunCalc.getPosition(ahora, lat, lon);
+  const luna = SunCalc.getMoonPosition(ahora, lat, lon);
+
+  let diferencia = luna.azimuth - sol.azimuth;
+
+  if (diferencia < 0) diferencia += 2 * Math.PI;
+
+  const grados = diferencia * (180 / Math.PI);
+  const tithiNumero = Math.floor(grados / 12) + 1;
+
+  const nombres = [
+    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Purnima",
+    "Pratipada (Krishna)","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Amavasya"
+  ];
+
+  return nombres[tithiNumero - 1];
+}
+
+// 🔵 FUNCIÓN PRINCIPAL (LUNA + FASE + TITHI)
 function actualizarLuna() {
   const ahora = new Date();
   const moon = SunCalc.getMoonIllumination(ahora);
@@ -173,8 +204,13 @@ function actualizarLuna() {
     `radial-gradient(circle at ${lado},
     white ${iluminacion * 100}%,
     black ${iluminacion * 100}%)`;
+
+  // 🔥 AQUÍ SE MUESTRA EL TITHI (CORRECTO)
+  const tithi = calcularTithi();
+  document.getElementById("tithi-luna").innerHTML = "<b>" + tithi + "</b>";
 }
 
+// 🔄 ACTUALIZACIÓN AUTOMÁTICA
 actualizarLuna();
 setInterval(actualizarLuna, 60000);
 </script>
