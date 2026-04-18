@@ -191,30 +191,45 @@ function actualizarLuna() {
 
   document.getElementById("fase-luna").innerHTML = "<b>" + texto + "</b>";
 
-  // 🌙 NUEVA LUNA REALISTA
-  const lunaDiv = document.getElementById("luna");
-  lunaDiv.innerHTML = "";
+ const lunaDiv = document.getElementById("luna");
+lunaDiv.innerHTML = "";
 
-  const img = document.createElement("img");
-  img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg";
-  img.style.width = "100%";
-  img.style.height = "100%";
-  img.style.borderRadius = "50%";
+// imagen base
+const img = document.createElement("img");
+img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg";
+img.style.width = "100%";
+img.style.height = "100%";
+img.style.borderRadius = "50%";
+img.style.display = "block";
 
-  const curva = Math.cos(fase * Math.PI);
-  const direccion = fase < 0.5 ? 1 : -1;
+// sombra (fase)
+const sombra = document.createElement("div");
+sombra.style.position = "absolute";
+sombra.style.top = "0";
+sombra.style.left = "0";
+sombra.style.width = "100%";
+sombra.style.height = "100%";
+sombra.style.borderRadius = "50%";
 
-  img.style.webkitMaskImage = `
-    radial-gradient(
-      circle at ${50 + direccion * curva * 50}% 50%,
-      rgba(0,0,0,1) 50%,
-      rgba(0,0,0,0) 52%
-    )
-  `;
+// cálculo correcto
+const faseVisual = fase <= 0.5 ? fase : 1 - fase;
+const intensidad = 1 - faseVisual * 2;
 
-  img.style.maskImage = img.style.webkitMaskImage;
+// dirección
+const direccion = fase < 0.5 ? "to right" : "to left";
 
-  lunaDiv.appendChild(img);
+// gradiente suave
+sombra.style.background = `
+  linear-gradient(${direccion},
+    rgba(0,0,0,${intensidad}) 0%,
+    rgba(0,0,0,${intensidad}) 40%,
+    rgba(0,0,0,0) 60%,
+    rgba(0,0,0,0) 100%)
+`;
+
+// agregar
+lunaDiv.appendChild(img);
+lunaDiv.appendChild(sombra);
 
   // 🔥 TITHI
   const tithi = calcularTithi();
