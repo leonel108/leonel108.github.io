@@ -227,9 +227,9 @@ const desplazamiento = curva * 100;
 
 // dirección correcta
 if (fase < 0.5) {
-  sombra.style.transform = translateX(${desplazamiento}%);
+  sombra.style.transform = 'translateX(${desplazamiento}%)';
 } else {
-  sombra.style.transform = translateX(-${desplazamiento}%);
+  sombra.style.transform = 'translateX(-${desplazamiento}%)';
 }
 
 // suavizar borde (clave visual)
