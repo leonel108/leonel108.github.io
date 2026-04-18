@@ -234,5 +234,4 @@ button:hover {
   position: relative;
   border-radius: 50%;
   overflow: hidden;
-  background: black; /* 👈 importante */
 }

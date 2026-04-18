@@ -195,12 +195,11 @@ function actualizarLuna() {
 lunaDiv.innerHTML = "";
 
 // contenedor
-const cont = document.createElement("div");
-cont.style.position = "relative";
-cont.style.width = "100%";
-cont.style.height = "100%";
+// limpiar
+const lunaDiv = document.getElementById("luna");
+lunaDiv.innerHTML = "";
 
-// imagen base (luna llena)
+// imagen base
 const img = document.createElement("img");
 img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg";
 img.style.width = "100%";
@@ -208,37 +207,23 @@ img.style.height = "100%";
 img.style.borderRadius = "50%";
 img.style.display = "block";
 
-// sombra (fase)
-const sombra = document.createElement("div");
-sombra.style.position = "absolute";
-sombra.style.top = "0";
-sombra.style.left = "0";
-sombra.style.width = "100%";
-sombra.style.height = "100%";
-sombra.style.borderRadius = "50%";
-sombra.style.background = "black";
-
-// cálculo REAL
+// cálculo fase
 const faseVisual = fase <= 0.5 ? fase : 1 - fase;
-const curva = Math.cos(faseVisual * Math.PI);
 
-// mover sombra
-const desplazamiento = curva * 100;
+// ancho visible (forma de la luna)
+const ancho = faseVisual * 100;
 
-// dirección correcta
+// dirección
 if (fase < 0.5) {
-  sombra.style.transform = 'translateX(${desplazamiento}%)';
+  // creciente
+  img.style.clipPath = inset(0 ${100 - ancho}% 0 0 round 50%);
 } else {
-  sombra.style.transform = 'translateX(-${desplazamiento}%)';
+  // menguante
+  img.style.clipPath = inset(0 0 0 ${100 - ancho}% round 50%);
 }
 
-// suavizar borde (clave visual)
-sombra.style.filter = "blur(8px)";
-
-// montar
-cont.appendChild(img);
-cont.appendChild(sombra);
-lunaDiv.appendChild(cont);
+// agregar
+lunaDiv.appendChild(img);
   // 🔥 TITHI
   const tithi = calcularTithi();
   document.getElementById("tithi-luna").innerHTML = "<b>" + tithi + "</b>";
