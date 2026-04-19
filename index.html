@@ -181,32 +181,35 @@ function actualizarLuna() {
 
   const lunaDiv = document.getElementById("luna");
 
-  lunaDiv.innerHTML = `
-  <svg width="160" height="160" viewBox="0 0 160 160" >
-    <defs>
-      <radialGradient id="moonGrad">
-  <stop offset="0%" stop-color="#ffffff"/>
-  <stop offset="30%" stop-color="#eeeeee"/>
-  <stop offset="60%" stop-color="#cccccc"/>
-  <stop offset="100%" stop-color="#777777"/>
-</radialGradient>
-    </defs>
+lunaDiv.innerHTML = `
+<svg width="160" height="160" viewBox="0 0 160 160">
 
-    <!-- fondo negro (espacio) -->
-    <circle cx="80" cy="80" r="70" fill="black"/>
+  <defs>
+    <radialGradient id="moonGrad">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#dddddd"/>
+      <stop offset="100%" stop-color="#888888"/>
+    </radialGradient>
 
-    <!-- parte iluminada REAL -->
-    <path d="
-      M80,10
-      A70,70 0 1,1 80,150
-      A${70 * curve},70 0 1,${sweepFlag} 80,10
-      Z
-    "
-    fill="url(#moonGrad)"
-    />
+    <clipPath id="clip">
+      <circle cx="80" cy="80" r="70"/>
+    </clipPath>
+  </defs>
 
-  </svg>
-  `;
+  <!-- Luna base (iluminada) -->
+  <circle cx="80" cy="80" r="70" fill="url(#moonGrad)"/>
+
+  <!-- Sombra REAL -->
+  <circle
+    cx="${80 + (waxing ? (1 - k) * 140 : -(1 - k) * 140)}"
+    cy="80"
+    r="70"
+    fill="black"
+    clip-path="url(#clip)"
+  />
+
+</svg>
+`;
   document.getElementById("tithi-luna").innerHTML =
   "<b>" + calcularTithi() + "</b>";
 }
