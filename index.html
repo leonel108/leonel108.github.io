@@ -228,13 +228,13 @@ const desplazamiento = curva * 100;
 
 // ⚠️ IMPORTANTE: usar backticks
 if (fase < 0.5) {
-  sombra.style.transform = 'translateX(${desplazamiento}%)';
+  sombra.style.transform = "translateX(" + desplazamiento + "%)";
 } else {
-  sombra.style.transform = 'translateX(-${desplazamiento}%)';
+  sombra.style.transform = "translateX(-" + desplazamiento + "%)";
 }
 
 // suavizar borde (clave)
-sombra.style.filter = "blur(12px)";
+sombra.style.filter = "none";
 
 // montar
 cont.appendChild(img);
