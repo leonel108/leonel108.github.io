@@ -173,82 +173,39 @@ return nombres[tithiNumero - 1];
 // 🔵 FUNCIÓN PRINCIPAL (LUNA + FASE + TITHI)
 function actualizarLuna() {
 
-const ahora = new Date();
-const moon = SunCalc.getMoonIllumination(ahora);
+const fase = SunCalc.getMoonIllumination(new Date()).phase;
 
-const fase = moon.phase;
-
-let texto = "";
-
-if (fase < 0.03 || fase > 0.97) texto = "Luna Nueva";
-else if (fase < 0.25) texto = "Creciente";
-else if (fase < 0.27) texto = "Cuarto Creciente";
-else if (fase < 0.48) texto = "Gibosa Creciente";
-else if (fase < 0.52) texto = "Luna Llena";
-else if (fase < 0.73) texto = "Gibosa Menguante";
-else if (fase < 0.77) texto = "Cuarto Menguante";
-else texto = "Menguante";
-
-document.getElementById("fase-luna").innerHTML = "<b>" + texto + "</b>";
+// normalización
+let iluminacion = fase;
 
 const lunaDiv = document.getElementById("luna");
-lunaDiv.innerHTML = "";
 
-// contenedor
-const cont = document.createElement("div");
-cont.style.position = "relative";
-cont.style.width = "100%";
-cont.style.height = "100%";
+lunaDiv.innerHTML = `
+<svg width="160" height="160" viewBox="0 0 160 160">
+  <circle cx="80" cy="80" r="70" fill="#d9d9d9"/>
 
-// imagen luna
-const img = document.createElement("img");
-img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg";
-img.style.width = "100%";
-img.style.height = "100%";
-img.style.borderRadius = "50%";
-img.style.display = "block";
-img.style.filter = "brightness(1.1) contrast(1.1)";
+  <defs>
+    <clipPath id="clip">
+      <circle cx="80" cy="80" r="70"/>
+    </clipPath>
+  </defs>
 
-// sombra REAL
-const sombra = document.createElement("div");
-sombra.style.position = "absolute";
-sombra.style.top = "0";
-sombra.style.left = "0";
-sombra.style.width = "100%";
-sombra.style.height = "100%";
-sombra.style.borderRadius = "50%";
-sombra.style.background = "rgba(0,0,0,0.98)";
+  <ellipse
+    cx="${80 + (iluminacion < 0.5 ? (1 - iluminacion*2)*80 : -(iluminacion-0.5)*2*80)}"
+    cy="80"
+    rx="70"
+    ry="70"
+    fill="black"
+    clip-path="url(#clip)"
+    opacity="0.9"
+  />
+</svg>
+`;
 
-// cálculo correcto
-const faseVisual = fase <= 0.5 ? fase : 1 - fase;
-const curva = Math.cos(faseVisual * Math.PI);
-
-// movimiento REAL
-const desplazamiento = curva * 100;
-
-// ⚠️ IMPORTANTE: usar backticks
-if (fase < 0.5) {
-  sombra.style.transform = 'translateX(${desplazamiento}%)';
-  sombra.style.transform = "translateX(" + desplazamiento + "%)";
-} else {
-  sombra.style.transform = 'translateX(-${desplazamiento}%)';
-  sombra.style.transform = "translateX(-" + desplazamiento + "%)";
-}
-
-// suavizar borde (clave)
-sombra.style.filter = "blur(12px)";
-sombra.style.filter = "none";
-
-// montar
-cont.appendChild(img);
-cont.appendChild(sombra);
-lunaDiv.appendChild(cont);
-// 🔥 TITHI
 const tithi = calcularTithi();
 document.getElementById("tithi-luna").innerHTML = "<b>" + tithi + "</b>";
 }
 
-// 🔄 ACTUALIZACIÓN AUTOMÁTICA
 actualizarLuna();
 setInterval(actualizarLuna, 60000);
 </script>
