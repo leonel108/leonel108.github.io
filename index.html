@@ -151,43 +151,38 @@ document.getElementById("tienda").style.display="block";
 <script>
 function actualizarLuna() {
 
-  const ahora = new Date();
-  const moon = SunCalc.getMoonIllumination(ahora);
+  const moon = SunCalc.getMoonIllumination(new Date());
 
-  const fase = moon.phase;
+  const k = moon.fraction; // iluminación real (0 a 1)
+  const waxing = moon.phase < 0.5;
 
-  const iluminacion = moon.fraction; 
-  const dir = moon.phase < 0.5 ? 1 : -1;
+  const d = 2 * k - 1;
+  const curve = Math.abs(d);
+  const sweepFlag = waxing ? 1 : 0;
 
   const lunaDiv = document.getElementById("luna");
-
-  const sombraX = dir * (1 - iluminacion) * 80;
 
   lunaDiv.innerHTML = `
   <svg width="160" height="160" viewBox="0 0 160 160">
 
     <defs>
-      <radialGradient id="grad">
-        <stop offset="0%" stop-color="#f8f8f8"/>
+      <radialGradient id="moonGrad">
+        <stop offset="0%" stop-color="#ffffff"/>
         <stop offset="100%" stop-color="#cfcfcf"/>
       </radialGradient>
-
-      <clipPath id="clipMoon">
-        <circle cx="80" cy="80" r="70"/>
-      </clipPath>
     </defs>
 
-    <!-- base luna -->
-    <circle cx="80" cy="80" r="70" fill="url(#grad)"/>
+    <!-- fondo negro (espacio) -->
+    <circle cx="80" cy="80" r="70" fill="black"/>
 
-    <!-- sombra real -->
-    <circle
-      cx="${80 + sombraX}"
-      cy="80"
-      r="70"
-      fill="black"
-      clip-path="url(#clipMoon)"
-      opacity="0.9"
+    <!-- parte iluminada REAL -->
+    <path d="
+      M80,10
+      A70,70 0 1,1 80,150
+      A${70 * curve},70 0 1,${sweepFlag} 80,10
+      Z
+    "
+    fill="url(#moonGrad)"
     />
 
   </svg>
