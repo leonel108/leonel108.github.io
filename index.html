@@ -146,12 +146,31 @@ document.getElementById("tienda").style.display="block";
 </script>
 
 <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+<script>
+function calcularTithi() {
+  const moon = SunCalc.getMoonIllumination(new Date());
+  const elongacion = moon.phase * 360;
+  const tithi = Math.floor(elongacion / 12) + 1;
+
+  const nombres = [
+    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Purnima",
+    "Pratipada (Krishna)","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Amavasya"
+  ];
+
+  return nombres[tithi - 1];
+}
+</script>
 
 
 <script>
 function actualizarLuna() {
 
   const moon = SunCalc.getMoonIllumination(new Date());
+  console.log("fase:", moon.phase * 30);
 
   const k = moon.fraction; // iluminación real (0 a 1)
   const waxing = moon.phase < 0.5;
@@ -163,13 +182,13 @@ function actualizarLuna() {
   const lunaDiv = document.getElementById("luna");
 
   lunaDiv.innerHTML = `
-  <svg width="160" height="160" viewBox="0 0 160 160">
-
+  <svg width="160" height="160" viewBox="0 0 160 160" style="transform: scaleX(-1);">
     <defs>
       <radialGradient id="moonGrad">
-        <stop offset="0%" stop-color="#ffffff"/>
-        <stop offset="100%" stop-color="#cfcfcf"/>
-      </radialGradient>
+  <stop offset="0%" stop-color="#ffffff"/>
+  <stop offset="40%" stop-color="#dddddd"/>
+  <stop offset="100%" stop-color="#888888"/>
+</radialGradient>
     </defs>
 
     <!-- fondo negro (espacio) -->
@@ -187,6 +206,8 @@ function actualizarLuna() {
 
   </svg>
   `;
+  document.getElementById("tithi-luna").innerHTML =
+  "<b>" + calcularTithi() + "</b>";
 }
 
 actualizarLuna();
