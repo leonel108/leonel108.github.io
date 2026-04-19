@@ -172,7 +172,7 @@ function actualizarLuna() {
   const moon = SunCalc.getMoonIllumination(new Date());
   console.log("fase:", moon.phase * 30);
 
-  const k = moon.fraction; // iluminación real (0 a 1)
+  const k = 1 - moon.fraction; // iluminación real (0 a 1)
   const waxing = moon.phase < 0.5;
 
   const d = 2 * k - 1;
