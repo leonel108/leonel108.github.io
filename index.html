@@ -147,63 +147,51 @@ document.getElementById("tienda").style.display="block";
 
 <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 
+
 <script>
-// 🔵 FUNCIÓN QUE CALCULA EL TITHI (SEPARADA)
-function calcularTithi() {
-const ahora = new Date();
-
-const moon = SunCalc.getMoonIllumination(ahora);
-
-const elongacion = moon.phase * 360;
-
-const tithiNumero = Math.floor(elongacion / 12) + 1;
-
-const nombres = [
-"Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
-"Shashthi","Saptami","Ashtami","Navami","Dashami",
-"Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Purnima",
-"Pratipada (Krishna)","Dvitiya","Tritiya","Chaturthi","Panchami",
-"Shashthi","Saptami","Ashtami","Navami","Dashami",
-"Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Amavasya"
-];
-
-return nombres[tithiNumero - 1];
-}
-
-// 🔵 FUNCIÓN PRINCIPAL (LUNA + FASE + TITHI)
 function actualizarLuna() {
 
-const fase = SunCalc.getMoonIllumination(new Date()).phase;
+  const ahora = new Date();
+  const moon = SunCalc.getMoonIllumination(ahora);
 
-// normalización
-let iluminacion = fase;
+  const fase = moon.phase;
 
-const lunaDiv = document.getElementById("luna");
+  const iluminacion = moon.fraction; 
+  const dir = moon.phase < 0.5 ? 1 : -1;
 
-lunaDiv.innerHTML = `
-<svg width="160" height="160" viewBox="0 0 160 160">
-  <circle cx="80" cy="80" r="70" fill="#d9d9d9"/>
+  const lunaDiv = document.getElementById("luna");
 
-  <defs>
-    <clipPath id="clip">
-      <circle cx="80" cy="80" r="70"/>
-    </clipPath>
-  </defs>
+  const sombraX = dir * (1 - iluminacion) * 80;
 
-  <ellipse
-    cx="${80 + (iluminacion < 0.5 ? (1 - iluminacion*2)*80 : -(iluminacion-0.5)*2*80)}"
-    cy="80"
-    rx="70"
-    ry="70"
-    fill="black"
-    clip-path="url(#clip)"
-    opacity="0.9"
-  />
-</svg>
-`;
+  lunaDiv.innerHTML = `
+  <svg width="160" height="160" viewBox="0 0 160 160">
 
-const tithi = calcularTithi();
-document.getElementById("tithi-luna").innerHTML = "<b>" + tithi + "</b>";
+    <defs>
+      <radialGradient id="grad">
+        <stop offset="0%" stop-color="#f8f8f8"/>
+        <stop offset="100%" stop-color="#cfcfcf"/>
+      </radialGradient>
+
+      <clipPath id="clipMoon">
+        <circle cx="80" cy="80" r="70"/>
+      </clipPath>
+    </defs>
+
+    <!-- base luna -->
+    <circle cx="80" cy="80" r="70" fill="url(#grad)"/>
+
+    <!-- sombra real -->
+    <circle
+      cx="${80 + sombraX}"
+      cy="80"
+      r="70"
+      fill="black"
+      clip-path="url(#clipMoon)"
+      opacity="0.9"
+    />
+
+  </svg>
+  `;
 }
 
 actualizarLuna();
