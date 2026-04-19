@@ -172,7 +172,7 @@ function actualizarLuna() {
   const moon = SunCalc.getMoonIllumination(new Date());
   console.log("fase:", moon.phase * 30);
 
-  const k = 1 - moon.fraction; // iluminación real (0 a 1)
+  const k =  moon.fraction; // iluminación real (0 a 1)
   const waxing = moon.phase < 0.5;
 
   const d = 2 * k - 1;
@@ -182,7 +182,7 @@ function actualizarLuna() {
   const lunaDiv = document.getElementById("luna");
 
   lunaDiv.innerHTML = `
-  <svg width="160" height="160" viewBox="0 0 160 160" style="transform: scaleX(-1);">
+  <svg width="160" height="160" viewBox="0 0 160 160" >
     <defs>
       <radialGradient id="moonGrad">
   <stop offset="0%" stop-color="#ffffff"/>
