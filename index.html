@@ -207,6 +207,7 @@ img.style.width = "100%";
 img.style.height = "100%";
 img.style.borderRadius = "50%";
 img.style.display = "block";
+img.style.filter = "brightness(1.1) contrast(1.1)";
 
 // sombra REAL
 const sombra = document.createElement("div");
@@ -216,7 +217,7 @@ sombra.style.left = "0";
 sombra.style.width = "100%";
 sombra.style.height = "100%";
 sombra.style.borderRadius = "50%";
-sombra.style.background = "black";
+sombra.style.background = "rgba(0,0,0,0.98)";
 
 // cálculo correcto
 const faseVisual = fase <= 0.5 ? fase : 1 - fase;
@@ -227,9 +228,9 @@ const desplazamiento = curva * 100;
 
 // ⚠️ IMPORTANTE: usar backticks
 if (fase < 0.5) {
-  sombra.style.transform = translateX(${desplazamiento}%);
+  sombra.style.transform = 'translateX(${desplazamiento}%)';
 } else {
-  sombra.style.transform = translateX(-${desplazamiento}%);
+  sombra.style.transform = 'translateX(-${desplazamiento}%)';
 }
 
 // suavizar borde (clave)
