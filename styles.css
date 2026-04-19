@@ -216,4 +216,26 @@ button:hover {
   height: 160px;
   margin: 0 auto;
 }
+.titulo-blog {
+  color: #6a0dad; /* morado profundo */
+  text-align: center;
+  font-size: 32px;
+  text-shadow: 0 0 8px rgba(106, 13, 173, 0.4);
+}
+.categoria {
+  font-size: 26px;
+  margin-top: 20px;
+  text-shadow: 2px 2px 5px black;
+}
 
+.cobre {
+  color: #FFD700; /* dorado */
+}
+
+.meditacion {
+  color: #40E0D0; /* turquesa */
+}
+
+.articulos {
+  color: #FF8C00; /* naranja místico */
+}
