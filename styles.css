@@ -239,3 +239,7 @@ button:hover {
 .articulos {
   color: #FF8C00; /* naranja místico */
 }
+iframe {
+  margin-top: 15px;
+  border-radius: 10px;
+}
