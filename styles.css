@@ -274,3 +274,9 @@ iframe {
   padding: 5px 12px;
   border-radius: 10px;
 }
+.fase-luna {
+  color: #a855f7; /* morado bonito */
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
