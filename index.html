@@ -220,6 +220,15 @@ lunaDiv.innerHTML = `
 `;
   document.getElementById("tithi-luna").innerHTML =
   "<b>" + calcularTithi() + "</b>";
+  let textoFase = "";
+
+if (moon.phase < 0.5) {
+  textoFase = "🌒 Shukla Paksha (Luna creciente)";
+} else {
+  textoFase = "🌘 Krishna Paksha (Luna menguante)";
+}
+
+document.getElementById("fase-luna").innerHTML = "<b>" + textoFase + "</b>";
 }
 
 actualizarLuna();
