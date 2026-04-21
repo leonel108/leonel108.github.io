@@ -153,7 +153,10 @@ document.getElementById("tienda").style.display="block";
 <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 <script>
 function calcularTithi() {
-  const moon = SunCalc.getMoonIllumination(new Date());
+ const ahora = new Date();
+ahora.setHours(ahora.getHours() - 4); // prueba -4 o -5
+
+const moon = SunCalc.getMoonIllumination(ahora);
   const elongacion = moon.phase * 360;
   const tithi = Math.floor(elongacion / 12) + 1;
 
@@ -174,7 +177,10 @@ function calcularTithi() {
 <script>
 function actualizarLuna() {
 
-  const moon = SunCalc.getMoonIllumination(new Date());
+  const ahora = new Date();
+  ahora.setHours(ahora.getHours() - 4); // mismo ajuste
+
+  const moon = SunCalc.getMoonIllumination(ahora);
   console.log("fase:", moon.phase * 30);
 
   const k =  moon.fraction; // iluminación real (0 a 1)
