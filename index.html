@@ -154,9 +154,9 @@ document.getElementById("tienda").style.display="block";
 <script>
 function calcularTithi() {
  const ahora = new Date();
-ahora.setHours(ahora.getHours() - 4); // prueba -4 o -5
+ const utc = new Date(ahora.getTime() + ahora.getTimezoneOffset() * 60000);
 
-const moon = SunCalc.getMoonIllumination(ahora);
+const moon = SunCalc.getMoonIllumination(utc);
   const elongacion = moon.phase * 360;
   const tithi = Math.floor(elongacion / 12) + 1;
 
@@ -178,9 +178,9 @@ const moon = SunCalc.getMoonIllumination(ahora);
 function actualizarLuna() {
 
   const ahora = new Date();
-  ahora.setHours(ahora.getHours() - 4); // mismo ajuste
+  const utc = new Date(ahora.getTime() + ahora.getTimezoneOffset() * 60000);
 
-  const moon = SunCalc.getMoonIllumination(ahora);
+  const moon = SunCalc.getMoonIllumination(utc);
   console.log("fase:", moon.phase * 30);
 
   const k =  moon.fraction; // iluminación real (0 a 1)
