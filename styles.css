@@ -10,7 +10,7 @@ video {
 
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Playfair Display', serif;
   text-align: center;
   color: #2c2c2c; /* 🔥 mejor contraste */
   font-size: 18px;
@@ -29,7 +29,7 @@ body::before {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  opacity: 0.25;
   z-index: -1;
 }
 
@@ -303,8 +303,36 @@ iframe {
 
 /* ===== LATERALES (terracota) ===== */
 .lateral {
-  background-color: #C0603D;
+   background-color: rgba(192, 96, 61, 0.9);
   color: #F5E6C4;
   padding: 15px;
   border-radius: 10px;
+}
+p {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #222;
+}
+h2 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+section {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 12px;
+}
+.lateral p {
+  font-size: 16px;
+}
+
+.lateral a {
+  font-size: 16px;
+  font-weight: bold;
 }
