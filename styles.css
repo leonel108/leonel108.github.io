@@ -339,3 +339,7 @@ section {
 .centro, .lateral, section {
   background: transparent;
 }
+#luna {
+  background: radial-gradient(circle, #000 60%, #111);
+  border-radius: 50%;
+}
