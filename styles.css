@@ -303,7 +303,7 @@ iframe {
 
 /* ===== LATERALES (terracota) ===== */
 .lateral {
-   background-color: rgba(192, 96, 61, 0.9);
+   background-color: transparent;
   color: #F5E6C4;
   padding: 15px;
   border-radius: 10px;
@@ -324,7 +324,7 @@ h3 {
   font-weight: 600;
 }
 section {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: transparent;
   padding: 20px;
   border-radius: 12px;
 }
@@ -335,4 +335,7 @@ section {
 .lateral a {
   font-size: 16px;
   font-weight: bold;
+}
+.centro, .lateral, section {
+  background: transparent;
 }
