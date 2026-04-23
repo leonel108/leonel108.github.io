@@ -198,27 +198,27 @@ lunaDiv.innerHTML = `
   <defs>
     <radialGradient id="moonGrad">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="50%" stop-color="#dddddd"/>
+      <stop offset="60%" stop-color="#dddddd"/>
       <stop offset="100%" stop-color="#999999"/>
     </radialGradient>
 
-    <clipPath id="clip">
+    <clipPath id="moonClip">
       <circle cx="80" cy="80" r="70"/>
     </clipPath>
   </defs>
 
-  <!-- Luna completa (base blanca) -->
-  <circle cx="80" cy="80" r="70" fill="url(#moonGrad)" />
+  <!-- Fondo (cielo, no luna blanca completa) -->
+  <circle cx="80" cy="80" r="70" fill="black"/>
 
-  <!-- Sombra (forma elíptica REAL) -->
-  <ellipse
-    cx="80"
-    cy="80"
-    rx="${70 * (1 - k)}"
-    ry="70"
-    fill="black"
-    clip-path="url(#clip)"
-    transform="translate(${waxing ? -70 * k : 70 * k},0)"
+  <!-- Parte iluminada REAL -->
+  <path
+    d="
+      M 80 10
+      A 70 70 0 0 ${waxing ? 1 : 0} 80 150
+      A ${70 * Math.abs(2*k - 1)} 70 0 0 ${waxing ? 0 : 1} 80 10
+    "
+    fill="url(#moonGrad)"
+    clip-path="url(#moonClip)"
   />
 
 </svg>
