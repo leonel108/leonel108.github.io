@@ -44,7 +44,6 @@
 <div style="text-align:center; margin-top:30px;">
 
 <div id="luna"></div>
-<img src="luna-textura.jpg" width="120">
 
 <p id="fase-luna" class="fase-luna"></p>
 <p id="tithi-luna" class="tithi-luna"></p>
@@ -197,28 +196,36 @@ lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
   <defs>
+    <!-- textura -->
     <pattern id="moonTexture" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="luna_guion_textura.jpg" x="0" y="0" width="160" height="160"/>
+      <image href="luna-textura.jpg" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid slice"/>
     </pattern>
 
+    <!-- forma circular -->
     <clipPath id="clipCircle">
       <circle cx="80" cy="80" r="70"/>
     </clipPath>
+
+    <!-- sombra suave -->
+    <radialGradient id="shadowGrad">
+      <stop offset="0%" stop-color="black" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="black" stop-opacity="0"/>
+    </radialGradient>
   </defs>
 
-  <!-- fondo negro -->
+  <!-- fondo -->
   <circle cx="80" cy="80" r="70" fill="black"/>
 
-  <!-- luna real -->
+  <!-- luna -->
   <circle cx="80" cy="80" r="70" fill="url(#moonTexture)" clip-path="url(#clipCircle)"/>
 
-  <!-- sombra dinámica -->
+  <!-- sombra -->
   <ellipse
     cx="${waxing ? 80 + (70 * (1 - k)) : 80 - (70 * (1 - k))}"
     cy="80"
     rx="${70 * (1 - k)}"
     ry="70"
-    fill="black"
+    fill="url(#shadowGrad)"
     clip-path="url(#clipCircle)"
   />
 
