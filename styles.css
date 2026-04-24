@@ -340,8 +340,7 @@ section {
   background: transparent;
 }
 #luna {
-  background: radial-gradient(circle, #000 60%, #111);
-  border-radius: 50%;
+  background: transparent;
 }
 #luna svg {
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
@@ -361,20 +360,18 @@ section {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.95) 0%,
-    rgba(0,0,0,0.85) 25%,
-    rgba(0,0,0,0.4) 45%,
-    rgba(0,0,0,0.1) 48%,
-    transparent 52%,
-    rgba(255,255,255,0.1) 60%,
-    rgba(255,255,255,0.2) 75%,
-    transparent 100%
+
+  background: radial-gradient(
+    ellipse at 65% 50%,
+    rgba(0,0,0,0.95) 20%,
+    rgba(0,0,0,0.85) 35%,
+    rgba(0,0,0,0.6) 45%,
+    rgba(0,0,0,0.3) 48%,
+    rgba(0,0,0,0.1) 50%,
+    transparent 55%
   );
 
-  mix-blend-mode: multiply;
+  filter: blur(2px);
 }
 .moon {
   box-shadow: 
