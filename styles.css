@@ -361,17 +361,11 @@ section {
   inset: 0;
   border-radius: 50%;
 
-  background: radial-gradient(
-    ellipse at 65% 50%,
-    rgba(0,0,0,0.95) 20%,
-    rgba(0,0,0,0.85) 35%,
-    rgba(0,0,0,0.6) 45%,
-    rgba(0,0,0,0.3) 48%,
-    rgba(0,0,0,0.1) 50%,
-    transparent 55%
+  background: linear-gradient(
+    to right,
+    black 50%,
+    transparent 50%
   );
-
-  filter: blur(2px);
 }
 .moon {
   box-shadow: 
