@@ -197,29 +197,29 @@ lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
   <defs>
-    <radialGradient id="moonGrad">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="60%" stop-color="#dddddd"/>
-      <stop offset="100%" stop-color="#999999"/>
-    </radialGradient>
+    <pattern id="moonTexture" patternUnits="objectBoundingBox" width="1" height="1">
+      <image href="luna_guion_textura.jpg" x="0" y="0" width="160" height="160"/>
+    </pattern>
 
-    <clipPath id="moonClip">
+    <clipPath id="clipCircle">
       <circle cx="80" cy="80" r="70"/>
     </clipPath>
   </defs>
 
-  <!-- Fondo (cielo, no luna blanca completa) -->
+  <!-- fondo negro -->
   <circle cx="80" cy="80" r="70" fill="black"/>
 
-  <!-- Parte iluminada REAL -->
-  <path
-    d="
-      M 80 10
-      A 70 70 0 0 ${waxing ? 1 : 0} 80 150
-      A ${70 * Math.abs(2*k - 1)} 70 0 0 ${waxing ? 0 : 1} 80 10
-    "
-    fill="url(#moonGrad)"
-    clip-path="url(#moonClip)"
+  <!-- luna real -->
+  <circle cx="80" cy="80" r="70" fill="url(#moonTexture)" clip-path="url(#clipCircle)"/>
+
+  <!-- sombra dinámica -->
+  <ellipse
+    cx="${waxing ? 80 + (70 * (1 - k)) : 80 - (70 * (1 - k))}"
+    cy="80"
+    rx="${70 * (1 - k)}"
+    ry="70"
+    fill="black"
+    clip-path="url(#clipCircle)"
   />
 
 </svg>
