@@ -196,37 +196,38 @@ lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
   <defs>
-    <!-- textura -->
+    <!-- textura real -->
     <pattern id="moonTexture" patternUnits="objectBoundingBox" width="1" height="1">
       <image href="luna-textura.jpg" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid slice"/>
     </pattern>
 
-    <!-- forma circular -->
-    <clipPath id="clipCircle">
-      <circle cx="80" cy="80" r="70"/>
-    </clipPath>
+    <!-- máscara REAL -->
+    <mask id="moonMask">
+      <rect width="160" height="160" fill="black"/>
 
-    <!-- sombra suave -->
-    <radialGradient id="shadowGrad">
-      <stop offset="0%" stop-color="black" stop-opacity="0.9"/>
-      <stop offset="100%" stop-color="black" stop-opacity="0"/>
-    </radialGradient>
+      <!-- círculo base -->
+      <circle cx="80" cy="80" r="70" fill="white"/>
+
+      <!-- círculo que "come" la luz -->
+      <circle 
+        cx="${waxing ? 80 + (140 * (1 - k)) : 80 - (140 * (1 - k))}" 
+        cy="80" 
+        r="70" 
+        fill="black"
+      />
+    </mask>
   </defs>
 
   <!-- fondo -->
   <circle cx="80" cy="80" r="70" fill="black"/>
 
-  <!-- luna -->
-  <circle cx="80" cy="80" r="70" fill="url(#moonTexture)" clip-path="url(#clipCircle)"/>
-
-  <!-- sombra -->
-  <ellipse
-    cx="${waxing ? 80 + (70 * (1 - k)) : 80 - (70 * (1 - k))}"
-    cy="80"
-    rx="${70 * (1 - k)}"
-    ry="70"
-    fill="url(#shadowGrad)"
-    clip-path="url(#clipCircle)"
+  <!-- luna con máscara -->
+  <circle 
+    cx="80" 
+    cy="80" 
+    r="70" 
+    fill="url(#moonTexture)" 
+    mask="url(#moonMask)"
   />
 
 </svg>
