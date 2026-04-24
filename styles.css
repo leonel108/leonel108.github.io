@@ -346,3 +346,23 @@ section {
 #luna svg {
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
 }
+.moon {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-image: url("luna.jpg");
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.moon::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 50%, 
+    transparent 45%, 
+    rgba(0,0,0,0.8) 60%);
+}
