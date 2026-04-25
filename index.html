@@ -215,8 +215,8 @@ lunaDiv.innerHTML = `
   <!-- luna visible -->
   <circle cx="80" cy="80" r="70" fill="white"/>
 
-  <!-- sombra mitad exacta -->
-<ellipse cx="80" cy="80" rx="75" ry="70" fill="black" filter="url(#blurEdge)"/>
+  <!-- corte tipo mitad -->
+  <rect x="80" y="0" width="80" height="160" fill="black"/>
 </mask>
   </defs>
 
@@ -225,12 +225,13 @@ lunaDiv.innerHTML = `
 
   <!-- luna con máscara -->
   <circle 
-    cx="80" 
-    cy="80" 
-    r="70" 
-    fill="url(#moonTexture)" 
-    mask="url(#moonMask)"
-  />
+  cx="80" 
+  cy="80" 
+  r="70" 
+  fill="url(#moonTexture)" 
+  mask="url(#moonMask)"
+  style="filter: blur(1px);"
+/>
 
 </svg>
 `;
