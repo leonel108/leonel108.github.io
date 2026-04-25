@@ -183,7 +183,10 @@ function actualizarLuna() {
   const moon = SunCalc.getMoonIllumination(utc);
   console.log("fase:", moon.phase * 30);
 
-  const fase = moon.phase; // 0 a 1
+  const faseReal = moon.phase;
+
+// 🔥 CORRECCIÓN VISUAL (la clave)
+const fase = Math.sin(faseReal * Math.PI);
 const k = Math.cos(fase * Math.PI * 2);
   const waxing = moon.phase < 0.5;
 
