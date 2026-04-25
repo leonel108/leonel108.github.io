@@ -211,7 +211,7 @@ lunaDiv.innerHTML = `
 
   <!-- sombra correcta -->
   <ellipse
-    cx="${fase < 0.5 ? 80 + (70 * (1 - Math.cos(fase * Math.PI))) : 80 - (70 * (1 - Math.cos(fase * Math.PI)))}"
+    cx="${fase < 0.5 ? 80 + (50 * (1 - Math.cos(fase * Math.PI))) : 80 - (50 * (1 - Math.cos(fase * Math.PI)))}"
     cy="80"
   rx="${70 * Math.pow(Math.abs(Math.cos(fase * Math.PI)), 0.6)}"
     ry="70"
