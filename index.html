@@ -200,6 +200,9 @@ lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
   <defs>
+    <filter id="blurEdge">
+  <feGaussianBlur stdDeviation="2"/>
+</filter>
     <!-- textura real -->
     <pattern id="moonTexture" patternUnits="objectBoundingBox" width="1" height="1">
       <image href="luna-textura.jpg" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid slice"/>
@@ -213,7 +216,7 @@ lunaDiv.innerHTML = `
   <circle cx="80" cy="80" r="70" fill="white"/>
 
   <!-- sombra mitad exacta -->
-  <rect x="80" y="0" width="80" height="160" fill="black"/>
+<ellipse cx="95" cy="80" rx="60" ry="70" fill="black" filter="url(#blurEdge)"/>
 </mask>
   </defs>
 
