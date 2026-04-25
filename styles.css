@@ -360,11 +360,11 @@ section {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-
-  background: linear-gradient(
-    to right,
-    black 50%,
-    transparent 50%
+  
+  background: radial-gradient(
+    circle at var(--fase, 50%) 50%
+    transparent 40%,
+    black 50%
   );
 }
 .moon {

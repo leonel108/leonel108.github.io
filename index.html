@@ -210,7 +210,7 @@ lunaDiv.innerHTML = `
 
       <!-- círculo que "come" la luz -->
       <circle 
-        cx="${waxing ? 80 + (140 * (1 - k)) : 80 - (140 * (1 - k))}" 
+        cx="${waxing ? 80 + (70 * (1 - k)) : 80 - (70 * (1 - k))}" 
         cy="80" 
         r="70" 
         fill="black"
@@ -248,5 +248,4 @@ document.getElementById("fase-luna").innerHTML = "<b>" + textoFase + "</b>";
 actualizarLuna();
 setInterval(actualizarLuna, 60000);
 </script>
-
 </body>
