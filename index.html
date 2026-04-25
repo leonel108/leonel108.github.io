@@ -183,7 +183,8 @@ function actualizarLuna() {
   const moon = SunCalc.getMoonIllumination(utc);
   console.log("fase:", moon.phase * 30);
 
-  const k =  moon.fraction; // iluminación real (0 a 1)
+  const fase = moon.phase; // 0 a 1
+const k = Math.cos(fase * Math.PI * 2);
   const waxing = moon.phase < 0.5;
 
   const d = 2 * k - 1;
@@ -209,12 +210,12 @@ lunaDiv.innerHTML = `
       <circle cx="80" cy="80" r="70" fill="white"/>
 
       <!-- círculo que "come" la luz -->
-      <circle 
-        cx="${waxing ? 80 + (70 * (1 - k)) : 80 - (70 * (1 - k))}" 
-        cy="80" 
-        r="70" 
-        fill="black"
-      />
+     <circle 
+  cx="${80 + (k * 70)}" 
+  cy="80" 
+  r="70" 
+  fill="black"
+/>
     </mask>
   </defs>
 
