@@ -194,6 +194,30 @@ button:hover {
   letter-spacing: 3px;
   text-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
+#titulo {
+  position: relative;
+  display: inline-block;
+}
+
+/* REFLEJO */
+#titulo::after {
+  content: "dharma shakti"; /* mismo texto */
+  position: absolute;
+  left: 0;
+  top: 100%;
+
+  transform: scaleY(-1); /* lo invierte */
+
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  opacity: 0.25; /* suavidad */
+
+  filter: blur(2px); /* efecto agua */
+
+  pointer-events: none;
+}
 
 /* LUNA */
 
