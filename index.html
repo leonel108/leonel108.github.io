@@ -215,11 +215,12 @@ lunaDiv.innerHTML = `
   <!-- luna visible -->
   <circle cx="80" cy="80" r="70" fill="white"/>
 
- <ellipse 
-  cx="${80 + (waxing ? offset : -offset)}" 
-  cy="80" 
-  rx="70" 
-  ry="70" 
+ <path 
+  d="
+    M80,10
+    Q ${80 + (waxing ? 6 : -6)},80 80,150
+    L80,10
+  " 
   fill="black"
   filter="url(#blurEdge)"
 />
