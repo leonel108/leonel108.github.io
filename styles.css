@@ -103,7 +103,7 @@ a:hover {
 }
 
 .derecha a {
-  color: #FFD700;
+  color: #8b5e3c;
   font-weight: bold;
 }
 
@@ -371,4 +371,7 @@ section {
   box-shadow: 
     inset -10px 0 20px rgba(0,0,0,0.5),
     inset 10px 0 20px rgba(255,255,255,0.2);
+}
+.lateral a {
+  color: #87CEEB;
 }
