@@ -198,7 +198,7 @@ button:hover {
   position: relative;
   display: inline-block;
 
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   z-index: 2;
 }
 
@@ -207,7 +207,7 @@ button:hover {
   content: "dharma shakti"; /* mismo texto */
   position: absolute;
   left: 0;
-  top: 102%;
+  top: 98%;
 
   transform: scaleY(-1); /* lo invierte */
 
@@ -220,7 +220,7 @@ button:hover {
   filter: blur(1px); /* efecto agua */
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
 -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-z-index: 3;
+z-index: 5;
   pointer-events: none;
 }
 
@@ -316,7 +316,7 @@ iframe {
   border-radius: 12px;
   text-align: center;
   position: relative;
-  z-index: 1; 
+  z-index: 2; 
 }
 
 /* Links del menú */
