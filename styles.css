@@ -198,7 +198,7 @@ button:hover {
   position: relative;
   display: inline-block;
 
-  margin-bottom: 80px;
+  margin-bottom: 30px;
   z-index: 2;
 }
 
@@ -207,7 +207,7 @@ button:hover {
   content: "dharma shakti"; /* mismo texto */
   position: absolute;
   left: 0;
-  top: 120%;
+  top: 102%;
 
   transform: scaleY(-1); /* lo invierte */
 
