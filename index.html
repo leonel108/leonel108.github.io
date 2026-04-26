@@ -196,6 +196,7 @@ const k = Math.cos(fase * Math.PI * 2);
 
   const lunaDiv = document.getElementById("luna");
 
+const offset = 70 * k;
 lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
@@ -215,8 +216,14 @@ lunaDiv.innerHTML = `
   <!-- luna visible -->
   <circle cx="80" cy="80" r="70" fill="white"/>
 
-  <!-- corte tipo mitad -->
-  <rect x="80" y="0" width="80" height="160" fill="black"/>
+ <ellipse 
+  cx="${80 + (waxing ? offset : -offset)}" 
+  cy="80" 
+  rx="70" 
+  ry="70" 
+  fill="black"
+  filter="url(#blurEdge)"
+/>
 </mask>
   </defs>
 
