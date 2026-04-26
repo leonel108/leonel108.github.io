@@ -207,7 +207,7 @@ button:hover {
   content: "dharma shakti"; /* mismo texto */
   position: absolute;
   left: 0;
-  top: 98%;
+  top: 90%;
 
   transform: scaleY(-1); /* lo invierte */
 
@@ -215,12 +215,12 @@ button:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  opacity: 0.35; /* suavidad */
+  opacity: 0.6; /* suavidad */
 
-  filter: blur(1px); /* efecto agua */
+  filter: blur none; /* efecto agua */
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
 -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-z-index: 5;
+z-index: 999;
   pointer-events: none;
 }
 
