@@ -197,7 +197,7 @@ button:hover {
   position: relative;
   display: inline-block;
 
-  margin-bottom: 0px;
+  margin-bottom: 100px;
   z-index: 10;
 }
 
@@ -206,7 +206,7 @@ button:hover {
   content: "Dharma Shakti";
   position: absolute;
   left: 0;
-  top: 100%;
+  top: 115%;
 
   transform: scaleY(-1);
 
@@ -310,7 +310,8 @@ iframe {
   border-radius: 12px;
   text-align: center;
   position: relative;
-  z-index: 2; 
+  z-index: 2;
+  margin-top: 60px; 
 }
 
 /* Links del menú */
