@@ -197,6 +197,9 @@ button:hover {
 #titulo {
   position: relative;
   display: inline-block;
+
+  margin-bottom: 40px;
+  z-index: 2;
 }
 
 /* REFLEJO */
@@ -312,6 +315,8 @@ iframe {
   padding: 15px;
   border-radius: 12px;
   text-align: center;
+  position: relative;
+  z-index: 1; 
 }
 
 /* Links del menú */
