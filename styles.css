@@ -193,34 +193,28 @@ button:hover {
   -webkit-text-fill-color: transparent;
   letter-spacing: 3px;
   text-shadow: 0 2px 6px rgba(0,0,0,0.25);
-}
-#titulo {
+
   position: relative;
   display: inline-block;
 
-  margin-bottom: 10px;
-  z-index: 2;
+  margin-bottom: 0px;
+  z-index: 10;
 }
 
 /* REFLEJO */
 #titulo::after {
-  content: "dharma shakti"; /* mismo texto */
+  content: "Dharma Shakti";
   position: absolute;
   left: 0;
-  top: 90%;
+  top: 100%;
 
-  transform: scaleY(-1); /* lo invierte */
+  transform: scaleY(-1);
 
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgba(255,255,255,0.4); /* más visible */
 
-  opacity: 0.6; /* suavidad */
+  opacity: 0.7;
 
-  filter: blur none; /* efecto agua */
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
--webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
-z-index: 999;
+  z-index: 10;
   pointer-events: none;
 }
 
