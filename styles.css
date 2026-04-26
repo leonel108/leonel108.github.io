@@ -303,8 +303,8 @@ iframe {
 
 /* ===== LATERALES (terracota) ===== */
 .lateral {
-   background-color: transparent;
-  color: #F5E6C4;
+  background-color: #8B5E3C; /* cafecito */
+  color: #f5e6c4;
   padding: 15px;
   border-radius: 10px;
 }
@@ -373,5 +373,12 @@ section {
     inset 10px 0 20px rgba(255,255,255,0.2);
 }
 .lateral a {
+  color: #87CEEB;
+}
+.derecha a {
+  color: #87CEEB;
+}
+
+.izquierda a {
   color: #87CEEB;
 }
