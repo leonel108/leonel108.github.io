@@ -186,9 +186,8 @@ function actualizarLuna() {
   const faseReal = moon.phase;
 
 // 🔥 CORRECCIÓN VISUAL (la clave)
-const fase = Math.sin(faseReal * Math.PI);
-const k = Math.cos(fase * Math.PI * 2);
-  const waxing = moon.phase < 0.5;
+const k = Math.cos(faseReal * 2 * Math.PI);
+  const waxing = true;
 
   const d = 2 * k - 1;
   const curve = Math.abs(d);
@@ -196,7 +195,7 @@ const k = Math.cos(fase * Math.PI * 2);
 
   const lunaDiv = document.getElementById("luna");
 
-const offset = 70 * k;
+const offset = 30 * k;
 lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
