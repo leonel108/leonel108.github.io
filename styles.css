@@ -382,3 +382,7 @@ section {
 .izquierda a {
   color: #87CEEB;
 }
+.izquierda h2,
+.izquierda p {
+  color: #87CEEB; /* celestito */
+}
