@@ -471,7 +471,7 @@ section {
 /* REFLEJO REAL */
 .reflejo {
   position: absolute;
-  top: -55px;
+  top: -40px;
   left: 50%;
 
   transform: translateX(-50%) scaleY(-1);
@@ -483,8 +483,11 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  opacity: 0.85; /* 🔥 más visible */
-  filter: blur(2px);
+  opacity: 1; /* 🔥 más visible */
+  filter: blur(1px);
+  text-shadow: 
+  0 0 6px rgba(255,255,255,0.35),
+  0 0 12px rgba(255,255,255,0.25);
 
   animation: ondas 2s ease-in-out infinite;
 
@@ -496,19 +499,19 @@ section {
 }
 @keyframes ondas {
   0% {
-    transform: translateX(-50%) scaleY(-1) skewX(-6deg) translateY(0px);
+    transform: translateX(-50%) scaleY(-1) skewX(-4deg) translateY(0px);
   }
   25% {
-    transform: translateX(-50%) scaleY(-1) skewX(4deg) translateY(2px);
+    transform: translateX(-50%) scaleY(-1) skewX(3deg) translateY(2px);
   }
   50% {
-    transform: translateX(-50%) scaleY(-1) skewX(8deg) translateY(0px);
+    transform: translateX(-50%) scaleY(-1) skewX(6deg) translateY(1px);
   }
   75% {
-    transform: translateX(-50%) scaleY(-1) skewX(-4deg) translateY(-2px);
+    transform: translateX(-50%) scaleY(-1) skewX(-3deg) translateY(-1px);
   }
   100% {
-    transform: translateX(-50%) scaleY(-1) skewX(-6deg) translateY(0px);
+    transform: translateX(-50%) scaleY(-1) skewX(-4deg) translateY(0px);
   }
 }
 @keyframes agua {
