@@ -411,23 +411,24 @@ section {
   transform: translateX(-50%);
 
   width: 420px;
-  height: 100px;
+  height: 110px;
 
   border-radius: 50%;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(0,0,0,0.5) 0%,
-    rgba(0,0,0,0.25) 40%,
-    rgba(255,255,255,0.08) 65%,
+    rgba(30, 60, 120, 0.45) 0%,   /* 🔥 azul agua */
+    rgba(30, 60, 120, 0.25) 40%,
+    rgba(255,255,255,0.15) 65%,
     transparent 90%
   );
 
+  backdrop-filter: blur(3px); /* 🔥 efecto agua real */
   overflow: hidden;
 
   box-shadow:
-    0 0 20px rgba(255,255,255,0.15),
-    inset 0 0 25px rgba(255,255,255,0.1);
+    0 0 25px rgba(100,150,255,0.25),
+    inset 0 0 30px rgba(255,255,255,0.2);
 }
 /* REFLEJO REAL */
 .reflejo {
@@ -444,26 +445,26 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  opacity: 0.6;
-  filter: blur(1px);
+  opacity: 0.85; /* 🔥 más visible */
+  filter: blur(2px);
 
-  animation: ondas 3s ease-in-out infinite;
+  animation: ondas 2s ease-in-out infinite;
 
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
 }
 .titulo-contenedor {
   text-align: center;
 }
 @keyframes ondas {
   0% {
-    transform: translateX(-50%) scaleY(-1) skewX(-6deg);
+    transform: translateX(-50%) scaleY(-1) skewX(-8deg) scaleY(-1.05);
   }
   50% {
-    transform: translateX(-50%) scaleY(-1) skewX(6deg);
+    transform: translateX(-50%) scaleY(-1) skewX(8deg) scaleY(-0.95);
   }
   100% {
-    transform: translateX(-50%) scaleY(-1) skewX(-6deg);
+    transform: translateX(-50%) scaleY(-1) skewX(-8deg) scaleY(-1.05);
   }
 }
 .charco::before {
@@ -473,14 +474,14 @@ section {
 
   background: repeating-radial-gradient(
     ellipse at center,
-    rgba(255,255,255,0.08) 0px,
-    rgba(255,255,255,0.08) 2px,
-    transparent 3px,
-    transparent 8px
+    rgba(255,255,255,0.12) 0px,
+    rgba(255,255,255,0.12) 2px,
+    transparent 4px,
+    transparent 10px
   );
 
-  opacity: 0.4;
-  animation: agua 4s linear infinite;
+  opacity: 0.5;
+  animation: agua 3s linear infinite;
 }
 @keyframes agua {
   0% {
