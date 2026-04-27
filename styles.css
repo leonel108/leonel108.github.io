@@ -321,11 +321,14 @@ p {
   font-size: 18px;
   line-height: 1.6;
   font-weight: 400;
-  color: #222;
+  color: #F5E6C4; /* crema suave */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
 }
 h2 {
   font-size: 28px;
   font-weight: 600;
+  color: #FFD700; /* dorado espiritual */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
 }
 
 h3 {
@@ -503,4 +506,9 @@ section {
 #link-calendario:hover {
   color: #FFD700;
   text-decoration: underline;
+}
+#viajes {
+  background: rgba(0,0,0,0.35);
+  border-radius: 15px;
+  padding: 20px;
 }
