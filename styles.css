@@ -405,8 +405,10 @@ section {
 /* CHARCO DE AGUA */
 
 .charco {
-  position: relative;
-  margin: 20px auto 0;
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
 
   width: 260px;
   height: 80px;
@@ -429,7 +431,7 @@ section {
 .charco::after {
   content: "dharma shakti";
   position: absolute;
-  top: -20px;
+  top: 10px;
   left: 0;
   width: 100%;
   text-align: center;
