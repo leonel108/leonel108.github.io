@@ -472,9 +472,11 @@ section {
 .reflejo {
   position: absolute;
   top: -40px;
-  left: 50%;
+  left: 0;
+  width: 100;
+  text-align: center;
 
-  transform: translateX(-50%) scaleY(-1);
+  transform:  scaleY(-1);
 
   font-family: 'Dancing Script', cursive;
   font-size: 70px;
