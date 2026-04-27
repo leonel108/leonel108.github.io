@@ -409,7 +409,7 @@ section {
 
 .charco {
   position: absolute;
-  top: 85%;
+  top: 70%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -471,7 +471,7 @@ section {
 /* REFLEJO REAL */
 .reflejo {
   position: absolute;
-  top: -25px;
+  top: -40px;
   left: 50%;
 
   transform: translateX(-50%) scaleY(-1);
