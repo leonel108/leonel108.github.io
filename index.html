@@ -162,8 +162,8 @@ document.getElementById("tienda").style.display="block";
 <script>
 function calcularTithi() {
  const ahora = new Date();
- const utc = new Date(ahora.getTime() + ahora.getTimezoneOffset() * 60000 - 7200000);
-
+ const moon = SunCalc.getMoonIllumination(new Date());
+ 
 const moon = SunCalc.getMoonIllumination(utc);
   const elongacion = moon.phase * 360;
   const tithi = Math.floor(elongacion / 12) + 1;
@@ -195,7 +195,7 @@ function actualizarLuna() {
 
 // 🔥 CORRECCIÓN VISUAL (la clave)
 const k = Math.cos(faseReal * 2 * Math.PI);
-  const waxing = true;
+  const waxing = faseReal < 0.5;
 
   const d = 2 * k - 1;
   const curve = Math.abs(d);
@@ -224,13 +224,13 @@ lunaDiv.innerHTML = `
   <circle cx="80" cy="80" r="70" fill="white"/>
 
  <path 
-  d="
-    M80,10
-    Q ${80 + (waxing ? 12 : -12)},80 80,150
-    L160,150
-    L160,10
-    Z
-  " 
+ d="
+  M80,10
+  Q ${80 + (k * 60)},80 80,150
+  L160,150
+  L160,10
+  Z
+"
   fill="black"
   filter="url(#blurEdge)"
 />
