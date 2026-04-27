@@ -161,10 +161,8 @@ document.getElementById("tienda").style.display="block";
 <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 <script>
 function calcularTithi() {
- const ahora = new Date();
- const moon = SunCalc.getMoonIllumination(new Date());
- 
-const moon = SunCalc.getMoonIllumination(utc);
+  const moon = SunCalc.getMoonIllumination(new Date());
+
   const elongacion = moon.phase * 360;
   const tithi = Math.floor(elongacion / 12) + 1;
 
@@ -185,10 +183,7 @@ const moon = SunCalc.getMoonIllumination(utc);
 <script>
 function actualizarLuna() {
 
-  const ahora = new Date();
- const utc = new Date(ahora.getTime() + ahora.getTimezoneOffset() * 60000 - 7200000);
-
-  const moon = SunCalc.getMoonIllumination(utc);
+const moon = SunCalc.getMoonIllumination(new Date());
   console.log("fase:", moon.phase * 30);
 
   const faseReal = moon.phase;
@@ -226,7 +221,7 @@ lunaDiv.innerHTML = `
  <path 
  d="
   M80,10
-  Q ${80 + (k * 60)},80 80,150
+  Q ${80 + (k * 75)},80 80,150
   L160,150
   L160,10
   Z
