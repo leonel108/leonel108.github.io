@@ -196,7 +196,7 @@ button:hover {
 
   position: relative;
   display: inline-block;
-  margin-bottom: 100px;
+  margin-bottom: 10px;
   z-index: 10;
 }
 
@@ -406,7 +406,7 @@ section {
 
 .charco {
   position: absolute;
-  top: 110%;
+  top: 85%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -431,7 +431,7 @@ section {
 .charco::after {
   content: "dharma shakti";
   position: absolute;
-  top: 10px;
+  top: -35px;
   left: 0;
   width: 100%;
   text-align: center;
