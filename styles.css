@@ -494,3 +494,13 @@ section {
     transform: scale(1) translateY(0px);
   }
 }
+#link-calendario {
+  color: #a855f7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#link-calendario:hover {
+  color: #FFD700;
+  text-decoration: underline;
+}

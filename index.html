@@ -51,7 +51,9 @@
 
 <div id="luna"></div>
 
-<p id="fase-luna" class="fase-luna"></p>
+<p class="fase-luna">
+  <a id="link-calendario" href="#" target="_blank"></a>
+</p>
 <p id="tithi-luna" class="tithi-luna"></p>
 </div>
 
@@ -260,7 +262,12 @@ if (moon.phase < 0.5) {
   textoFase = " Krishna Paksha (Luna menguante)";
 }
 
-document.getElementById("fase-luna").innerHTML = "<b>" + textoFase + "</b>";
+const link = document.getElementById("link-calendario");
+
+link.innerHTML = "<b>" + textoFase + "</b>";
+
+// 🔥 enlace al calendario védico
+link.href = "https://www.drikpanchang.com/panchang/day-panchang.html";
 }
 
 actualizarLuna();
