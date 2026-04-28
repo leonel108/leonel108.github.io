@@ -402,7 +402,8 @@ section {
 /* CONTENEDOR */
 .titulo-contenedor {
   position: relative;
-  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 /* CHARCO DE AGUA */
@@ -432,7 +433,8 @@ section {
   box-shadow:
     0 0 25px rgba(100,150,255,0.25),
     inset 0 0 30px rgba(255,255,255,0.2);
-    animation: agua 4s ease-in-out infinite;
+   background-size: 200% 100%;
+animation: agua 4s ease-in-out infinite, brilloAgua 6s linear infinite;
 }
 .charco::after,
 .charco::before {
@@ -441,24 +443,25 @@ section {
   left: 50%;
   top: 50%;
 
-  width: 40px;
-  height: 20px;
+  width: 30px;
+  height: 15px;
 
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scaleX(1.2);
   border-radius: 50%;
   opacity: 0;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(255,255,255,0.35) 0%,
-    rgba(255,255,255,0.25) 20%,
-    rgba(255,255,255,0.1) 40%,
-    transparent 70%
+    rgba(255,255,255,0.6) 0%,   /* 🔥 cresta brillante */
+    rgba(255,255,255,0.4) 10%,
+    rgba(255,255,255,0.2) 20%,
+    rgba(0,0,0,0.15) 35%,       /* 🔥 valle oscuro */
+    transparent 55%
   );
 
-  filter: blur(1px);
+  filter: blur(0.8px);
 
-  animation: ondaRealista 3s infinite;
+  animation: ondaRealista 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 .charco::before {
   animation-delay: 1.5s;
@@ -540,18 +543,26 @@ section {
 }
 @keyframes ondaRealista {
   0% {
-    width: 40px;
-    height: 20px;
-    opacity: 0.5;
+    width: 30px;
+    height: 15px;
+    opacity: 0.7;
   }
 
-  50% {
-    opacity: 0.25;
+  40% {
+    opacity: 0.4;
   }
 
   100% {
-    width: 420px;
-    height: 120px;
+    width: 460px;
+    height: 140px;
     opacity: 0;
+  }
+}
+@keyframes brilloAgua {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
