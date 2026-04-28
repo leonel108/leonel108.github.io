@@ -415,8 +415,11 @@ section {
   position: absolute;
   top: 100%;
   margin-top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
+
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 
   width: 440px;
   height: 120px;
@@ -425,20 +428,21 @@ section {
 
   background: radial-gradient(
     ellipse at center,
-    rgba(30, 60, 120, 0.45) 0%,   /* 🔥 azul agua */
+    rgba(30, 60, 120, 0.45) 0%,
     rgba(30, 60, 120, 0.25) 40%,
     rgba(255,255,255,0.15) 65%,
     transparent 90%
   );
 
-  backdrop-filter: blur(3px); /* 🔥 efecto agua real */
+  backdrop-filter: blur(3px);
   overflow: hidden;
 
   box-shadow:
     0 0 25px rgba(100,150,255,0.25),
     inset 0 0 30px rgba(255,255,255,0.2);
-   background-size: 200% 100%;
-animation: agua 4s ease-in-out infinite, brilloAgua 6s linear infinite;
+
+  background-size: 200% 100%;
+  animation: agua 4s ease-in-out infinite, brilloAgua 6s linear infinite;
 }
 .charco::after,
 .charco::before {
