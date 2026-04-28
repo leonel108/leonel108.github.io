@@ -580,3 +580,11 @@ section {
     background-position: 100% 50%;
   }
 }
+#link-calendario {
+  color: #66ccff;
+  text-decoration: none;
+}
+
+#tithi-luna {
+  color: #66ccff;
+}
