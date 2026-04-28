@@ -432,41 +432,36 @@ section {
   box-shadow:
     0 0 25px rgba(100,150,255,0.25),
     inset 0 0 30px rgba(255,255,255,0.2);
+    animation: agua 4s ease-in-out infinite;
 }
-.charco::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  width: 20px;
-  height: 20px;
-
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.4);
-
-  transform: translate(-50%, -50%);
-  opacity: 0;
-
-  animation: ondaCircular 3s infinite;
-}
+.charco::after,
 .charco::before {
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
 
-  width: 20px;
+  width: 40px;
   height: 20px;
 
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.25);
-
   transform: translate(-50%, -50%);
+  border-radius: 50%;
   opacity: 0;
 
-  animation: ondaCircular 3s infinite;
-  animation-delay: 1.5s; /* 🔥 desfase */
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,0.25) 20%,
+    rgba(255,255,255,0.1) 40%,
+    transparent 70%
+  );
+
+  filter: blur(1px);
+
+  animation: ondaRealista 3s infinite;
+}
+.charco::before {
+  animation-delay: 1.5s;
 }
 /* REFLEJO REAL */
 .reflejo {
@@ -543,19 +538,19 @@ section {
     transform: translateX(100%) skewX(-10deg);
   }
 }
-@keyframes ondaCircular {
+@keyframes ondaRealista {
   0% {
-    width: 20px;
+    width: 40px;
     height: 20px;
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   50% {
-    opacity: 0.3;
+    opacity: 0.25;
   }
 
   100% {
-    width: 400px;
+    width: 420px;
     height: 120px;
     opacity: 0;
   }
