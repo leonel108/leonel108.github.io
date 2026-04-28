@@ -588,3 +588,11 @@ section {
 #tithi-luna {
   color: #66ccff;
 }
+#link-calendario {
+  color: #66ccff;
+  cursor: pointer;
+}
+
+#link-calendario:hover {
+  opacity: 0.7;
+}
