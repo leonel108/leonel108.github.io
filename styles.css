@@ -479,13 +479,13 @@ animation: agua 4s ease-in-out infinite, brilloAgua 6s linear infinite;
   position: absolute;
   top: -40px;
   left: 50%;
-  width: 100%;
-  text-align: center;
 
   transform: translateX(-50%) scaleY(-1);
 
   font-family: 'Dancing Script', cursive;
   font-size: 70px;
+
+  white-space: nowrap; /* 🔥 clave */
 
   background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
   -webkit-background-clip: text;
