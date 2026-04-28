@@ -189,7 +189,8 @@ const moon = SunCalc.getMoonIllumination(new Date());
   const faseReal = moon.phase;
 
 // 🔥 CORRECCIÓN VISUAL (la clave)
-const k = Math.cos(faseReal * 2 * Math.PI);
+const iluminacion = moon.fraction;
+const k = 2 * iluminacion - 1;
   const waxing = faseReal < 0.5;
 
   const d = 2 * k - 1;
@@ -218,10 +219,10 @@ lunaDiv.innerHTML = `
   <!-- luna visible -->
   <circle cx="80" cy="80" r="70" fill="white"/>
 
- <path 
+<path 
  d="
   M80,10
-  Q ${80 - (k * 75)},80 80,150
+  Q ${80 - (k * 60)},80 80,150
   L0,150
   L0,10
   Z
