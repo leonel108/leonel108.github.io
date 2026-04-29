@@ -663,15 +663,17 @@ section {
   }
 
   /* 🔥 MENÚ */
-  nav {
-    flex-direction: column;
-    gap: 5px;
-  }
+ nav {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
 
-  nav a {
-    font-size: 18px;
-  }
-
+nav a {
+  font-size: 16px;
+  padding: 6px 8px;
+}
   /* 🔥 COLUMNAS */
   .izquierda, .derecha, .centro {
     padding: 10px;
