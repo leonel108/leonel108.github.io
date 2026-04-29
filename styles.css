@@ -204,22 +204,6 @@ button:hover {
 }
 
 
-/* LUNA */
-
-@media (max-width: 768px) {
-  .contenedor {
-    grid-template-columns: 1fr; /* 🔥 esto es la clave */
-  }
-
-  .izquierda, .centro, .derecha {
-    width: 100%;
-  }
-
-  video, img {
-    max-width: 100%;
-    height: auto;
-  }
-}
 #luna {
   width: 160px;
   height: 160px;
@@ -631,8 +615,20 @@ section {
 
   /* CONTENEDOR YA LO TIENES BIEN */
   .contenedor {
-    grid-template-columns: 1fr;
-  }
+  display: flex;
+  flex-direction: column;
+  .centro {
+  order: 1;
+}
+
+.izquierda {
+  order: 2;
+}
+
+.derecha {
+  order: 3;
+}
+}
 
   /* 🔥 TÍTULO */
   #titulo {
