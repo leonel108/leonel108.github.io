@@ -626,3 +626,55 @@ section {
 .blog-articulo li {
   margin-bottom: 8px;
 }
+/* 🔥 AJUSTES REALES PARA CELULARES */
+@media (max-width: 768px) {
+
+  /* CONTENEDOR YA LO TIENES BIEN */
+  .contenedor {
+    grid-template-columns: 1fr;
+  }
+
+  /* 🔥 TÍTULO */
+  #titulo {
+    font-size: 36px; /* antes 70px */
+    white-space: normal; /* permite que no se rompa feo */
+  }
+
+  /* 🔥 CHARCO */
+  .charco {
+    width: 90%;
+    height: 80px;
+  }
+
+  /* 🔥 REFLEJO */
+  .reflejo {
+    font-size: 36px;
+  }
+
+  /* 🔥 LUNA */
+  .moon {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* 🔥 VIDEO */
+  .video-container iframe {
+    height: 250px;
+  }
+
+  /* 🔥 MENÚ */
+  nav {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  nav a {
+    font-size: 18px;
+  }
+
+  /* 🔥 COLUMNAS */
+  .izquierda, .derecha, .centro {
+    padding: 10px;
+  }
+
+}
