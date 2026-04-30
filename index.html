@@ -204,49 +204,62 @@ const waxing = faseReal < 0.5;
 // controla la curvatura real
 const curva = (1 - iluminacion) * 80;
 const lunaDiv = document.getElementById("luna");
-lunaDiv.innerHTML = `
-<svg width="160" height="160" viewBox="0 0 160 160">
+// 🌕 si está casi llena → sin línea
+if (iluminacion > 0.98) {
 
-  <defs>
-    <!-- textura real -->
-    <pattern id="moonTexture" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="./luna-textura.jpg" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid slice"/>
-    </pattern>
+  lunaDiv.innerHTML = `
+  <svg width="160" height="160" viewBox="0 0 160 160">
+    <defs>
+      <pattern id="moonTexture" width="1" height="1">
+        <image href="./luna-textura.jpg" width="160" height="160"/>
+      </pattern>
+    </defs>
 
-    <!-- máscara REAL -->
-    <mask id="moonMask">
-  <rect width="160" height="160" fill="black"/>
+    <circle cx="80" cy="80" r="70" fill="url(#moonTexture)" />
+  </svg>
+  `;
 
-  <!-- luna visible -->
-  <circle cx="80" cy="80" r="70" fill="white"/>
+} else {
 
-<path 
- d="
-  M80,10
-  Q ${waxing ? 80 - curva : 80 + curva},80 80,150
-  L80,150
-  Q ${waxing ? 80 + curva : 80 - curva},80 80,10
-  Z
-"
- fill="black"
-/>
-</mask>
-  </defs>
+  lunaDiv.innerHTML = `
+  <svg width="160" height="160" viewBox="0 0 160 160">
 
-  <!-- fondo -->
-  <circle cx="80" cy="80" r="70" fill="black"/>
+    <defs>
+      <pattern id="moonTexture" width="1" height="1">
+        <image href="./luna-textura.jpg" width="160" height="160"/>
+      </pattern>
 
-  <!-- luna con máscara -->
-  <circle 
-  cx="80" 
-  cy="80" 
-  r="70" 
-  fill="url(#moonTexture)" 
-  mask="url(#moonMask)"
-/>
+      <mask id="moonMask">
+        <rect width="160" height="160" fill="black"/>
+        <circle cx="80" cy="80" r="70" fill="white"/>
 
-</svg>
-`;
+        <path 
+         d="
+          M80,10
+          Q ${waxing ? 80 - curva : 80 + curva},80 80,150
+          L80,150
+          Q ${waxing ? 80 + curva : 80 - curva},80 80,10
+          Z
+        "
+        fill="black"
+        />
+      </mask>
+    </defs>
+
+    <circle cx="80" cy="80" r="70" fill="black"/>
+
+    <circle 
+      cx="80" 
+      cy="80" 
+      r="70" 
+      fill="url(#moonTexture)" 
+      mask="url(#moonMask)"
+    />
+
+  </svg>
+  `;
+
+}
   document.getElementById("tithi-luna").innerHTML =
   "<b>" + calcularTithi() + "</b>";
   let textoFase = "";
