@@ -203,6 +203,7 @@ const waxing = faseReal < 0.5;
 
 // controla la curvatura real
 const curva = (1 - iluminacion) * 120;
+const lunaDiv = document.getElementById("luna");
 lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
 
@@ -212,7 +213,7 @@ lunaDiv.innerHTML = `
 </filter>
     <!-- textura real -->
     <pattern id="moonTexture" patternUnits="objectBoundingBox" width="1" height="1">
-      <image href="luna-textura.jpg" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid slice"/>
+      <image href="./luna-textura.jpg" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid slice"/>
     </pattern>
 
     <!-- máscara REAL -->
