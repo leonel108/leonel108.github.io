@@ -207,37 +207,65 @@ const lunaDiv = document.getElementById("luna");
 // 🌕 si está casi llena → sin línea
 if (iluminacion > 0.98) {
 
+  // 🌕 LUNA LLENA PERFECTA
   lunaDiv.innerHTML = `
-  <svg width="160" height="160" viewBox="0 0 160 160">
+  <svg width="180" height="180" viewBox="0 0 180 180">
+
     <defs>
       <pattern id="moonTexture" width="1" height="1">
-        <image href="./luna-textura.jpg" width="160" height="160"/>
+        <image href="./luna-textura.jpg" width="180" height="180"/>
       </pattern>
     </defs>
 
-    <circle cx="80" cy="80" r="70" fill="url(#moonTexture)" />
+    <!-- fondo negro perfecto -->
+    <circle cx="90" cy="90" r="90" fill="black"/>
+
+    <!-- luna grande -->
+    <circle cx="90" cy="90" r="85" fill="url(#moonTexture)" />
+
   </svg>
   `;
 
 } else {
 
- lunaDiv.innerHTML = `
-<svg width="160" height="160" viewBox="0 0 160 160">
+  // 🌗 TODAS LAS DEMÁS FASES (TU SISTEMA ORIGINAL BIEN HECHO)
+  lunaDiv.innerHTML = `
+  <svg width="180" height="180" viewBox="0 0 180 180">
 
-  <defs>
-    <pattern id="moonTexture" width="1" height="1">
-      <image href="./luna-textura.jpg" width="160" height="160"/>
-    </pattern>
-  </defs>
+    <defs>
+      <pattern id="moonTexture" width="1" height="1">
+        <image href="./luna-textura.jpg" width="180" height="180"/>
+      </pattern>
 
-  <!-- 🌑 fondo negro completo -->
-  <circle cx="80" cy="80" r="70" fill="black"/>
+      <mask id="moonMask">
+        <rect width="180" height="180" fill="black"/>
+        <circle cx="90" cy="90" r="85" fill="white"/>
 
-  <!-- 🌕 luna (mismo tamaño exacto) -->
-  <circle cx="80" cy="80" r="70" fill="url(#moonTexture)" />
+        <path 
+         d="
+          M90,5
+          Q ${waxing ? 90 - curva : 90 + curva},90 90,175
+          L90,175
+          Q ${waxing ? 90 + curva : 90 - curva},90 90,5
+          Z
+        "
+        fill="black"
+        />
+      </mask>
+    </defs>
 
-</svg>
-`;
+    <circle cx="90" cy="90" r="90" fill="black"/>
+
+    <circle 
+      cx="90" 
+      cy="90" 
+      r="85" 
+      fill="url(#moonTexture)" 
+      mask="url(#moonMask)"
+    />
+
+  </svg>
+  `;
 
 }
   document.getElementById("tithi-luna").innerHTML =
