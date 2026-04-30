@@ -202,7 +202,7 @@ const iluminacion = moon.fraction; // 0 → 1
 const waxing = faseReal < 0.5;
 
 // controla la curvatura real
-const curva = (1 - iluminacion) * 140;
+const curva = Math.cos(iluminacion * Math.PI) * 70;
 const lunaDiv = document.getElementById("luna");
 lunaDiv.innerHTML = `
 <svg width="160" height="160" viewBox="0 0 160 160">
@@ -227,7 +227,8 @@ lunaDiv.innerHTML = `
  d="
   M80,10
   Q ${waxing ? 80 - curva : 80 + curva},80 80,150
-  Q ${waxing ? 0 : 160},80 80,10
+  L0,150
+  L0,10
   Z
 "
  fill="black"
