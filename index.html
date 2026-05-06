@@ -200,10 +200,10 @@ const moon = SunCalc.getMoonIllumination(new Date());
 // 🔥 CORRECCIÓN VISUAL (la clave)
 const iluminacion = moon.fraction; // 0 → 1
 const waxing = faseReal < 0.5;
-const offset = (1 - iluminacion) * 180;
+const offset = (1 - iluminacion) * 90;
 
 // controla la curvatura real
-const curva = (1 - iluminacion) * 80;
+
 const lunaDiv = document.getElementById("luna");
 // 🌕 si está casi llena → sin línea
 if (iluminacion > 0.98) {
