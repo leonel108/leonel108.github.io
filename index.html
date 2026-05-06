@@ -210,22 +210,38 @@ if (iluminacion > 0.98) {
 
   // 🌕 LUNA LLENA PERFECTA
   lunaDiv.innerHTML = `
-  <svg width="180" height="180" viewBox="0 0 180 180">
+<svg width="180" height="180" viewBox="0 0 180 180"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
 
-    <defs>
-      <pattern id="moonTexture" width="1" height="1">
-        <image href="luna-textura.jpg" width="180" height="180"/>
-      </pattern>
-    </defs>
+  <defs>
+    <mask id="moonMask">
+      <rect width="180" height="180" fill="black"/>
+      <circle cx="90" cy="90" r="88" fill="white"/>
 
-    <!-- fondo negro perfecto -->
-    <circle cx="90" cy="90" r="90" fill="black"/>
+      <circle 
+        cx="${waxing ? 90 + offset : 90 - offset}" 
+        cy="90" 
+        r="90" 
+        fill="black"/>
+    </mask>
+  </defs>
 
-    <!-- luna grande -->
-    <circle cx="90" cy="90" r="88" fill="url(#moonTexture)" />
+  <!-- fondo -->
+  <circle cx="90" cy="90" r="90" fill="black"/>
 
-  </svg>
-  `;
+  <!-- imagen REAL de la luna -->
+  <image 
+    href="luna-textura.jpg"
+    xlink:href="luna-textura.jpg"
+    x="0"
+    y="0"
+    width="180"
+    height="180"
+    mask="url(#moonMask)"
+  />
+
+</svg>
+`;
 
 } else {
 
