@@ -187,28 +187,7 @@ function calcularTithi() {
   return nombres[tithi - 1];
 }
 </script>
-
-
-<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 <script>
-function calcularTithi() {
-
-  const moon = SunCalc.getMoonIllumination(new Date());
-
-  const elongacion = moon.phase * 360;
-  const tithi = Math.floor(elongacion / 12) + 1;
-
-  const nombres = [
-    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
-    "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Purnima",
-    "Pratipada (Krishna)","Dvitiya","Tritiya","Chaturthi","Panchami",
-    "Shashthi","Saptami","Ashtami","Navami","Dashami",
-    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Amavasya"
-  ];
-
-  return nombres[tithi - 1];
-}
 
 function actualizarLuna() {
 
@@ -247,6 +226,7 @@ function actualizarLuna() {
       style="
         width:180px;
         height:180px;
+        objet-fit:cover;
         border-radius:50%;
         position:absolute;
         top:0;
@@ -254,14 +234,15 @@ function actualizarLuna() {
       "
     >
 
-    <div style="
-      position:absolute;
-      top:0;
-      left:${posicion}px;
-      width:${sombra}px;
-      height:180px;
-      background:black;
-    "></div>
+   <div style="
+  position:absolute;
+  top:0;
+  left:${posicion}px;
+  width:${sombra}px;
+  height:180px;
+  background:black;
+  border-radius:50%;
+"></div>
 
   </div>
   `;
