@@ -192,88 +192,99 @@ function calcularTithi() {
 <script>
 function actualizarLuna() {
 
-const moon = SunCalc.getMoonIllumination(new Date());
-  console.log("fase:", moon.phase * 30);
+  const moon = SunCalc.getMoonIllumination(new Date());
 
   const faseReal = moon.phase;
+  const iluminacion = moon.fraction;
 
-// 🔥 CORRECCIÓN VISUAL (la clave)
-const iluminacion = moon.fraction; // 0 → 1
-const waxing = faseReal < 0.5;
-const offset = (1 - iluminacion) * 60;
+  const waxing = faseReal < 0.5;
 
-// controla la curvatura real
+  // controla curvatura
+  const offset = (1 - iluminacion) * 60;
 
-const lunaDiv = document.getElementById("luna");
-lunaDiv.innerHTML = `
-<svg width="180" height="180" viewBox="0 0 180 180">
+  const lunaDiv = document.getElementById("luna");
 
-  <defs>
+  lunaDiv.innerHTML = `
+  <svg width="180" height="180" viewBox="0 0 180 180">
 
-    <clipPath id="moonClip">
-      <circle cx="90" cy="90" r="88"/>
-    </clipPath>
+    <defs>
 
-    <mask id="moonMask">
+      <clipPath id="moonClip">
+        <circle cx="90" cy="90" r="88"/>
+      </clipPath>
 
-      <!-- fondo negro -->
-      <rect width="180" height="180" fill="black"/>
+      <mask id="moonMask">
 
-      <!-- parte iluminada -->
-      <circle cx="90" cy="90" r="88" fill="white"/>
+        <!-- oculto -->
+        <rect width="180" height="180" fill="black"/>
 
-      <!-- sombra -->
-      <ellipse
-        cx="${waxing ? 90 + offset : 90 - offset}"
-        cy="90"
-        rx="88"
-        ry="88"
-        fill="black"
-      />
+        <!-- parte visible -->
+        <circle cx="90" cy="90" r="88" fill="white"/>
 
-    </mask>
+        <!-- sombra -->
+        <ellipse
+          cx="${waxing ? 90 + offset : 90 - offset}"
+          cy="90"
+          rx="88"
+          ry="88"
+          fill="black"
+        />
 
-  </defs>
+      </mask>
 
-  <!-- fondo -->
-  <circle cx="90" cy="90" r="90" fill="black"/>
+    </defs>
 
-  <!-- textura de luna -->
-  <image
-    href="luna-textura.jpg"
-    x="0"
-    y="0"
-    width="180"
-    height="180"
-    clip-path="url(#moonClip)"
-    mask="url(#moonMask)"
-  />
+    <!-- fondo -->
+    <circle cx="90" cy="90" r="90" fill="black"/>
 
-</svg>
-`;
+    <!-- luna -->
+    <image
+      href="luna-textura.jpg"
+      x="0"
+      y="0"
+      width="180"
+      height="180"
+      clip-path="url(#moonClip)"
+      mask="url(#moonMask)"
+    />
 
-}
+  </svg>
+  `;
+
+  // TITHI
   document.getElementById("tithi-luna").innerHTML =
-  "<b>" + calcularTithi() + "</b>";
+    "<b>" + calcularTithi() + "</b>";
+
+  // TEXTO FASE
   let textoFase = "";
 
-if (moon.phase < 0.5) {
-  textoFase = " Shukla Paksha (Luna creciente)";
-} else {
-  textoFase = " Krishna Paksha (Luna menguante)";
+  if (moon.phase < 0.5) {
+    textoFase = "Shukla Paksha (Luna creciente)";
+  } else {
+    textoFase = "Krishna Paksha (Luna menguante)";
+  }
+
+  document.getElementById("link-calendario").innerHTML =
+    "<b>" + textoFase + "</b>";
 }
 
-const link = document.getElementById("link-calendario");
-
-link.innerHTML = "<b>" + textoFase + "</b>";
-
-}
-
+// iniciar
 actualizarLuna();
+
+// actualizar cada minuto
 setInterval(actualizarLuna, 60000);
-function mostrarCalendario(){
+
+// mostrar calendario
+function mostrarCalendario() {
+
   const cal = document.getElementById("calendario");
-  cal.style.display = cal.style.display === "none" ? "block" : "none";
+
+  if (cal.style.display === "none") {
+    cal.style.display = "block";
+  } else {
+    cal.style.display = "none";
+  }
+
 }
 </script>
 </body>
