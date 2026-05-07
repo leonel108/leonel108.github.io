@@ -189,66 +189,81 @@ function calcularTithi() {
 </script>
 
 
+<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 <script>
+function calcularTithi() {
+
+  const moon = SunCalc.getMoonIllumination(new Date());
+
+  const elongacion = moon.phase * 360;
+  const tithi = Math.floor(elongacion / 12) + 1;
+
+  const nombres = [
+    "Pratipada","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Purnima",
+    "Pratipada (Krishna)","Dvitiya","Tritiya","Chaturthi","Panchami",
+    "Shashthi","Saptami","Ashtami","Navami","Dashami",
+    "Ekadashi","Dvadashi","Trayodashi","Chaturdashi","Amavasya"
+  ];
+
+  return nombres[tithi - 1];
+}
+
 function actualizarLuna() {
 
   const moon = SunCalc.getMoonIllumination(new Date());
 
-  const faseReal = moon.phase;
   const iluminacion = moon.fraction;
-
-  const waxing = faseReal < 0.5;
-
-  // controla curvatura
-  const offset = (1 - iluminacion) * 60;
+  const fase = moon.phase;
 
   const lunaDiv = document.getElementById("luna");
 
+  // ancho de sombra
+  const sombra = 180 * (1 - iluminacion);
+
+  let posicion;
+
+  // creciente o menguante
+  if (fase < 0.5) {
+    posicion = 180 - sombra;
+  } else {
+    posicion = 0;
+  }
+
   lunaDiv.innerHTML = `
-  <svg width="180" height="180" viewBox="0 0 180 180">
+  <div style="
+    position:relative;
+    width:180px;
+    height:180px;
+    margin:auto;
+    border-radius:50%;
+    overflow:hidden;
+    background:black;
+  ">
 
-    <defs>
+    <img
+      src="luna-textura.jpg"
+      style="
+        width:180px;
+        height:180px;
+        border-radius:50%;
+        position:absolute;
+        top:0;
+        left:0;
+      "
+    >
 
-      <clipPath id="moonClip">
-        <circle cx="90" cy="90" r="88"/>
-      </clipPath>
+    <div style="
+      position:absolute;
+      top:0;
+      left:${posicion}px;
+      width:${sombra}px;
+      height:180px;
+      background:black;
+    "></div>
 
-      <mask id="moonMask">
-
-        <!-- oculto -->
-        <rect width="180" height="180" fill="black"/>
-
-        <!-- parte visible -->
-        <circle cx="90" cy="90" r="88" fill="white"/>
-
-        <!-- sombra -->
-        <ellipse
-          cx="${waxing ? 90 + offset : 90 - offset}"
-          cy="90"
-          rx="88"
-          ry="88"
-          fill="black"
-        />
-
-      </mask>
-
-    </defs>
-
-    <!-- fondo -->
-    <circle cx="90" cy="90" r="90" fill="black"/>
-
-    <!-- luna -->
-    <image
-      href="luna-textura.jpg"
-      x="0"
-      y="0"
-      width="180"
-      height="180"
-      clip-path="url(#moonClip)"
-      mask="url(#moonMask)"
-    />
-
-  </svg>
+  </div>
   `;
 
   // TITHI
@@ -258,7 +273,7 @@ function actualizarLuna() {
   // TEXTO FASE
   let textoFase = "";
 
-  if (moon.phase < 0.5) {
+  if (fase < 0.5) {
     textoFase = "Shukla Paksha (Luna creciente)";
   } else {
     textoFase = "Krishna Paksha (Luna menguante)";
@@ -271,11 +286,10 @@ function actualizarLuna() {
 // iniciar
 actualizarLuna();
 
-// actualizar cada minuto
+// actualizar
 setInterval(actualizarLuna, 60000);
 
-// mostrar calendario
-function mostrarCalendario() {
+function mostrarCalendario(){
 
   const cal = document.getElementById("calendario");
 
