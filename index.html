@@ -200,85 +200,52 @@ const moon = SunCalc.getMoonIllumination(new Date());
 // 🔥 CORRECCIÓN VISUAL (la clave)
 const iluminacion = moon.fraction; // 0 → 1
 const waxing = faseReal < 0.5;
-const offset = (1 - iluminacion) * 90;
+const offset = (1 - iluminacion) * 60;
 
 // controla la curvatura real
 
 const lunaDiv = document.getElementById("luna");
-// 🌕 si está casi llena → sin línea
-if (iluminacion > 0.98) {
-
-  // 🌕 LUNA LLENA PERFECTA
-  lunaDiv.innerHTML = `
-<svg width="180" height="180" viewBox="0 0 180 180"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
+lunaDiv.innerHTML = `
+<svg width="180" height="180" viewBox="0 0 180 180">
 
   <defs>
+
+    <clipPath id="moonClip">
+      <circle cx="90" cy="90" r="88"/>
+    </clipPath>
+
     <mask id="moonMask">
+
+      <!-- fondo negro -->
       <rect width="180" height="180" fill="black"/>
+
+      <!-- parte iluminada -->
       <circle cx="90" cy="90" r="88" fill="white"/>
 
-      <circle 
-        cx="${waxing ? 90 + offset : 90 - offset}" 
-        cy="90" 
-        r="90" 
-        fill="black"/>
+      <!-- sombra -->
+      <ellipse
+        cx="${waxing ? 90 + offset : 90 - offset}"
+        cy="90"
+        rx="88"
+        ry="88"
+        fill="black"
+      />
+
     </mask>
+
   </defs>
 
   <!-- fondo -->
   <circle cx="90" cy="90" r="90" fill="black"/>
 
-  <!-- imagen REAL de la luna -->
-  <image 
+  <!-- textura de luna -->
+  <image
     href="luna-textura.jpg"
-    xlink:href="luna-textura.jpg"
     x="0"
     y="0"
     width="180"
     height="180"
-    mask="url(#moonMask)"
-  />
-
-</svg>
-`;
-
-} else {
-
-  // 🌗 TODAS LAS DEMÁS FASES (TU SISTEMA ORIGINAL BIEN HECHO)
- lunaDiv.innerHTML = `
-<svg width="180" height="180" viewBox="0 0 180 180">
-
-  <defs>
-    <pattern id="moonTexture" width="1" height="1">
-      <image href="./luna-textura.jpg" width="180" height="180"/>
-    </pattern>
-
-   <mask id="moonMask">
-  <!-- oculto por defecto -->
-  <rect width="180" height="180" fill="black"/>
-
-  <!-- zona visible -->
-  <circle cx="90" cy="90" r="88" fill="white"/>
-
-  <!-- sombra que tapa desde un lado -->
-  <circle 
-    cx="${waxing ? 90 + offset : 90 - offset}" 
-    cy="90" 
-    r="90" 
-    fill="black"/>
-</mask>
-  </defs>
-
-  <!-- fondo -->
-  <circle cx="90" cy="90" r="90" fill="black"/>
-
-  <!-- luna -->
-  <circle 
-    cx="90" 
-    cy="90" 
-    r="88" 
-    fill="url(#moonTexture)" 
+    clip-path="url(#moonClip)"
     mask="url(#moonMask)"
   />
 
