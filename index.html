@@ -199,16 +199,23 @@ function actualizarLuna() {
   const lunaDiv = document.getElementById("luna");
 
   // ancho de sombra
-  const sombra = 180 * (1 - iluminacion);
+ // tamaño visual más natural
+const sombra = 160 * (1 - iluminacion);
 
-  let posicion;
+let posicion;
 
-  // creciente o menguante
-  if (fase < 0.5) {
-    posicion = 180 - sombra;
-  } else {
-    posicion = 0;
-  }
+// creciente o menguante
+if (fase < 0.5) {
+
+  // creciente
+  posicion = 180 - sombra + 10;
+
+} else {
+
+  // menguante
+  posicion = 10;
+
+}
 
   lunaDiv.innerHTML = `
   <div style="
