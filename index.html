@@ -200,60 +200,60 @@ function actualizarLuna() {
 
   // ancho de sombra
  // tamaño visual más natural
-const sombra = 160 * (1 - iluminacion);
+const sombra = 180 * (1 - iluminacion);
 
 let posicion;
 
-// creciente o menguante
 if (fase < 0.5) {
 
-  // creciente
-  posicion = 180 - sombra + 10;
+  // luna creciente
+  posicion = 90;
 
 } else {
 
-  // menguante
-  posicion = 10;
+  // luna menguante
+  posicion = -90 + sombra;
 
 }
 
-  lunaDiv.innerHTML = `
-  <div style="
-    position:relative;
-    width:180px;
-    height:180px;
-    margin:auto;
-    border-radius:50%;
-    overflow:hidden;
-    background:black;
-  ">
-
- <img
-  src="luna-textura.jpg"
-  style="
-    width:190px;
-    height:190px;
-    object-fit:cover;
-    border-radius:50%;
-    position:absolute;
-    top:-8px;
-    left:-5;
-  "
->
-
-   <div style="
+lunaDiv.innerHTML = `
+<div style="
   position:relative;
-  top:0;
-  left:${posicion}px;
-  width:${sombra}px;
-  height:200px;
-  background:black;
+  width:180px;
+  height:180px;
+  margin:auto;
   border-radius:50%;
-"></div>
+  overflow:hidden;
+  background:black;
+">
 
-  </div>
-  `;
+  <!-- textura luna -->
+  <img
+    src="luna-textura.jpg"
+    style="
+      width:190px;
+      height:190px;
+      object-fit:cover;
+      border-radius:50%;
+      position:absolute;
+      top:-5px;
+      left:-5px;
+    "
+  >
 
+  <!-- sombra -->
+  <div style="
+    position:absolute;
+    top:0;
+    left:${posicion}px;
+    width:${sombra}px;
+    height:180px;
+    background:black;
+    border-radius:50%;
+  "></div>
+
+</div>
+`;
   // TITHI
   document.getElementById("tithi-luna").innerHTML =
     "<b>" + calcularTithi() + "</b>";
