@@ -235,7 +235,7 @@ function actualizarLuna() {
       position:absolute;
       top:5px;
       ${lado}:5px;
-      width:${180 - anchoLuz}px;
+      width:${Math.max(0, 180 - anchoLuz)}px;
       height:180px;
       background:black;
     "></div>
