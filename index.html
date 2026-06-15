@@ -197,63 +197,16 @@ function actualizarLuna() {
   const fase = moon.phase;
 
   const lunaDiv = document.getElementById("luna");
-  const moon = SunCalc.getMoonIllumination(new Date());
+  
 
 const elongacion = moon.phase * 360;
 const tithi = Math.floor(elongacion / 12) + 1;
 
 lunaDiv.innerHTML =
-<img src="lunas/luna_${tithi}.jpg" style="width:180px;">;
+'<img src="lunas/luna_${tithi}.jpg" style="width:180px;>';
 
   // tamaño de parte iluminada
-  const anchoLuz = iluminacion * 180;
-
-  // dirección de iluminación
-  const lado = fase < 0.5 ? "right" : "left";
-
-  lunaDiv.innerHTML = `
- <div style="
-  position:relative;
-  width:180px;
-  height:180px;
-  margin:auto;
-  border-radius:50%;
-  background:black;
-  overflow:hidden;
-  box-sizing:border-box;
-">
-
-    <!-- textura -->
-<img
-  src="luna-textura.jpg"
-  style="
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
-    position:absolute;
-    top:0;
-    left:0;
-    transform:translateY(-20px) scale(1.02);
-    filter:brightness(1.1);
-  "
->
-
-    <!-- máscara oscura -->
-    <div style="
-      position:absolute;
-      top:0px;
-      ${lado}:0px;
-      width:${Math.max(0, 180 - anchoLuz )}px;
-      height:180px;
-      background:black;
-    "></div>
-
-  </div>
-  `;
-
-  // TITHI
-  document.getElementById("tithi-luna").innerHTML =
+ 
     "<b>" + calcularTithi() + "</b>";
 
   // FASE
