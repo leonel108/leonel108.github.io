@@ -203,7 +203,10 @@ const elongacion = moon.phase * 360;
 const tithi = Math.floor(elongacion / 12) + 1;
 
 lunaDiv.innerHTML =
-'<img src="lunas/luna_${tithi}.jpg" style="width:180px;>';
+<img src="lunas/luna_${tithi}.jpg" style="width:180px;">;
+
+document.getElementById("tithi-luna").innerHTML =
+"<b>" + calcularTithi() + "</b>";
 
   // tamaño de parte iluminada
  
