@@ -197,9 +197,13 @@ function actualizarLuna() {
   const fase = moon.phase;
 
   const lunaDiv = document.getElementById("luna");
-  lunaDiv.innerHTML =
-'<img src="lunas/luna_1.jpg" style="width:180px;">';
-return;
+  const moon = SunCalc.getMoonIllumination(new Date());
+
+const elongacion = moon.phase * 360;
+const tithi = Math.floor(elongacion / 12) + 1;
+
+lunaDiv.innerHTML =
+<img src="lunas/luna_${tithi}.jpg" style="width:180px;">;
 
   // tamaño de parte iluminada
   const anchoLuz = iluminacion * 180;
