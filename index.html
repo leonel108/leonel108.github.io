@@ -213,6 +213,7 @@ function actualizarLuna() {
   border-radius:50%;
   background:black;
   overflow:hidden;
+  box-sizing:border-box;
 ">
 
     <!-- textura -->
@@ -226,7 +227,7 @@ function actualizarLuna() {
     position:absolute;
     top:0;
     left:0;
-    transform:translateY(-20px);
+    transform:translateY(-20px) scale(1.02);
     filter:brightness(1.1);
   "
 >
@@ -236,7 +237,7 @@ function actualizarLuna() {
       position:absolute;
       top:0px;
       ${lado}:0px;
-      width:${Math.max(0, 180 - anchoLuz -3)}px;
+      width:${Math.max(0, 180 - anchoLuz )}px;
       height:180px;
       background:black;
     "></div>
