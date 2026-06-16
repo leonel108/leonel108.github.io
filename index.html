@@ -204,7 +204,10 @@ const tithi = Math.floor(elongacion / 12) + 1;
 
 const imagen = "lunas/luna_" + tithi + ".jpg";
 
-lunaDiv.innerHTML = '<img src="' + imagen + '" style="width:180px;">';
+lunaDiv.innerHTML =
+'<div class="circulo-luna">' +
+'<img src="' + imagen + '">' +
+'</div>';
 
 document.getElementById("tithi-luna").innerHTML =
 "<b>" + calcularTithi() + "</b>";
