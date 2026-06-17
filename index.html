@@ -202,17 +202,12 @@ function actualizarLuna() {
 const elongacion = moon.phase * 360;
 const tithi = Math.floor(elongacion / 12) + 1;
 
-const imagen = "lunas/lunas.jpeg";
-
-const columna = 0;
-const fila = 0.34;
+const imagen = "lunas/luna_prueba.png.jpeg";
 
 lunaDiv.innerHTML =
-'<div class="circulo-luna" style="' +
-'background-image:url(' + imagen + ');' +
-'background-position:' + (-columna * 213) + 'px ' + (-fila * 171) + 'px;' +
-'background-size:1280px 853px;' +
-'"></div>';
+'<div class="circulo-luna">' +
+'<img src="' + imagen + '">' +
+'</div>';
 
 document.getElementById("tithi-luna").innerHTML =
 "<b>" + calcularTithi() + "</b>";
