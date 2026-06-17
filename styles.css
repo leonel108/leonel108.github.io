@@ -677,43 +677,22 @@ nav a {
 
 }
 .circulo-luna{
-    width:180px;
-    height:180px;
+    width:220px;
+    height:220px;
     margin:auto;
 
     background:black;
     border-radius:50%;
-
     overflow:hidden;
 
     display:flex;
     justify-content:center;
     align-items:center;
-
-    box-shadow:0 0 20px rgba(255,255,255,0.15);
 }
 
 .circulo-luna img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-}
-.circulo-luna{
-    width:180px;
-    height:180px;
-    margin:auto;
-
-    border-radius:50%;
-    overflow:hidden;
-
-    background-repeat:no-repeat;
-
-    background-size:1280px 853px;
-
-    background-position:0px 0px;
-}
-.circulo-luna img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
+    width:120%;
+    height:120%;
+    object-fit:cover;
+    transform:translate(-10px,-10px);
 }
