@@ -206,9 +206,8 @@ const porcentaje = ((tithi - 1) / 29) * 100;
 const imagen = "lunas/luna_prueba.png.jpeg";
 
 lunaDiv.innerHTML =
-'<div class="circulo-luna" style="position:relative;">' +
+'<div class="circulo-luna">' +
 '<img src="' + imagen + '">' +
-'<div style="position:absolute;top:0;right:0;width:' + porcentaje + '%;height:100%;background:black;"></div>' +
 '</div>';
 
 document.getElementById("tithi-luna").innerHTML =
