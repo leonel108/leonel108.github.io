@@ -707,6 +707,10 @@ nav a {
     overflow:hidden;
 
     background-repeat:no-repeat;
+
+    background-size:1280px 853px;
+
+    background-position:0px 0px;
 }
 .circulo-luna img{
     width:100%;
