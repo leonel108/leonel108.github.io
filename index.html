@@ -201,12 +201,14 @@ function actualizarLuna() {
 
 const elongacion = moon.phase * 360;
 const tithi = Math.floor(elongacion / 12) + 1;
+const porcentaje = ((tithi - 1) / 29) * 100;
 
 const imagen = "lunas/luna_prueba.png.jpeg";
 
 lunaDiv.innerHTML =
-'<div class="circulo-luna">' +
+'<div class="circulo-luna" style="position:relative;">' +
 '<img src="' + imagen + '">' +
+'<div style="position:absolute;top:0;right:0;width:' + porcentaje + '%;height:100%;background:black;"></div>' +
 '</div>';
 
 document.getElementById("tithi-luna").innerHTML =
