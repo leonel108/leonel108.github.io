@@ -696,3 +696,19 @@ nav a {
     object-fit:contain;
     transform:translateY(2px);
 }
+.sombra-luna{
+    position:absolute;
+    top:0;
+    width:220px;
+    height:220px;
+
+    background:black;
+
+    border-radius:50%;
+
+    transition:all 1s ease;
+}
+
+.circulo-luna{
+    position:relative;
+}
