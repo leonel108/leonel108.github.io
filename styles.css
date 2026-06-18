@@ -691,8 +691,8 @@ nav a {
 }
 
 .circulo-luna img{
-    width:110%;
-    height:110%;
+    width:120%;
+    height:120%;
     object-fit:contain;
     transform:translateY(2px);
 }
