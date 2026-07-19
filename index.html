@@ -32,6 +32,7 @@
 
 <nav class="menu-central">
 <a href="#" onclick="mostrarInicio()">Inicio</a>
+<a href="#" onclick="mostrarYoga()">Yoga</a>
 <a href="#" onclick="mostrarViajes()">Viajes a India</a>
 <a href="#" onclick="mostrarTienda()">Tienda</a>
 <a href="blog.html">Blog</a>
@@ -134,6 +135,36 @@ Personas interesadas en yoga, espiritualidad y conocer India de verdad.
 </div>
 
 </section>
+<!-- YOGA -->
+<section id="yoga" style="display:none;">
+
+<h2>🧘 Clases de Yoga</h2>
+
+<img src="foto9.jpg" style="width:300px; margin:15px;">
+<img src="foto10.jpg" style="width:300px; margin:15px;">
+<img src="foto11.jpg" style="width:300px; margin:15px;">
+
+<h3>Horario</h3>
+
+<p>
+Todos los sábados<br>
+11:00 a 13:00 horas
+</p>
+
+<h3>Lugar</h3>
+
+<p>
+Camino de Loyola 5301<br>
+Quinta Normal, Santiago
+</p>
+
+<p><b>Clases gratuitas por tiempo limitado.</b></p>
+
+<a href="https://wa.me/56991694163" target="_blank">
+<button>Reservar por WhatsApp</button>
+</a>
+
+</section>
 
 </div>
 
@@ -152,18 +183,27 @@ function mostrarInicio(){
 document.getElementById("inicio").style.display="block";
 document.getElementById("viajes").style.display="none";
 document.getElementById("tienda").style.display="none";
+document.getElementById("yoga").style.display="none";
 }
 
 function mostrarViajes(){
 document.getElementById("inicio").style.display="none";
 document.getElementById("viajes").style.display="block";
 document.getElementById("tienda").style.display="none";
+document.getElementById("yoga").style.display="none";
 }
 
 function mostrarTienda(){
 document.getElementById("inicio").style.display="none";
 document.getElementById("viajes").style.display="none";
 document.getElementById("tienda").style.display="block";
+document.getElementById("yoga").style.display="none";
+}
+function mostrarYoga(){
+document.getElementById("inicio").style.display="none";
+document.getElementById("viajes").style.display="none";
+document.getElementById("tienda").style.display="none";
+document.getElementById("yoga").style.display="block";
 }
 </script>
 
