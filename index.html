@@ -33,6 +33,7 @@
 <nav class="menu-central">
 <a href="#" onclick="mostrarInicio()">Inicio</a>
 <a href="#" onclick="mostrarYoga()">Yoga</a>
+<a href="#" onclick="mostrarAstrologia()">Astrología</a>
 <a href="#" onclick="mostrarViajes()">Viajes a India</a>
 <a href="#" onclick="mostrarTienda()">Tienda</a>
 <a href="blog.html">Blog</a>
@@ -164,6 +165,25 @@ Quinta Normal, Santiago
 </a>
 
 </section>
+<!-- ASTROLOGÍA -->
+<section id="astrologia" style="display:none;">
+
+<h2>🪐 Astrología Védica (Jyotish)</h2>
+
+<p>
+La astrología védica es una ciencia tradicional de la India que ayuda a comprender
+los talentos, desafíos y ciclos de la vida mediante el estudio de la carta natal.
+</p>
+
+<p>
+Próximamente encontrarás aquí información sobre consultas e interpretación de cartas astrales.
+</p>
+
+<a href="https://wa.me/56991694163" target="_blank">
+<button>Solicitar información</button>
+</a>
+
+</section>
 
 </div>
 
@@ -203,6 +223,13 @@ document.getElementById("inicio").style.display="none";
 document.getElementById("viajes").style.display="none";
 document.getElementById("tienda").style.display="none";
 document.getElementById("yoga").style.display="block";
+}
+function mostrarAstrologia(){
+document.getElementById("inicio").style.display="none";
+document.getElementById("viajes").style.display="none";
+document.getElementById("tienda").style.display="none";
+document.getElementById("yoga").style.display="none";
+document.getElementById("astrologia").style.display="block";
 }
 </script>
 
