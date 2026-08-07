@@ -713,3 +713,11 @@ nav a {
 .circulo-luna{
     position:relative;
 }
+#astrologia p {
+    color: #4B2E19;
+    text-shadow: none;
+}
+
+#astrologia h2 {
+    color: #5A2D0C;
+}
